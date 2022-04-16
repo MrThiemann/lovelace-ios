@@ -12,7 +12,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: custom:button-card
-            entity: light.kuechensockel
+            entity: light.Entität_Licht
             icon: phu:light-strip
             name: Sockel
             show_icon: true
@@ -101,7 +101,7 @@ cards:
                       - width: 15px
               bm:
                 card:
-                  entity: binary_sensor.presence_12
+                  entity: binary_sensor.Entität_Presence
                   styles:
                     card:
                       - background-color: '#242e42'
@@ -130,7 +130,7 @@ cards:
                           - icon: mdi:security
                   type: custom:button-card
           - type: custom:button-card
-            entity: light.candle_rgb_cct_3
+            entity: light.Entität_Licht
             icon: phu:pendant-round
             name: Decke Küche
             show_icon: true
@@ -212,7 +212,7 @@ cards:
                     icon:
                       - width: 15px
           - type: custom:button-card
-            entity: light.candle_rgb_cct_3
+            entity: light.Entität_Licht
             icon: phu:bulbs-spot
             name: Spot
             show_icon: true
@@ -296,7 +296,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: custom:button-card
-            entity: light.kuechensockel
+            entity: light.Entität_Licht
             icon: phu:light-strip
             name: Sockel neu
             template:
@@ -307,7 +307,7 @@ cards:
             custom_fields:
               bm:
                 card:
-                  entity: binary_sensor.presence_12
+                  entity: binary_sensor.Entität_Presence
                   styles:
                     card:
                       - background-color: '#242e42'
@@ -336,7 +336,7 @@ cards:
                           - width: 15px;
                   type: custom:button-card
           - type: custom:button-card
-            entity: switch.tp_link_01
+            entity: switch.Entität_Switch
             icon: phu:bulbs-spot
             name: Oberboden
             hold_action:
@@ -473,7 +473,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: switch.tp_link_01
+                entity: switch.Entität_Switch
                 icon: phu:table-shade
                 name: Tischlampe
                 show_icon: true
@@ -555,7 +555,7 @@ cards:
                         icon:
                           - width: 15px
               - type: custom:button-card
-                entity: light.wandlampe_wohnzimmer
+                entity: light.Entität_Licht
                 icon: hue:wall-fuzo-h
                 name: Wandlampe
                 show_icon: true
@@ -637,7 +637,7 @@ cards:
                         icon:
                           - width: 15px
               - type: custom:button-card
-                entity: switch.tp_link_01
+                entity: switch.Entität_Switch
                 icon: phu:pendant-round
                 name: Deckenlampe
                 show_icon: true
@@ -721,7 +721,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: light.tybf4da595f9235af6dbrfhn
+                entity: light.Entität_Licht
                 icon: hue:go
                 name: Vitrine
                 show_icon: true
@@ -803,7 +803,7 @@ cards:
                         icon:
                           - width: 15px
               - type: custom:button-card
-                entity: light.lsc_light_strip_rgbcw_wifi_2
+                entity: light.Entität_Licht
                 icon: hue:lightstrip-tv
                 name: RGB Wohnwand
                 show_icon: true
@@ -885,7 +885,7 @@ cards:
                         icon:
                           - width: 15px
               - type: custom:button-card
-                entity: light.tybfbfbb83505dd21d54yzwe
+                entity: light.Entität_Licht
                 icon: hue:go
                 name: Vitrine
                 show_icon: true
@@ -981,11 +981,11 @@ cards:
         triggers_update: all
         variables:
           temp: sensor.wz_temp
-          door: binary_sensor.ty13600724840d8eae6714
+          door: binary_sensor.Entität_Presence
       - type: horizontal-stack
         cards:
           - type: custom:button-card
-            entity: switch.tp_link_01
+            entity: switch.Entität_Switch
             icon: hue:desk-lamp
             color: auto
             name: Schreibtisch
@@ -1014,7 +1014,7 @@ cards:
                     icon:
                       - width: 100%
           - type: custom:button-card
-            entity: light.candle_rgb_cct_3
+            entity: light.Entität_Licht
             icon: phu:pendant-round
             name: Decke Büro
             show_icon: true
@@ -1047,7 +1047,7 @@ cards:
                     icon:
                       - width: 15px
           - type: custom:button-card
-            entity: light.holzlampe_schreibtisch
+            entity: light.Entität_Licht
             icon: phu:table-shade
             show_icon: true
             aspect_ratio: 1/1
