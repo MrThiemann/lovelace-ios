@@ -6,7 +6,7 @@ I am happy to be part of the SmartHome YourSelf community
 - [SmartHomeYourSelf Homepage](https://smarthomeyourself.de/)
 - [SmartHomeYourSelf Discord](https://discord.gg/zhdmdhU)
 
-If you like it, I would be happy if you buy me a coffee: https://www.buymeacoffee.com/thiemannk
+If you like it, I would be happy if you [buy me a coffee](https://www.buymeacoffee.com/thiemannk)
 
 ## 16-04-2022 - First Preview from dashboard-files and Screenshots
 
