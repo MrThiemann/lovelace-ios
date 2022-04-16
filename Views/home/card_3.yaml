@@ -1,0 +1,309 @@
+type: vertical-stack
+cards:
+  - name: null
+    template:
+      - header
+    styles:
+      card:
+        - border: 1px solid rgb(255, 255, 255)
+    type: custom:button-card
+    entity: sensor.time
+    show_icon: false
+    show_label: false
+    show_name: false
+    show_state: true
+  - type: custom:stack-in-card
+    card_mod:
+      style: |
+        ha-card {
+          --ha-card-background: rgb(30, 42, 64);
+          #color: white;
+          #text-transform: uppercase;
+          #font-size: 125%;
+          #font-weight: 100;
+          #letter-spacing: 10px;
+          background-color: '#242e42';
+          border-radius: 2%;
+          #opacity: 0.7;
+          #text-shadow: 0px 0px 5px black;
+          #text-transform: capitalize
+        }
+    style:
+      .: |
+        ha-card {
+          padding-left: 10px;
+          padding-bottom: 10px;
+          padding-top: 10px;
+          background-color: #242e42;
+        }
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: markdown
+                content: ' '
+                style:
+                  .: |
+                    ha-card {
+                      background-color: transparent !important;
+                      box-shadow: none !important;
+                    }
+              - type: horizontal-stack
+                cards:
+                  - type: picture
+                    image: /local/tankstation_logos/sprinter.png
+                    style:
+                      .: |
+                        ha-card {
+                          background-color: transparent !important;
+                          box-shadow: none !important;
+                          margin-bottom: 5px;
+                          margin-left: 0px;
+                          margin-right: 0px;
+                        }
+                        ha-card img{
+                          height: 43px;
+                          width: 70px;
+                          margin: auto;
+                        }
+                  - type: picture
+                    image: /local/tankstation_logos/sharan.png
+                    style:
+                      .: |
+                        ha-card {
+                          padding: auto;
+                          background-color: transparent !important;
+                          box-shadow: none !important;
+                          margin-bottom: 5px;
+                          margin-left: 0px;
+                          margin-right: 0px;
+                        }
+                        ha-card img{
+                          height: 43px;
+                          width: 70px;
+                          margin: auto;
+                        }
+          - type: horizontal-stack
+            cards:
+              - type: markdown
+                content: |
+                  <table>
+                    <tr>
+                      <td width="50px;">     
+                        <img src = '/local/tankstation_logos/buettner.png' align='top' height='40'></img>
+                      </td>
+                      <td>
+                        Büttner | Rosenstrasse
+                      </td>
+                    </tr>
+                  </table>
+                style:
+                  .: |
+                    ha-card {
+                      max-height:51px;
+                      
+                      padding-top: 0px;
+                      background-color: transparent !important;
+                      box-shadow: none !important;
+                      }
+                    ha-markdown {
+                      font-size: 90%;
+                      font-weight: 100;
+                      color: white;
+                    }
+                    .no-header {
+                      padding: 0px !important;
+                    }
+              - type: horizontal-stack
+                cards:
+                  - type: custom:badge-card
+                    badges:
+                      - entity: sensor.none_rosenstrasse_49_diesel
+                        name: ' '
+                        style: |
+                          :host {
+                            --label-badge-text-color: white;
+                            --label-badge-red: #069B;
+                            #--label-badge-background-color: gray;
+                            --ha-label-badge-label-color: white;
+                          }
+                  - type: custom:badge-card
+                    badges:
+                      - entity: sensor.none_rosenstrasse_49_super
+                        name: ' '
+                        style: |
+                          :host {
+                            --label-badge-text-color: white;
+                            --label-badge-red: gray;
+                            #--label-badge-background-color: red;
+                            --ha-label-badge-label-color: white;
+                          }
+          - type: horizontal-stack
+            cards:
+              - type: markdown
+                content: |
+                  <table>
+                    <tr>
+                      <td width="50px;">     
+                        <img src = '/local/tankstation_logos/score.png' align='top' height='40'></img>
+                      </td>
+                      <td>
+                        Score | Burgstrasse
+                      </td>
+                    </tr>
+                  </table>
+                style:
+                  .: |
+                    ha-card {
+                      max-height:51px;
+                      
+                      padding-top: 0px;
+                      background-color: transparent !important;
+                      box-shadow: none !important;
+                      }
+                    ha-markdown {
+                      font-size: 90%;
+                      font-weight: 100;
+                      color: white;
+                    }
+                    .no-header {
+                      padding: 0px !important;
+                    }
+              - type: horizontal-stack
+                cards:
+                  - type: custom:badge-card
+                    badges:
+                      - entity: sensor.score_burgstr_50_b_diesel
+                        name: ' '
+                        style: |
+                          :host {
+                            --label-badge-text-color: white;
+                            --label-badge-red: #069B;
+                            #--label-badge-background-color: gray;
+                            --ha-label-badge-label-color: white;
+                          }
+                  - type: custom:badge-card
+                    badges:
+                      - entity: sensor.score_burgstr_50_b_super
+                        name: ' '
+                        style: |
+                          :host {
+                            --label-badge-text-color: white;
+                            #--label-badge-text-weight: bold;
+                            --label-badge-red: gray;
+                            #--label-badge-background-color: red;
+                            --ha-label-badge-label-color: white;
+                          }
+          - type: horizontal-stack
+            cards:
+              - type: markdown
+                content: |
+                  <table>
+                    <tr>
+                      <td width="50px;">     
+                        <img src = '/local/tankstation_logos/aral.png' align='top' height='40'></img>
+                      </td>
+                      <td>
+                        Aral | Norddeicher Strasse
+                      </td>
+                    </tr>
+                  </table>
+                style:
+                  .: |
+                    ha-card {
+                      max-height:51px;
+                      
+                      padding-top: 0px;
+                      background-color: transparent !important;
+                      box-shadow: none !important;
+                      }
+                    ha-markdown {
+                      font-size: 85%;
+                      font-weight: 100;
+                      color: white;
+                    }
+                    .no-header {
+                      padding: 0px !important;
+                    }
+              - type: horizontal-stack
+                cards:
+                  - type: custom:badge-card
+                    badges:
+                      - entity: sensor.tankerkoenig_aral_tankstelle_diesel
+                        name: ' '
+                        style: |
+                          :host {
+                            --label-badge-text-color: white;
+                            --label-badge-red: #069B;
+                            #--label-badge-background-color: gray;
+                            --ha-label-badge-label-color: white;
+                          }
+                  - type: custom:badge-card
+                    badges:
+                      - entity: sensor.tankerkoenig_aral_tankstelle_e5
+                        name: ' '
+                        style: |
+                          :host {
+                            --label-badge-text-color: white;
+                            --label-badge-red: gray;
+                            #--label-badge-background-color: red;
+                            --ha-label-badge-label-color: white;
+                          }
+  - type: entities
+    card_mod:
+      style: |
+        ha-card {
+          --ha-card-background: rgb(30, 42, 64);
+          #color: white;
+          #text-transform: uppercase;
+          #font-size: 125%;
+          font-weight: 300;
+          #letter-spacing: 10px;
+          background-color: '#242e42';
+          border-radius: 2%;
+          #opacity: 1.7;
+          #text-shadow: 0px 0px 5px black;
+          #text-transform: capitalize
+        }
+    entities:
+      - entity: sensor.abfallnaechster
+      - entity: sensor.abfallgelbersack
+        name: Gelbe Tonne
+      - entity: sensor.abfallpapier
+      - entity: sensor.abfallrestmuell
+      - entity: sensor.abfallbio
+  - type: custom:swipe-card
+    parameters:
+      scrollbar: null
+      hide: false
+      draggable: true
+      snapOnRelease: true
+      autoplay:
+        delay: 7000
+        disableOnInteraction: false
+      speed: 1000
+    cards:
+      - type: custom:atomic-calendar-revive
+        name: Termine
+        enableModeChange: true
+        entities:
+          - entity: calendar.familie
+        firstDayOfWeek: 1
+        maxDaysToShow: 60
+        showDate: true
+        showLocation: false
+        showCurrentEventLine: false
+        showMonth: true
+        showDescription: false
+        showProgressBar: false
+        showWeekDay: true
+        cardHeight: 400px
+        style: |
+          ha-card {
+            overflow: scroll;                            
+           }
+
+          ha-card::-webkit-scrollbar {
+            display: none;
+           }type: ''
