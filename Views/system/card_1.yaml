@@ -1,0 +1,270 @@
+type: vertical-stack
+cards:
+  - type: vertical-stack
+    cards:
+      - name: SENSOREN
+        template:
+          - header
+        type: custom:button-card
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            style: |
+              ha-card {
+                border: solid 1px var(--border-color);
+                font-family: var(--primary-font-family);
+                margin-top: 5px;
+                margin-bottom: 5px;
+              }
+              .graph {
+                padding-top: 15px;
+                padding-bottom: 0px;
+              }
+              .info {
+                padding-bottom: 0px;
+              }
+              .flex {
+                padding-bottom: 10px;
+              }
+            entities:
+              - entity: sensor.wz_temp
+                name: Innen
+                color: var(--color-ocher-1)
+              - entity: sensor.openweathermap_temperature
+                name: Außen
+                color: var(--accent-color)
+            name: Temperatur
+            align_state: center
+            align_icon: left
+            font_size: 60
+            font_size_header: 11
+            hours_to_show: 48
+            line_color: var(--color-red-1)
+            line_width: 4
+            animate: true
+            points_per_hour: 0.5
+            lower_bound_secondary: 0
+            show:
+              fill: fade
+              graph: line
+              extrema: false
+          - type: custom:mini-graph-card
+            style: |
+              ha-card {
+                border: solid 1px var(--border-color);
+                font-family: var(--primary-font-family);
+                margin-top: 5px;
+                margin-bottom: 5px;
+              }
+              .graph {
+                padding-top: 15px;
+                padding-bottom: 0px;
+              }
+              .info {
+                padding-bottom: 0px;
+              }
+              .flex {
+                padding-bottom: 10px;
+              }
+            entities:
+              - entity: sensor.humiditiy_sensor
+                name: Innen
+                color: var(--color-ocher-1)
+              - entity: sensor.openweathermap_humidity
+                name: Außen
+                color: var(--accent-color)
+            name: Luftfeuchtigkeit
+            align_state: center
+            align_icon: right
+            font_size: 60
+            font_size_header: 11
+            hours_to_show: 48
+            line_color: var(--color-green-bright-1)
+            line_width: 4
+            animate: true
+            points_per_hour: 0.5
+            lower_bound_secondary: 0
+            show:
+              fill: fade
+              graph: line
+              extrema: false
+            tap_action:
+              action: none
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            style: |
+              ha-card {
+                border: solid 1px var(--border-color);
+                font-family: var(--primary-font-family);
+                margin-top: 5px;
+                margin-bottom: 5px;
+              }
+              .graph {
+                padding-top: 15px;
+                padding-bottom: 0px;
+              }
+              .info {
+                padding-bottom: 0px;
+              }
+              .flex {
+                padding-bottom: 10px;
+              }
+            entities:
+              - sensor.speedtest_download
+            name: Download
+            align_state: center
+            align_icon: left
+            font_size: 60
+            font_size_header: 11
+            hours_to_show: 24
+            line_color: var(--accent-color)
+            line_width: 4
+            animate: true
+            points_per_hour: 1
+            lower_bound_secondary: 0
+            show:
+              fill: fade
+              graph: line
+              extrema: false
+          - type: custom:mini-graph-card
+            style: |
+              ha-card {
+                border: solid 1px var(--border-color);
+                font-family: var(--primary-font-family);
+                margin-top: 5px;
+                margin-bottom: 5px;
+              }
+              .graph {
+                padding-top: 15px;
+                padding-bottom: 0px;
+              }
+              .info {
+                padding-bottom: 0px;
+              }
+              .flex {
+                padding-bottom: 10px;
+              }
+            entities:
+              - sensor.speedtest_upload
+            name: Upload
+            align_state: center
+            align_icon: left
+            font_size: 60
+            font_size_header: 11
+            hours_to_show: 24
+            line_color: var(--accent-color)
+            line_width: 4
+            animate: true
+            points_per_hour: 1
+            lower_bound_secondary: 0
+            show:
+              fill: fade
+              graph: line
+              extrema: false
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:button-card
+            style: null
+            color_type: card
+            color: var(--secondary-background-color)
+            show_icon: false
+            styles:
+              card:
+                - height: 30px
+                - font-size: 14px
+                - background-color: var(--ha-card-background)
+            entity: input_boolean.button_battery
+            name: Batterien
+          - type: conditional
+            conditions:
+              - entity: input_boolean.button_battery
+                state: 'on'
+            card:
+              type: custom:auto-entities
+              card:
+                type: custom:bar-card
+                sort_by_level: asc
+                title_position: inside
+                tap_action:
+                  action: none
+                severity:
+                  - color: var(--color-red-1)
+                    from: 0
+                    to: 20
+                  - color: var(--color-orange-1)
+                    from: 21
+                    to: 50
+                  - color: var(--color-ocher-1)
+                    from: 51
+                    to: 70
+              show_empty: true
+              filter:
+                include:
+                  - entity_id: sensor.*.battery_level*
+                    state: <=20
+                  - entity_id: sensor.*.akkufullstand*
+                    state: <=30
+                  - entity_id: sensor.*.battery*
+                    state: <=30
+  - type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards: []
+  - type: entities
+    entities:
+      - type: custom:bar-card
+        title_position: inside
+        entity: sensor.processor_use_percent
+        max: 100
+        severity:
+          - value: 30
+            color: '#40bf60'
+          - value: 60
+            color: '#ffa500'
+          - value: 100
+            color: '#e60000'
+      - type: custom:bar-card
+        title_position: inside
+        entity: sensor.memory_use_percent
+        icon: mdi:database
+        max: 100
+        severity:
+          - value: 30
+            color: '#40bf60'
+          - value: 60
+            color: '#ffa500'
+          - value: 90
+            color: '#e60000'
+      - type: custom:bar-card
+        title_position: inside
+        entity: sensor.disk_use_percent
+        severity:
+          - value: 33
+            color: '#40bf60'
+          - value: 50
+            color: '#ffa500'
+          - value: 75
+            color: '#e60000'
+      - type: custom:bar-card
+        title_position: inside
+        entity: sensor.glances_swap_used
+        severity:
+          - value: 33
+            color: '#40bf60'
+          - value: 50
+            color: '#ffa500'
+          - value: 75
+            color: '#e60000'
+      - type: custom:bar-card
+        title_position: inside
+        entity: sensor.mariadb_size
+        icon: mdi:database
+        max: 500
+        severity:
+          - value: 150
+            color: '#40bf60'
+          - value: 200
+            color: '#ffa500'
+          - value: 250
+            color: '#e60000'
