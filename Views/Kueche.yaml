@@ -1,0 +1,1747 @@
+  - theme: KT Dark
+    title: kueche
+    path: tab_kueche
+    type: custom:horizontal-layout
+    icon: mdi:countertop
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - name: Küche
+                template:
+                  - header
+                type: custom:button-card
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity: light.kuechensockel
+                    icon: phu:light-strip
+                    name: Sockel
+                    show_icon: true
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    tap_action:
+                      action: toggle
+                    show_state: true
+                    template: kt_card_2
+                    custom_fields:
+                      bright: |
+                        [[[
+                          var b = states['light.kuechensockel'].attributes.brightness;
+                          return parseInt(b ? b/2.55 : '0') + '%';
+                        ]]]
+                      cl:
+                        card:
+                          type: custom:button-card
+                          icon: mdi:palette
+                          name: false
+                          entity_picture: /local/multic.png
+                          show_entity_picture: true
+                          show_name: false
+                          styles:
+                            card:
+                              - background-color: rgb(30,42,64)
+                              - height: 25px
+                              - width: 25px
+                            icon:
+                              - width: 15px
+                      bm:
+                        card:
+                          entity: binary_sensor.presence_12
+                          styles:
+                            card:
+                              - background-color: '#242e42'
+                              - height: 25px
+                              - width: 25px
+                              - margin-bottom: 100%
+                            icon:
+                              - width: 15px
+                          layout: vertical
+                          name: []
+                          state:
+                            - value: 'on'
+                              styles:
+                                state:
+                                  - color: green
+                                card:
+                                  - filter: drop-shadow(0 0 1.0rem rgb(243,156,15))
+                                  - border: 0px
+                                icon:
+                                  - color: rgb(255,0,0)
+                            - value: 'off'
+                              styles:
+                                name: null
+                                icon:
+                                  - color: green
+                                  - icon: mdi:security
+                          type: custom:button-card
+                  - type: custom:button-card
+                    entity: light.candle_rgb_cct_3
+                    icon: phu:pendant-round
+                    show_icon: true
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    tap_action:
+                      action: toggle
+                    name: Decke Küche
+                    show_state: true
+                    template: kt_card_2
+                    custom_fields:
+                      cl:
+                        card:
+                          type: custom:button-card
+                          icon: mdi:palette
+                          name: false
+                          entity_picture: /local/whitecl.png
+                          show_entity_picture: true
+                          show_name: false
+                          styles:
+                            card:
+                              - background-color: '#242e42'
+                              - height: 25px
+                              - width: 25px
+                              - margin: 0px -5px
+                            icon:
+                              - width: 15px
+                  - type: custom:button-card
+                    entity: light.candle_rgb_cct_3
+                    icon: phu:bulbs-spot
+                    show_icon: true
+                    color: auto
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    tap_action:
+                      action: toggle
+                    name: Spot
+                    show_state: true
+                    template: kt_card_2
+                    custom_fields:
+                      cl:
+                        card:
+                          type: custom:button-card
+                          icon: mdi:palette
+                          name: false
+                          entity_picture: /local/multic.png
+                          show_entity_picture: true
+                          show_name: false
+                          styles:
+                            card:
+                              - background-color: '#242e42'
+                              - height: 25px
+                              - width: 25px
+                              - margin: 0px -5px
+                            icon:
+                              - width: 15px
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity: switch.tp_link_01
+                    icon: phu:bulbs-spot
+                    name: Oberboden
+                    hold_action:
+                      action: more-info
+                    tap_action:
+                      action: toggle
+                    template:
+                      - kt_card_2
+                      - popup_light_rgb
+                      - light
+                    custom_fields:
+                      cl:
+                        card:
+                          type: custom:button-card
+                          icon: hue:plug-eu
+                          name: false
+                          entity_picture: /local/whitecl.png
+                          show_entity_picture: false
+                          show_name: false
+                          styles:
+                            card:
+                              - background-color: '#242e42'
+                              - height: 25px
+                              - width: 25px
+                            icon:
+                              - width: 100%
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
+          - type: entities
+            card_mod:
+              style: |
+                ha-card {
+                  --ha-card-background: rgb(30,42,64);
+                  color: white;
+                  #text-transform: uppercase;
+                  font-size: 125%;
+                  font-weight: 300;
+                  #letter-spacing: 10px;
+                  #background-color: '#242e42';
+                  border-radius: 5%;
+                  #opacity: 0.7;
+                  #text-shadow: 0px 0px 5px black;
+                  #text-transform: capitalize
+                }
+            entities:
+              - entity: sensor.abfallnaechster
+              - entity: sensor.abfallgelbersack
+                name: Gelbe Tonne
+              - entity: sensor.abfallpapier
+              - entity: sensor.abfallrestmuell
+              - entity: sensor.abfallbio
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - name: Heizung
+                template:
+                  - header
+                type: custom:button-card
+          - type: custom:dwains-flexbox-card
+            items_classes: col-xs-12 col-sm-6 col-sm-6 col-md
+            cards:
+              - cards:
+                  - cards:
+                      - entities:
+                          - entity: sensor.ku_temp
+                            name: Temperatur (24h)
+                            color: var(--dwains-theme-accent)
+                            show_fill: true
+                          - entity: sensor.ausee_temperature_test
+                            color: green
+                            show_fill: false
+                        font_size: 80
+                        hours_to_show: 24
+                        line_width: 2
+                        hour24: true
+                        points_per_hour: 2
+                        decimals: 0
+                        show:
+                          animate: true
+                          icon: false
+                          labels: false
+                          legend: false
+                          name: false
+                          graph: line
+                          extrema: true
+                          average: true
+                        theme: ios-dark-mode-blue-red
+                        type: custom:mini-graph-card
+                      - aspect_ratio: 1/1
+                        color: rgb(41, 158, 194)
+                        entity: climate.demo_thermostat_kuche
+                        icon: mdi:countertop-outline
+                        name: Küche
+                        show_state: true
+                        size: 30%
+                        state:
+                          - color: var(-- state-icon-active-color)
+                            value: 'off'
+                          - color: var(--state-icon-color)
+                            value: 'on'
+                          - color: var(--state-icon-unavailable-color)
+                            value: unavailable
+                        styles:
+                          name:
+                            - text-transform: uppercase
+                            - font-size: 10px
+                          state:
+                            - text-transform: uppercase
+                            - font-size: 15px
+                            - font: bold
+                        type: custom:button-card
+                        hold_action:
+                          action: fire-dom-event
+                          browser_mod:
+                            command: popup
+                            title: Heizung
+                            style:
+                              hui-vertical-stack-card:
+                                $hui-entities-card$: |
+                                  #states {
+                                    padding-top: 0.5em;
+                                    padding-bottom: 0em;
+                                  }
+                            card:
+                              type: vertical-stack
+                              cards:
+                                - type: custom:thermostat-popup-card
+                                  entity: climate.fritz_dect_301_2_wohnzimmer
+                                  brightnessWidth: 150px
+                                  brightnessHeight: 400px
+                                  switchWidth: 150px
+                                  switchHeight: 400px
+                                  fullscreen: false
+                                - type: entities
+                                  card_mod:
+                                    class: content
+                                  entities:
+                                    - entity: sensor.wz_temp
+                                      name: Raumtemperatur
+                                    - entity: sensor.humiditiy_sensor
+                                      name: Luftfeuchtigkeit
+                                - type: custom:apexcharts-card
+                                  layout: minimal
+                                  locale: se
+                                  graph_span: 8h
+                                  show:
+                                    loading: false
+                                  apex_config:
+                                    plotOptions:
+                                      area:
+                                        fillTo: end
+                                    grid:
+                                      padding:
+                                        top: -15
+                                    fill:
+                                      type: gradient
+                                      gradient:
+                                        type: vertical
+                                        opacityFrom: 0.8
+                                        opacityTo: 0
+                                        stops:
+                                          - 0
+                                          - 99
+                                          - 100
+                                    stroke:
+                                      width: 4
+                                    tooltip:
+                                      style:
+                                        fontSize: 14px
+                                      x:
+                                        format: dddd HH:mm
+                                    chart:
+                                      height: 140px
+                                      offsetY: '-20px'
+                                    xaxis:
+                                      crosshairs:
+                                        show: false
+                                  series:
+                                    - entity: sensor.wz_temp
+                                      name: Temp
+                                      color: '#385581'
+                                      type: area
+                                      fill_raw: last
+                                      group_by:
+                                        func: avg
+                                        duration: 1h
+                        variables:
+                          circle_input: |
+                            [[[
+                              if (entity) {
+                                return entity.state === 'cool' ?
+                                  entity.attributes.temperature :
+                                  entity.attributes.current_temperature;
+                              }
+                            ]]]
+                    type: horizontal-stack
+                  - entities:
+                      - entity: sensor.co2_sensor
+                        name: co2
+                        icon: null
+                        secondary_info: last-updated
+                      - entity: sensor.humiditiy_sensor
+                        name: Humidity
+                        secondary_info: last-updated
+                      - entity: sensor.pressure_sensor
+                        name: Pressure
+                        secondary_info: last-updated
+                      - type: custom:fold-entity-row
+                        head:
+                          type: section
+                          label: Mehr Informationen
+                        entities:
+                          - entity: >-
+                              sensor.netatmo_netatmo_huis_netatmo_woonkamer_noise
+                            name: Noise
+                            secondary_info: last-updated
+                    type: entities
+                type: vertical-stack
+          - type: vertical-stack
+            cards:
+              - type: custom:simple-thermostat
+                entity: climate.demo_thermostat_kuche
+                header:
+                  name: Küche
+                  icon: mdi:radiator
+                decimal: 0
+                step_size: 1
+                step_layout: column
+                label:
+                  temperature: Innen
+                sensors:
+                  - entity: sensor.humiditiy_sensor
+                    name: Luftfeuchtigkeit
+                style: |
+                  ha-card .header__title {
+                    font-size: var(--font-size-subtitle);
+                  }
+                  ha-card .mode-item {
+                    background: var(--color-blue-bright-2)
+                  }
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - name: Medien
+                template:
+                  - header
+                type: custom:button-card
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+              - artwork: cover
+                hide:
+                  power_state: false
+                icon: mdi:spotify
+                source: icon
+                shortcuts:
+                  buttons:
+                    - icon: mdi:coffee-outline
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/playlist/4ddslfKP5u4dpiZ0X2LT64?si=988ed6d2434a4ed6
+                    - icon: mdi:shower
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/album/4FdNA8fZZzqSnvKXoX9XzC?si=fqFafACQTK-QUYPY6Jfw-w
+                    - icon: mdi:palm-tree
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/playlist/37i9dQZF1DX32oVqaQE8BM?si=CkcWDcFMQuy6v33WsKUzUw
+                    - icon: mdi:white-balance-sunny
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/playlist/37i9dQZF1DWWLToO3EeTtX?si=3iirw6pRTb6xVlmAE2sEGQ
+                    - icon: mdi:weather-rainy
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/playlist/37i9dQZF1DX3lnqcg5MsPa?si=JXi2iedtQ_-zAuoR7IjW1g
+                    - name: Party
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/playlist/37i9dQZF1DWZ7eJRBxKzdO?si=879375d9a21343aa
+                    - icon: mdi:heart-multiple-outline
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/playlist/37i9dQZF1DX163rJoVPJH7?si=j1AEQ1yGRHySwn9XloCH2A
+                  columns: 5
+                type: custom:mini-media-player
+                entity: media_player.spotify_karsten_thiemann
+          - type: vertical-stack
+            cards: []
+          - entities:
+              - card_type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - entity: media_player.beyondtv
+                    name: MENU
+                    icon: mdi:alphabetical-variant
+                    hold_action:
+                      action: fire-dom-event
+                      browser_mod:
+                        command: popup
+                        title: ABC
+                        style:
+                          hui-vertical-stack-card:
+                            $: |
+                              hui-horizontal-stack-card {
+                                padding: 0em 2em 2.3em 2em;
+                              }
+                            $hui-horizontal-stack-card$: |
+                              #root {
+                                justify-content: space-evenly;
+                              }
+                        card:
+                          entities:
+                            - card_type: horizontal-stack
+                              cards:
+                                - type: custom:button-card
+                                  color_type: blank-card
+                                - entity: script.lounge_tv_play
+                                  name: ''
+                                  icon: null
+                                  tap_action:
+                                    service: script.lounge_tv_play
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_pause
+                                  name: A B C
+                                  tap_action:
+                                    service: script.lounge_tv_pause
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_stop
+                                  name: D E F
+                                  tap_action:
+                                    service: script.lounge_tv_stop
+                                  template: menu_button
+                                  type: custom:button-card
+                                - type: custom:button-card
+                                  color_type: blank-card
+                              type: custom:hui-element
+                            - card_type: horizontal-stack
+                              cards:
+                                - type: custom:button-card
+                                  color_type: blank-card
+                                - entity: script.lounge_tv_play
+                                  name: G H I
+                                  tap_action:
+                                    service: script.lounge_tv_play
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_pause
+                                  name: J K L
+                                  tap_action:
+                                    service: script.lounge_tv_pause
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_stop
+                                  name: M N O
+                                  tap_action:
+                                    service: script.lounge_tv_stop
+                                  template: menu_button
+                                  type: custom:button-card
+                                - type: custom:button-card
+                                  color_type: blank-card
+                              type: custom:hui-element
+                            - card_type: horizontal-stack
+                              cards:
+                                - type: custom:button-card
+                                  color_type: blank-card
+                                - entity: script.lounge_tv_play
+                                  name: P Q R S
+                                  tap_action:
+                                    service: script.lounge_tv_play
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_pause
+                                  name: T U V
+                                  tap_action:
+                                    service: script.lounge_tv_pause
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_stop
+                                  name: W X Y Z
+                                  tap_action:
+                                    service: script.lounge_tv_stop
+                                  template: menu_button
+                                  type: custom:button-card
+                                - type: custom:button-card
+                                  color_type: blank-card
+                              type: custom:hui-element
+                            - card_type: horizontal-stack
+                              cards:
+                                - type: custom:button-card
+                                  color_type: blank-card
+                                - entity: script.lounge_tv_pause
+                                  name: '*'
+                                  tap_action:
+                                    service: script.lounge_tv_pause
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_pause
+                                  name: '0'
+                                  tap_action:
+                                    service: script.lounge_tv_pause
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_pause
+                                  name: '#'
+                                  tap_action:
+                                    service: script.lounge_tv_pause
+                                  template: menu_button
+                                  type: custom:button-card
+                                - type: custom:button-card
+                                  color_type: blank-card
+                              type: custom:hui-element
+                          show_header_toggle: false
+                          type: entities
+                    tap_action:
+                      service: script.lounge_tv_on
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: media_player.beyondtv
+                    icon: mdi:power
+                    name: 'ON'
+                    tap_action:
+                      service: androidtv.adb_command
+                      target:
+                        entity_id: media_player.beyondtv
+                      data:
+                        command: POWER
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: media_player.beyondtv
+                    name: '123'
+                    tap_action:
+                      service: script.lounge_tv_input_tv
+                    hold_action:
+                      action: fire-dom-event
+                      browser_mod:
+                        command: popup
+                        title: Tv
+                        style:
+                          hui-vertical-stack-card:
+                            $: |
+                              hui-horizontal-stack-card {
+                                padding: 0em 2em 2.3em 2em;
+                              }
+                            $hui-horizontal-stack-card$: |
+                              #root {
+                                justify-content: space-evenly;
+                              }
+                        card:
+                          entities:
+                            - card_type: horizontal-stack
+                              cards:
+                                - type: custom:button-card
+                                  color_type: blank-card
+                                - entity: script.lounge_tv_play
+                                  name: '1'
+                                  icon: null
+                                  tap_action:
+                                    service: script.lounge_tv_play
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_pause
+                                  name: 2
+                                  tap_action:
+                                    service: script.lounge_tv_pause
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_stop
+                                  name: 3
+                                  tap_action:
+                                    service: script.lounge_tv_stop
+                                  template: menu_button
+                                  type: custom:button-card
+                                - type: custom:button-card
+                                  color_type: blank-card
+                              type: custom:hui-element
+                            - card_type: horizontal-stack
+                              cards:
+                                - type: custom:button-card
+                                  color_type: blank-card
+                                - entity: script.lounge_tv_play
+                                  name: '4'
+                                  tap_action:
+                                    service: script.lounge_tv_play
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_pause
+                                  name: '5'
+                                  tap_action:
+                                    service: script.lounge_tv_pause
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_stop
+                                  name: '6'
+                                  tap_action:
+                                    service: script.lounge_tv_stop
+                                  template: menu_button
+                                  type: custom:button-card
+                                - type: custom:button-card
+                                  color_type: blank-card
+                              type: custom:hui-element
+                            - card_type: horizontal-stack
+                              cards:
+                                - type: custom:button-card
+                                  color_type: blank-card
+                                - entity: script.lounge_tv_play
+                                  name: '7'
+                                  tap_action:
+                                    service: script.lounge_tv_play
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_pause
+                                  name: '8'
+                                  tap_action:
+                                    service: script.lounge_tv_pause
+                                  template: menu_button
+                                  type: custom:button-card
+                                - entity: script.lounge_tv_stop
+                                  name: '9'
+                                  tap_action:
+                                    service: script.lounge_tv_stop
+                                  template: menu_button
+                                  type: custom:button-card
+                                - type: custom:button-card
+                                  color_type: blank-card
+                              type: custom:hui-element
+                            - card_type: horizontal-stack
+                              cards:
+                                - type: custom:button-card
+                                  color_type: blank-card
+                                - type: custom:button-card
+                                  color_type: blank-card
+                                - entity: script.lounge_tv_pause
+                                  name: '0'
+                                  tap_action:
+                                    service: script.lounge_tv_pause
+                                  template: menu_button
+                                  type: custom:button-card
+                                - type: custom:button-card
+                                  color_type: blank-card
+                                - type: custom:button-card
+                                  color_type: blank-card
+                              type: custom:hui-element
+                          show_header_toggle: false
+                          type: entities
+                    template: icon_button
+                    type: custom:button-card
+                    icon: mdi:numeric
+                  - type: custom:button-card
+                    color_type: blank-card
+                type: custom:hui-element
+              - card_type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - entity: script.lounge_tv_play
+                    name: '1'
+                    icon: null
+                    tap_action:
+                      service: script.lounge_tv_play
+                    template: menu_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_pause
+                    name: 2
+                    tap_action:
+                      service: script.lounge_tv_pause
+                    template: menu_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_stop
+                    name: 3
+                    tap_action:
+                      service: script.lounge_tv_stop
+                    template: menu_button
+                    type: custom:button-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                type: custom:hui-element
+              - card_type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - entity: script.lounge_tv_play
+                    name: '4'
+                    tap_action:
+                      service: script.lounge_tv_play
+                    template: menu_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_pause
+                    name: '5'
+                    tap_action:
+                      service: script.lounge_tv_pause
+                    template: menu_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_stop
+                    name: '6'
+                    tap_action:
+                      service: script.lounge_tv_stop
+                    template: menu_button
+                    type: custom:button-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                type: custom:hui-element
+              - card_type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - entity: script.lounge_tv_play
+                    name: '7'
+                    tap_action:
+                      service: script.lounge_tv_play
+                    template: menu_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_pause
+                    name: '8'
+                    tap_action:
+                      service: script.lounge_tv_pause
+                    template: menu_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_stop
+                    name: '9'
+                    tap_action:
+                      service: script.lounge_tv_stop
+                    template: menu_button
+                    type: custom:button-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                type: custom:hui-element
+              - card_type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - entity: script.lounge_tv_pause
+                    name: '0'
+                    tap_action:
+                      service: script.lounge_tv_pause
+                    template: menu_button
+                    type: custom:button-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                type: custom:hui-element
+              - card_type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - entity: script.lounge_tv_media
+                    icon: mdi:netflix
+                    name: Netflix
+                    tap_action:
+                      service: script.lounge_tv_media
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_media
+                    icon: phu:amazon-logo
+                    name: Amazon
+                    tap_action:
+                      service: script.lounge_tv_media
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_media
+                    icon: mdi:folder-multiple-image
+                    name: Media
+                    tap_action:
+                      service: script.lounge_tv_media
+                    template: icon_button
+                    type: custom:button-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                type: custom:hui-element
+              - card_type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - entity: media_player.beyondtv
+                    icon: mdi:volume-plus
+                    name: Left
+                    styles:
+                      card:
+                        - background: var(--secondary-background-color-alpha)
+                    tap_action:
+                      action: call-service
+                      service: media_player.volume_up
+                      service_data:
+                        entity_id: |
+                          [[[ return entity.entity_id; ]]]
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: media_player.beyondtv
+                    icon: mdi:home
+                    name: Home
+                    styles:
+                      card:
+                        - background: var(--secondary-background-color-alpha)
+                    tap_action:
+                      service: script.beyondtv_tv_home
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: media_player.beyondtv
+                    icon: mdi:arrow-up-bold
+                    name: Ok
+                    tap_action:
+                      service: script.beyondtv_tv_home
+                    template: icon_button
+                    type: custom:button-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                type: custom:hui-element
+              - card_type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - entity: media_player.beyondtv
+                    icon: mdi:volume-high
+                    name: Volume
+                    styles:
+                      card:
+                        - background: var(--secondary-background-color-alpha)
+                    tap_action:
+                      service: script.lounge_tv_left
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: media_player.beyondtv
+                    icon: mdi:volume-off
+                    name: Mute
+                    styles:
+                      card:
+                        - background: var(--secondary-background-color-alpha)
+                    tap_action:
+                      action: call-service
+                      service: media_player.volume_mute
+                      service_data:
+                        entity_id: |
+                          [[[ return entity.entity_id; ]]]
+                        is_volume_muted: >
+                          [[[ return entity.attributes.is_volume_muted ===
+                          'false' ? 'true' : 'false'; ]]]
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: media_player.beyondtv
+                    icon: mdi:alpha-p-circle-outline
+                    name: Programm
+                    tap_action:
+                      service: script.lounge_tv_ok
+                    template: icon_button
+                    type: custom:button-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                type: custom:hui-element
+              - card_type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - entity: media_player.beyondtv
+                    icon: mdi:volume-minus
+                    name: Left
+                    styles:
+                      card:
+                        - background: var(--secondary-background-color-alpha)
+                    tap_action:
+                      action: call-service
+                      service: media_player.volume_down
+                      service_data:
+                        entity_id: |
+                          [[[ return entity.entity_id; ]]]
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_left
+                    icon: mdi:information-variant
+                    name: Info
+                    styles:
+                      card:
+                        - background: var(--secondary-background-color-alpha)
+                    tap_action:
+                      service: script.lounge_tv_left
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_ok
+                    icon: mdi:arrow-down-bold
+                    name: Programm
+                    tap_action:
+                      service: script.lounge_tv_ok
+                    template: icon_button
+                    type: custom:button-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                type: custom:hui-element
+              - card_type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - entity: script.lounge_tv_left
+                    icon: mdi:play
+                    name: Play
+                    styles:
+                      card:
+                        - background: var(--secondary-background-color-alpha)
+                    tap_action:
+                      service: script.lounge_tv_left
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_left
+                    icon: mdi:pause
+                    name: Pause
+                    styles:
+                      card:
+                        - background: var(--secondary-background-color-alpha)
+                    tap_action:
+                      service: script.lounge_tv_left
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_ok
+                    icon: mdi:stop
+                    name: Stop
+                    tap_action:
+                      service: script.lounge_tv_ok
+                    template: icon_button
+                    type: custom:button-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                type: custom:hui-element
+              - card_type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - entity: script.lounge_tv_left
+                    icon: mdi:skip-backward
+                    name: Forward
+                    styles:
+                      card:
+                        - background: var(--secondary-background-color-alpha)
+                    tap_action:
+                      service: script.lounge_tv_left
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_rec
+                    icon: mdi:record
+                    name: Record
+                    styles:
+                      icon:
+                        - color: red
+                    tap_action:
+                      service: script.lounge_tv_rec
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_ok
+                    icon: mdi:skip-forward
+                    name: Forward
+                    tap_action:
+                      service: script.lounge_tv_ok
+                    template: icon_button
+                    type: custom:button-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                type: custom:hui-element
+              - card_type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - entity: script.lounge_tv_red
+                    name: Red
+                    icon: mdi:card
+                    styles:
+                      icon:
+                        - color: red
+                    tap_action:
+                      service: script.lounge_tv_red
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_green
+                    name: Green
+                    icon: mdi:card
+                    styles:
+                      icon:
+                        - color: '#00ff00'
+                    tap_action:
+                      service: script.lounge_tv_green
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_yellow
+                    name: Yellow
+                    icon: mdi:card
+                    styles:
+                      icon:
+                        - color: yellow
+                    tap_action:
+                      service: script.lounge_tv_yellow
+                    template: icon_button
+                    type: custom:button-card
+                  - entity: script.lounge_tv_blue
+                    name: Blue
+                    styles:
+                      icon:
+                        - color: blue
+                    tap_action:
+                      service: script.lounge_tv_blue
+                    template: icon_button
+                    icon: mdi:card
+                    type: custom:button-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                type: custom:hui-element
+            show_header_toggle: false
+            title: TV Remote Schlafzimmer
+            type: entities
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - name: Medien
+                template:
+                  - header
+                type: custom:button-card
+                hold_action:
+                  haptic: heavy
+                  action: fire-dom-event
+                  browser_mod:
+                    command: popup
+                    title: GoAccess
+                    hide_header: false
+                    large: true
+                    card:
+                      entities:
+                        - card_type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - entity: media_player.beyondtv
+                              name: MENU
+                              icon: mdi:alphabetical-variant
+                              hold_action:
+                                action: fire-dom-event
+                                browser_mod:
+                                  command: popup
+                                  title: ABC
+                                  style:
+                                    hui-vertical-stack-card:
+                                      $: |
+                                        hui-horizontal-stack-card {
+                                          padding: 0em 2em 2.3em 2em;
+                                        }
+                                      $hui-horizontal-stack-card$: |
+                                        #root {
+                                          justify-content: space-evenly;
+                                        }
+                                  card:
+                                    entities:
+                                      - card_type: horizontal-stack
+                                        cards:
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                          - entity: script.lounge_tv_play
+                                            name: ''
+                                            icon: null
+                                            tap_action:
+                                              service: script.lounge_tv_play
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_pause
+                                            name: A B C
+                                            tap_action:
+                                              service: script.lounge_tv_pause
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_stop
+                                            name: D E F
+                                            tap_action:
+                                              service: script.lounge_tv_stop
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                        type: custom:hui-element
+                                      - card_type: horizontal-stack
+                                        cards:
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                          - entity: script.lounge_tv_play
+                                            name: G H I
+                                            tap_action:
+                                              service: script.lounge_tv_play
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_pause
+                                            name: J K L
+                                            tap_action:
+                                              service: script.lounge_tv_pause
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_stop
+                                            name: M N O
+                                            tap_action:
+                                              service: script.lounge_tv_stop
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                        type: custom:hui-element
+                                      - card_type: horizontal-stack
+                                        cards:
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                          - entity: script.lounge_tv_play
+                                            name: P Q R S
+                                            tap_action:
+                                              service: script.lounge_tv_play
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_pause
+                                            name: T U V
+                                            tap_action:
+                                              service: script.lounge_tv_pause
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_stop
+                                            name: W X Y Z
+                                            tap_action:
+                                              service: script.lounge_tv_stop
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                        type: custom:hui-element
+                                      - card_type: horizontal-stack
+                                        cards:
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                          - entity: script.lounge_tv_pause
+                                            name: '*'
+                                            tap_action:
+                                              service: script.lounge_tv_pause
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_pause
+                                            name: '0'
+                                            tap_action:
+                                              service: script.lounge_tv_pause
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_pause
+                                            name: '#'
+                                            tap_action:
+                                              service: script.lounge_tv_pause
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                        type: custom:hui-element
+                                    show_header_toggle: false
+                                    type: entities
+                              tap_action:
+                                service: script.lounge_tv_on
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: media_player.beyondtv
+                              icon: mdi:power
+                              name: 'ON'
+                              tap_action:
+                                service: androidtv.adb_command
+                                target:
+                                  entity_id: media_player.beyondtv
+                                data:
+                                  command: POWER
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: media_player.beyondtv
+                              name: '123'
+                              tap_action:
+                                service: script.lounge_tv_input_tv
+                              hold_action:
+                                action: fire-dom-event
+                                browser_mod:
+                                  command: popup
+                                  title: Tv
+                                  style:
+                                    hui-vertical-stack-card:
+                                      $: |
+                                        hui-horizontal-stack-card {
+                                          padding: 0em 2em 2.3em 2em;
+                                        }
+                                      $hui-horizontal-stack-card$: |
+                                        #root {
+                                          justify-content: space-evenly;
+                                        }
+                                  card:
+                                    entities:
+                                      - card_type: horizontal-stack
+                                        cards:
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                          - entity: script.lounge_tv_play
+                                            name: '1'
+                                            icon: null
+                                            tap_action:
+                                              service: script.lounge_tv_play
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_pause
+                                            name: 2
+                                            tap_action:
+                                              service: script.lounge_tv_pause
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_stop
+                                            name: 3
+                                            tap_action:
+                                              service: script.lounge_tv_stop
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                        type: custom:hui-element
+                                      - card_type: horizontal-stack
+                                        cards:
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                          - entity: script.lounge_tv_play
+                                            name: '4'
+                                            tap_action:
+                                              service: script.lounge_tv_play
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_pause
+                                            name: '5'
+                                            tap_action:
+                                              service: script.lounge_tv_pause
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_stop
+                                            name: '6'
+                                            tap_action:
+                                              service: script.lounge_tv_stop
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                        type: custom:hui-element
+                                      - card_type: horizontal-stack
+                                        cards:
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                          - entity: script.lounge_tv_play
+                                            name: '7'
+                                            tap_action:
+                                              service: script.lounge_tv_play
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_pause
+                                            name: '8'
+                                            tap_action:
+                                              service: script.lounge_tv_pause
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - entity: script.lounge_tv_stop
+                                            name: '9'
+                                            tap_action:
+                                              service: script.lounge_tv_stop
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                        type: custom:hui-element
+                                      - card_type: horizontal-stack
+                                        cards:
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                          - entity: script.lounge_tv_pause
+                                            name: '0'
+                                            tap_action:
+                                              service: script.lounge_tv_pause
+                                            template: menu_button
+                                            type: custom:button-card
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                          - type: custom:button-card
+                                            color_type: blank-card
+                                        type: custom:hui-element
+                                    show_header_toggle: false
+                                    type: entities
+                              template: icon_button
+                              type: custom:button-card
+                              icon: mdi:numeric
+                            - type: custom:button-card
+                              color_type: blank-card
+                          type: custom:hui-element
+                        - card_type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - entity: script.lounge_tv_play
+                              name: '1'
+                              icon: null
+                              tap_action:
+                                service: script.lounge_tv_play
+                              template: menu_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_pause
+                              name: 2
+                              tap_action:
+                                service: script.lounge_tv_pause
+                              template: menu_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_stop
+                              name: 3
+                              tap_action:
+                                service: script.lounge_tv_stop
+                              template: menu_button
+                              type: custom:button-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                          type: custom:hui-element
+                        - card_type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - entity: script.lounge_tv_play
+                              name: '4'
+                              tap_action:
+                                service: script.lounge_tv_play
+                              template: menu_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_pause
+                              name: '5'
+                              tap_action:
+                                service: script.lounge_tv_pause
+                              template: menu_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_stop
+                              name: '6'
+                              tap_action:
+                                service: script.lounge_tv_stop
+                              template: menu_button
+                              type: custom:button-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                          type: custom:hui-element
+                        - card_type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - entity: script.lounge_tv_play
+                              name: '7'
+                              tap_action:
+                                service: script.lounge_tv_play
+                              template: menu_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_pause
+                              name: '8'
+                              tap_action:
+                                service: script.lounge_tv_pause
+                              template: menu_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_stop
+                              name: '9'
+                              tap_action:
+                                service: script.lounge_tv_stop
+                              template: menu_button
+                              type: custom:button-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                          type: custom:hui-element
+                        - card_type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - entity: script.lounge_tv_pause
+                              name: '0'
+                              tap_action:
+                                service: script.lounge_tv_pause
+                              template: menu_button
+                              type: custom:button-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                          type: custom:hui-element
+                        - card_type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - entity: script.lounge_tv_media
+                              icon: mdi:netflix
+                              name: Netflix
+                              tap_action:
+                                service: script.lounge_tv_media
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_media
+                              icon: phu:amazon-logo
+                              name: Amazon
+                              tap_action:
+                                service: script.lounge_tv_media
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_media
+                              icon: mdi:folder-multiple-image
+                              name: Media
+                              tap_action:
+                                service: script.lounge_tv_media
+                              template: icon_button
+                              type: custom:button-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                          type: custom:hui-element
+                        - card_type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - entity: media_player.beyondtv
+                              icon: mdi:volume-plus
+                              name: Left
+                              styles:
+                                card:
+                                  - background: var(--secondary-background-color-alpha)
+                              tap_action:
+                                action: call-service
+                                service: media_player.volume_up
+                                service_data:
+                                  entity_id: |
+                                    [[[ return entity.entity_id; ]]]
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: media_player.beyondtv
+                              icon: mdi:home
+                              name: Home
+                              styles:
+                                card:
+                                  - background: var(--secondary-background-color-alpha)
+                              tap_action:
+                                service: script.beyondtv_tv_home
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: media_player.beyondtv
+                              icon: mdi:arrow-up-bold
+                              name: Ok
+                              tap_action:
+                                service: script.beyondtv_tv_home
+                              template: icon_button
+                              type: custom:button-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                          type: custom:hui-element
+                        - card_type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - entity: media_player.beyondtv
+                              icon: mdi:volume-high
+                              name: Volume
+                              styles:
+                                card:
+                                  - background: var(--secondary-background-color-alpha)
+                              tap_action:
+                                service: script.lounge_tv_left
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: media_player.beyondtv
+                              icon: mdi:volume-off
+                              name: Mute
+                              styles:
+                                card:
+                                  - background: var(--secondary-background-color-alpha)
+                              tap_action:
+                                action: call-service
+                                service: media_player.volume_mute
+                                service_data:
+                                  entity_id: |
+                                    [[[ return entity.entity_id; ]]]
+                                  is_volume_muted: >
+                                    [[[ return entity.attributes.is_volume_muted
+                                    === 'false' ? 'true' : 'false'; ]]]
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: media_player.beyondtv
+                              icon: mdi:alpha-p-circle-outline
+                              name: Programm
+                              tap_action:
+                                service: script.lounge_tv_ok
+                              template: icon_button
+                              type: custom:button-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                          type: custom:hui-element
+                        - card_type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - entity: script.lounge_tv_left
+                              icon: mdi:minus
+                              name: Volume Minus
+                              styles:
+                                card:
+                                  - background: var(--secondary-background-color-alpha)
+                              tap_action:
+                                service: script.lounge_tv_left
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_left
+                              icon: mdi:information-variant
+                              name: Info
+                              styles:
+                                card:
+                                  - background: var(--secondary-background-color-alpha)
+                              tap_action:
+                                service: script.lounge_tv_left
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_ok
+                              icon: mdi:arrow-down-bold
+                              name: Programm
+                              tap_action:
+                                service: script.lounge_tv_ok
+                              template: icon_button
+                              type: custom:button-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                          type: custom:hui-element
+                        - card_type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - entity: script.lounge_tv_left
+                              icon: mdi:play
+                              name: Play
+                              styles:
+                                card:
+                                  - background: var(--secondary-background-color-alpha)
+                              tap_action:
+                                service: script.lounge_tv_left
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_left
+                              icon: mdi:pause
+                              name: Pause
+                              styles:
+                                card:
+                                  - background: var(--secondary-background-color-alpha)
+                              tap_action:
+                                service: script.lounge_tv_left
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_ok
+                              icon: mdi:stop
+                              name: Stop
+                              tap_action:
+                                service: script.lounge_tv_ok
+                              template: icon_button
+                              type: custom:button-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                          type: custom:hui-element
+                        - card_type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - entity: script.lounge_tv_left
+                              icon: mdi:skip-backward
+                              name: Forward
+                              styles:
+                                card:
+                                  - background: var(--secondary-background-color-alpha)
+                              tap_action:
+                                service: script.lounge_tv_left
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_rec
+                              icon: mdi:record
+                              name: Record
+                              styles:
+                                icon:
+                                  - color: red
+                              tap_action:
+                                service: script.lounge_tv_rec
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_ok
+                              icon: mdi:skip-forward
+                              name: Forward
+                              tap_action:
+                                service: script.lounge_tv_ok
+                              template: icon_button
+                              type: custom:button-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                          type: custom:hui-element
+                        - card_type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - entity: script.lounge_tv_red
+                              name: Red
+                              icon: mdi:card
+                              styles:
+                                icon:
+                                  - color: red
+                              tap_action:
+                                service: script.lounge_tv_red
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_green
+                              name: Green
+                              icon: mdi:card
+                              styles:
+                                icon:
+                                  - color: '#00ff00'
+                              tap_action:
+                                service: script.lounge_tv_green
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_yellow
+                              name: Yellow
+                              icon: mdi:card
+                              styles:
+                                icon:
+                                  - color: yellow
+                              tap_action:
+                                service: script.lounge_tv_yellow
+                              template: icon_button
+                              type: custom:button-card
+                            - entity: script.lounge_tv_blue
+                              name: Blue
+                              styles:
+                                icon:
+                                  - color: blue
+                              tap_action:
+                                service: script.lounge_tv_blue
+                              template: icon_button
+                              icon: mdi:card
+                              type: custom:button-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                          type: custom:hui-element
+                      show_header_toggle: false
+                      title: TV Remote Schlafzimmer
+                      type: entities
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+              - artwork: cover
+                hide:
+                  power_state: false
+                icon: mdi:spotify
+                source: icon
+                shortcuts:
+                  buttons:
+                    - icon: mdi:coffee-outline
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/playlist/4ddslfKP5u4dpiZ0X2LT64?si=988ed6d2434a4ed6
+                    - icon: mdi:shower
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/album/4FdNA8fZZzqSnvKXoX9XzC?si=fqFafACQTK-QUYPY6Jfw-w
+                    - icon: mdi:palm-tree
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/playlist/37i9dQZF1DX32oVqaQE8BM?si=CkcWDcFMQuy6v33WsKUzUw
+                    - icon: mdi:white-balance-sunny
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/playlist/37i9dQZF1DWWLToO3EeTtX?si=3iirw6pRTb6xVlmAE2sEGQ
+                    - icon: mdi:weather-rainy
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/playlist/37i9dQZF1DX3lnqcg5MsPa?si=JXi2iedtQ_-zAuoR7IjW1g
+                    - name: Party
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/playlist/37i9dQZF1DWZ7eJRBxKzdO?si=879375d9a21343aa
+                    - icon: mdi:heart-multiple-outline
+                      type: playlist
+                      id: >-
+                        https://open.spotify.com/playlist/37i9dQZF1DX163rJoVPJH7?si=j1AEQ1yGRHySwn9XloCH2A
+                  columns: 5
+                type: custom:mini-media-player
+                entity: media_player.nathalies_echo_dot
+          - type: vertical-stack
+            cards: []
