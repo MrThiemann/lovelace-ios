@@ -1,0 +1,148 @@
+button_card_templates:
+  base:
+    variables:
+      state_on: >
+        [[[ return ['on', 'home', 'cool', 'fan_only', 'playing'].indexOf(entity
+        === undefined || entity.state) !== -1; ]]]
+      state: |
+        [[[ return entity === undefined || entity.state; ]]]
+      entity_id: |
+        [[[ return entity === undefined || entity.entity_id; ]]]
+      media_on: >
+        [[[ return entity === undefined || ['playing',
+        'paused'].indexOf(entity.state) !== -1; ]]]
+      media_off: >
+        [[[ return entity === undefined || ['off', 'idle', 'standby', 'unknown',
+        'unavailable'].indexOf(entity.state) !== -1; ]]]
+      entity_picture: |
+        [[[ return entity === undefined || entity.attributes.entity_picture; ]]]
+      timeout: >
+        [[[ return entity === undefined || Date.now() -
+        Date.parse(entity.last_changed); ]]]
+    aspect_ratio: 1/1
+    show_state: true
+    show_icon: true
+    state_display: |
+      [[[ if (variables.state === true) return variables.translate_unknown; ]]]
+    tap_action:
+      ui_sound_tablet: |
+        [[[
+          let screensaver = states[variables.entity_tablet] === undefined || 
+            states[variables.entity_tablet].state;
+          if (variables.state === 'off' && screensaver === 'off') {
+            hass.callService('media_player', 'play_media', {
+              entity_id: variables.entity_browser_mod,
+              media_content_id: '/local/sound/on.m4a',
+              media_content_type: 'music'
+            });
+          }
+          if (variables.state_on && screensaver === 'off') {
+            hass.callService('media_player', 'play_media', {
+              entity_id: variables.entity_browser_mod,
+              media_content_id: '/local/sound/off.m4a',
+              media_content_type: 'music'
+            });
+          }
+        ]]]
+      animation_card: |
+        [[[
+          let time = 900;
+          this.shadowRoot.getElementById('card').style.animation =
+            `card_bounce ${time}ms cubic-bezier(0.22, 1, 0.36, 1)`,
+            window.setTimeout(() => {
+              this.shadowRoot.getElementById('card').style.animation = 'none'
+            }, time);
+        ]]]
+      action: toggle
+      haptic: medium
+    hold_action:
+      haptic: success
+    extra_styles: |
+      [[[
+        if (entity) {
+          let hs = entity.attributes.hs_color === undefined,
+            h = hs || entity.attributes.hs_color[0],
+            s = hs || entity.attributes.hs_color[1],
+            l_min = 28,
+            l_max = 48,
+            l_calc = entity.attributes.brightness / 2.54 * (l_max - l_min) / 100 + l_min;
+          var light_color = entity.attributes.color_mode === 'color_temp' || entity.attributes.color_mode === 'brightness'
+            ? `hsl(204, 58%, ${l_calc}%);`
+            : `hsl(${h}, ${s}%, ${l_calc}%);`;
+        }
+        return `
+          svg {
+            --light-color:
+            ${ variables.state_on && entity.attributes.brightness !== undefined
+                ? light_color
+                : variables.state_on && entity.attributes.brightness === undefined
+                  ? 'var(--state-icon-active-color);'
+                  : 'var(--state-icon-color);'
+            }
+          }
+          #container {
+            text-align: left !important;
+          }
+          #name, #state {
+            font-size: 1.34vw;
+            letter-spacing: 0.05vw;
+          }
+          #state::first-letter {
+            text-transform: uppercase;
+          }
+          #blur, #overlayx {
+            top: calc((100% - var(--media-blur-height)) + 0.5%);
+            height: var(--media-blur-height);
+          }
+          /* portrait */
+          @media screen and (max-width: 1200px) {
+            #name, #state {
+              font-size: 2vw;
+              letter-spacing: 0.05vw;
+            }
+            #blur, #overlayx {
+              top: calc((100% - (var(--media-blur-height) + 1.5%)) + 0.5%);
+              height: calc(var(--media-blur-height) + 1.5%);
+            }
+          }
+          /* phone */
+          @media screen and (max-width: 800px) {
+            #name, #state {
+              font-size: 3.1vw;
+              letter-spacing: 0.12vw;
+            }
+            #blur, #overlayx {
+              top: calc((100% - (var(--media-blur-height) + 3%)) + 0.5%);
+              height: calc(var(--media-blur-height) + 3%);
+            }
+          }
+          @keyframes card_bounce {
+            0% {
+              transform: scale(1);
+            }
+            15% {
+              transform: scale(0.9);
+            }
+            25% {
+              transform: scale(1);
+            }
+            30% {
+              transform: scale(0.98);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+          .marquee {
+            animation: marquee 20s linear infinite;
+          }
+          @keyframes marquee {
+            from {
+              transform: translateX(0%);
+            }
+            to {
+              transform: translateX(-50%);
+            }
+          }
+        `
+      ]]]
