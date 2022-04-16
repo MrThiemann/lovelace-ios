@@ -10,7 +10,7 @@ cards:
   - type: horizontal-stack
     cards:
       - type: custom:button-card
-        entity: switch.tp_link_01
+        entity: switch.Entität_Switch
         icon: phu:table-shade
         show_icon: true
         aspect_ratio: 1/1
@@ -23,7 +23,7 @@ cards:
         template:
           - kt_card_2
       - type: custom:button-card
-        entity: light.wandlampe_wohnzimmer
+        entity: light.Entität_Licht
         icon: hue:wall-fuzo-h
         show_icon: true
         aspect_ratio: 1/1
@@ -36,7 +36,7 @@ cards:
         template:
           - kt_card_2
       - type: custom:button-card
-        entity: switch.tp_link_01
+        entity: switch.Entität_Switch
         icon: phu:pendant-round
         show_icon: true
         aspect_ratio: 1/1
@@ -51,7 +51,7 @@ cards:
   - type: horizontal-stack
     cards:
       - type: custom:button-card
-        entity: light.tybf4da595f9235af6dbrfhn
+        entity: light.Entität_Licht
         icon: hue:go
         name: Vitrine
         show_icon: true
@@ -133,7 +133,7 @@ cards:
                 icon:
                   - width: 15px
       - type: custom:button-card
-        entity: light.lsc_light_strip_rgbcw_wifi_2
+        entity: light.Entität_Licht
         icon: hue:lightstrip-tv
         name: RGB Wohnwand
         show_icon: true
@@ -215,7 +215,7 @@ cards:
                 icon:
                   - width: 15px
       - type: custom:button-card
-        entity: light.tybfbfbb83505dd21d54yzwe
+        entity: light.Entität_Licht
         icon: hue:go
         name: Vitrine
         show_icon: true
