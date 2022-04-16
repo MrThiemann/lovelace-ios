@@ -9,7 +9,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: custom:button-card
-            entity: light.flur_og
+            entity: light.Entität_Licht
             icon: hue:double-spot
             name: Decke Flur OG
             template:
@@ -18,7 +18,7 @@ cards:
               - bright
               - cl
           - type: custom:button-card
-            entity: light.ty64038772f4cfa251f8c2
+            entity: light.Entität_Licht
             icon: hue:single-spot
             name: Decke Flur
             template:
@@ -27,7 +27,7 @@ cards:
               - bright
               - cl
           - type: custom:button-card
-            entity: light.ty64038772f4cfa251f4eb
+            entity: light.Entität_Licht
             icon: hue:single-spot
             name: Decke Flur
             template:
@@ -40,7 +40,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: custom:button-card
-            entity: light.tybfa23d68fa30fff8f60geg
+            entity: light.Entität_Licht
             icon: hue:wall-appear
             name: Wandlampe Treppe
             template:
@@ -80,7 +80,7 @@ cards:
                           - width: 15px;
                   type: custom:button-card
           - type: custom:button-card
-            entity: light.wlan_weihnachtslicht_rgb
+            entity: light.Entität_Licht
             icon: mdi:string-lights
             name: Lichterkette Treppe
             show_icon: true
@@ -188,7 +188,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: light.wc_eg
+                entity: light.Entität_Licht
                 icon: hue:room-toilet
                 name: WC
                 show_icon: true
@@ -296,7 +296,7 @@ cards:
                               - icon: mdi:security
                       type: custom:button-card
               - type: custom:button-card
-                entity: light.ty84621220c82b9655253b
+                entity: light.Entität_Licht
                 icon: hue:single-spot
                 name: Decke
                 template:
@@ -311,7 +311,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: light.lsc_light_strip_rgbcw_wifi_3
+                entity: light.Entität_Licht
                 icon: phu:light-strip
                 name: Bad
                 template:
@@ -351,7 +351,7 @@ cards:
                               - width: 15px;
                       type: custom:button-card
               - type: custom:button-card
-                entity: light.ty84621220c82b9655253b
+                entity: light.Entität_Licht
                 icon: hue:double-spot
                 name: Decke
                 template:
@@ -380,7 +380,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: light.schlafzimmer
+                entity: light.Entität_Licht
                 icon: phu:pendant-round
                 name: Decke
                 template:
@@ -389,7 +389,7 @@ cards:
                   - bright
                   - cl
               - type: custom:button-card
-                entity: light.kuechensockel
+                entity: light.Entität_Licht
                 icon: phu:light-strip
                 name: RGB Stripes
                 template:
@@ -404,7 +404,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: switch.tp_link_01
+                entity: switch.Entität_Switch
                 icon: phu:desk-lamp
                 name: Karsten
                 template:
@@ -415,7 +415,7 @@ cards:
               - type: custom:button-card
                 color_type: blank-card
               - type: custom:button-card
-                entity: switch.tp_link_01
+                entity: switch.Entität_Switch
                 icon: phu:desk-lamp
                 name: Nathallie
                 template:
