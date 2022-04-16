@@ -1,0 +1,1042 @@
+  - theme: KT Dark
+    title: tab8
+    path: tab8
+    icon: mdi:raspberry-pi
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - name: SENSOREN
+                template:
+                  - header
+                type: custom:button-card
+              - type: horizontal-stack
+                cards:
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        border: solid 1px var(--border-color);
+                        font-family: var(--primary-font-family);
+                        margin-top: 5px;
+                        margin-bottom: 5px;
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - entity: sensor.wz_temp
+                        name: Innen
+                        color: var(--color-ocher-1)
+                      - entity: sensor.openweathermap_temperature
+                        name: Außen
+                        color: var(--accent-color)
+                    name: Temperatur
+                    align_state: center
+                    align_icon: left
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 48
+                    line_color: var(--color-red-1)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 0.5
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        border: solid 1px var(--border-color);
+                        font-family: var(--primary-font-family);
+                        margin-top: 5px;
+                        margin-bottom: 5px;
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - entity: sensor.humiditiy_sensor
+                        name: Innen
+                        color: var(--color-ocher-1)
+                      - entity: sensor.openweathermap_humidity
+                        name: Außen
+                        color: var(--accent-color)
+                    name: Luftfeuchtigkeit
+                    align_state: center
+                    align_icon: right
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 48
+                    line_color: var(--color-green-bright-1)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 0.5
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+                    tap_action:
+                      action: none
+              - type: horizontal-stack
+                cards:
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        border: solid 1px var(--border-color);
+                        font-family: var(--primary-font-family);
+                        margin-top: 5px;
+                        margin-bottom: 5px;
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - sensor.speedtest_download
+                    name: Download
+                    align_state: center
+                    align_icon: left
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 24
+                    line_color: var(--accent-color)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 1
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        border: solid 1px var(--border-color);
+                        font-family: var(--primary-font-family);
+                        margin-top: 5px;
+                        margin-bottom: 5px;
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - sensor.speedtest_upload
+                    name: Upload
+                    align_state: center
+                    align_icon: left
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 24
+                    line_color: var(--accent-color)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 1
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+              - type: custom:stack-in-card
+                cards:
+                  - type: custom:button-card
+                    style: null
+                    color_type: card
+                    color: var(--secondary-background-color)
+                    show_icon: false
+                    styles:
+                      card:
+                        - height: 30px
+                        - font-size: 14px
+                        - background-color: var(--ha-card-background)
+                    entity: input_boolean.button_battery
+                    name: Batterien
+                  - type: conditional
+                    conditions:
+                      - entity: input_boolean.button_battery
+                        state: 'on'
+                    card:
+                      type: custom:auto-entities
+                      card:
+                        type: custom:bar-card
+                        sort_by_level: asc
+                        title_position: inside
+                        tap_action:
+                          action: none
+                        severity:
+                          - color: var(--color-red-1)
+                            from: 0
+                            to: 20
+                          - color: var(--color-orange-1)
+                            from: 21
+                            to: 50
+                          - color: var(--color-ocher-1)
+                            from: 51
+                            to: 70
+                      show_empty: true
+                      filter:
+                        include:
+                          - entity_id: sensor.*.battery_level*
+                            state: <=20
+                          - entity_id: sensor.*.akkufullstand*
+                            state: <=30
+                          - entity_id: sensor.*.battery*
+                            state: <=30
+          - type: vertical-stack
+            cards:
+              - type: vertical-stack
+                cards: []
+          - type: entities
+            entities:
+              - type: custom:bar-card
+                title_position: inside
+                entity: sensor.processor_use_percent
+                max: 100
+                severity:
+                  - value: 30
+                    color: '#40bf60'
+                  - value: 60
+                    color: '#ffa500'
+                  - value: 100
+                    color: '#e60000'
+              - type: custom:bar-card
+                title_position: inside
+                entity: sensor.memory_use_percent
+                icon: mdi:database
+                max: 100
+                severity:
+                  - value: 30
+                    color: '#40bf60'
+                  - value: 60
+                    color: '#ffa500'
+                  - value: 90
+                    color: '#e60000'
+              - type: custom:bar-card
+                title_position: inside
+                entity: sensor.disk_use_percent
+                severity:
+                  - value: 33
+                    color: '#40bf60'
+                  - value: 50
+                    color: '#ffa500'
+                  - value: 75
+                    color: '#e60000'
+              - type: custom:bar-card
+                title_position: inside
+                entity: sensor.glances_swap_used
+                severity:
+                  - value: 33
+                    color: '#40bf60'
+                  - value: 50
+                    color: '#ffa500'
+                  - value: 75
+                    color: '#e60000'
+              - type: custom:bar-card
+                title_position: inside
+                entity: sensor.mariadb_size
+                icon: mdi:database
+                max: 500
+                severity:
+                  - value: 150
+                    color: '#40bf60'
+                  - value: 200
+                    color: '#ffa500'
+                  - value: 250
+                    color: '#e60000'
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - image: /local/img/ha_6.gif
+                type: picture
+                style:
+                  .: |
+                    ha-card {
+                      border-radius: 0px;
+                      overflow: hidden;
+                      width: 15%;
+                      margin: 0 auto;
+                      padding-top: 0px;
+
+                    }
+                  '#states div':
+                    fold-entity-row:
+                      $: |
+                        #items {
+                          padding: 0 0 0 0px;
+                          margin: 0;            }
+          - type: conditional
+            conditions:
+              - entity: sensor.installed_version
+                state_not: '0'
+            card:
+              type: vertical-stack
+              cards:
+                - type: entities
+                  entities:
+                    - sensor.installed_version
+                    - sensor.latest_available_version
+                  style: |
+                    ha-card {
+                      color: var(--color-orange-1);
+                      --paper-item-icon-color: var(--color-orange-1);
+                    }
+          - type: conditional
+            conditions:
+              - entity: sensor.hacs
+                state_not: '0'
+            card:
+              type: vertical-stack
+              cards:
+                - type: custom:dwains-flexbox-card
+                  items_classes: col-xs-12 col-sm-6 col-sm-6 col-md
+                  cards:
+                    - cards:
+                        - name: HACS
+                          template:
+                            - header
+                          tap_action:
+                            action: navigate
+                            navigation_path: /hacs/entry
+                          type: custom:button-card
+                      type: vertical-stack
+                - type: entities
+                  entities:
+                    - sensor.hacs
+                  style: |
+                    ha-card {
+                      color: var(--color-orange-1);
+                      --paper-item-icon-color: var(--color-orange-1);
+                    }
+                - type: vertical-stack
+                  cards:
+                    - type: conditional
+                      conditions:
+                        - entity: sensor.hacs
+                          state_not: '0'
+                      card:
+                        type: markdown
+                        content: >-
+                          {% for repo in state_attr('sensor.hacs',
+                          'repositories') %}
+
+                          **{{ repo.display_name }}** _{{
+                          repo["installed_version"] }}_ -> _{{
+                          repo["available_version"] }}_
+
+                          {% endfor %}
+                    - type: custom:auto-entities
+                      card:
+                        type: entities
+                        title: Add-on Updates
+                        show_header_toggle: false
+                      filter:
+                        include:
+                          - entity_id: binary_sensor.*update*
+                            state: 'on'
+                            options:
+                              secondary_info: last-changed
+                        exclude: []
+                      sort:
+                        method: entity_id
+                      show_empty: false
+                  style: |
+                    ha-card {
+                      color: var(--color-orange-1);
+                      --paper-item-icon-color: var(--color-orange-1);
+                    }
+          - name: SERVICE
+            template:
+              - header
+            type: custom:button-card
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: sensor.time
+                icon: mdi:restart
+                name: Lovelace Restart
+                tap_action:
+                  action: call-service
+                  service: browser_mod.lovelace_reload
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - color: var(--color-green-bright-1)
+                    - height: 70px
+                    - font-size: 11px
+                    - margin: 0px
+                    - background: >
+                        [[[ if (entity.state == "on") return
+                        "var(--accent-color)"; else return
+                        "var(--ha-card-background)";  ]]]
+              - type: custom:button-card
+                entity: sensor.time
+                icon: mdi:restart
+                name: Theme Restart
+                tap_action:
+                  action: call-service
+                  service: frontend.reload_themes
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - color: var(--color-green-bright-1)
+                    - height: 70px
+                    - font-size: 11px
+                    - margin: 0px
+                    - background: >
+                        [[[ if (entity.state == "on") return
+                        "var(--accent-color)"; else return
+                        "var(--ha-card-background)";  ]]]
+              - type: custom:button-card
+                entity: sensor.time
+                icon: mdi:restart
+                name: HA Restart
+                tap_action:
+                  action: none
+                hold_action:
+                  action: call-service
+                  service: homeassistant.restart
+                styles:
+                  card:
+                    - color: var(--color-orange-1)
+                    - height: 70px
+                    - font-size: 11px
+                    - margin: 0px
+                    - background: >
+                        [[[ if (entity.state == "on") return
+                        "var(--accent-color)"; else return
+                        "var(--ha-card-background)";  ]]]
+              - type: custom:button-card
+                entity: sensor.time
+                icon: mdi:restart
+                name: Server Restart
+                tap_action:
+                  action: none
+                hold_action:
+                  action: call-service
+                  service: hassio.host_reboot
+                styles:
+                  card:
+                    - color: var(--color-error)
+                    - height: 70px
+                    - font-size: 11px
+                    - margin: 0px
+                    - background: >
+                        [[[ if (entity.state == "on") return
+                        "var(--accent-color)"; else return
+                        "var(--ha-card-background)";  ]]]
+          - name: WORKSTATION
+            template:
+              - header
+            type: custom:button-card
+          - type: custom:stack-in-card
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        font-family: var(--primary-font-family);
+                        border-bottom: 2px solid var(--background-color);
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - sensor.processor_use_percent
+                    name: CPU
+                    align_state: center
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 12
+                    line_color: var(--color-red-1)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 4
+                    lower_bound: 0
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+                      icon: true
+                      name: true
+                      labels: false
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        font-family: var(--primary-font-family);
+                        border-bottom: 2px solid var(--background-color);
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - sensor.memory_use_percent
+                    name: Speicher RAM
+                    align_state: center
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 12
+                    line_color: var(--color-ocher-1)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 4
+                    lower_bound: 0
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+                      icon: true
+                      name: true
+                      labels: false
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        font-family: var(--primary-font-family);
+                        border-bottom: 2px solid var(--background-color);
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - sensor.wz_temp
+                    name: Temperatur
+                    align_state: center
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 12
+                    line_color: var(--color-green-bright-1)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 4
+                    lower_bound: 0
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+                      icon: true
+                      name: true
+                      labels: false
+              - type: entities
+                style: |
+                  ha-card {
+                    font-family: var(--primary-font-family);
+                  }
+                  .card-content {
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                  }
+                entities:
+                  - sensor.memory_free
+              - type: entities
+                style: |
+                  ha-card {
+                    font-family: var(--primary-font-family);
+                  }
+                  .card-content {
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                  }
+                entities:
+                  - sensor.disk_use_percent
+                  - sensor.disk_use
+                  - sensor.speedtest_download
+                  - sensor.speedtest_upload
+                  - sensor.rpi_uptime
+                  - sensor.mariadb_size
+                  - sensor.uptime
+      - type: vertical-stack
+        style: |
+          ha-card {
+            border: solid 1px var(--border-color);
+            font-family: var(--primary-font-family);
+            margin-top: 5px;
+            margin-bottom: 5px;
+          }
+        cards:
+          - image: /local/img/proxmox_transp.png
+            type: picture
+            style:
+              .: |
+                ha-card {
+                  border-radius: 0px;
+                  overflow: hidden;
+                  width: 100%;
+                  margin: 0 auto;
+                  padding-top: 0px;
+                }
+              '#states div':
+                fold-entity-row:
+                  $: |
+                    #items {
+                      padding: 0 0 0 0px;
+                      margin: 0;            }
+          - type: custom:stack-in-card
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        font-family: var(--primary-font-family);
+                        border-bottom: 2px solid var(--background-color);
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - sensor.glances_cpu_used
+                    name: CPU
+                    align_state: center
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 12
+                    line_color: var(--color-red-1)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 4
+                    lower_bound: 0
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+                      icon: true
+                      name: true
+                      labels: false
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        font-family: var(--primary-font-family);
+                        border-bottom: 2px solid var(--background-color);
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - sensor.glances_ram_used_percent
+                    name: Speicher RAM
+                    align_state: center
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 12
+                    line_color: var(--color-ocher-1)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 4
+                    lower_bound: 0
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+                      icon: true
+                      name: true
+                      labels: false
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        font-family: var(--primary-font-family);
+                        border-bottom: 2px solid var(--background-color);
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - sensor.wz_temp
+                    name: Temperatur
+                    align_state: center
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 12
+                    line_color: var(--color-green-bright-1)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 4
+                    lower_bound: 0
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+                      icon: true
+                      name: true
+                      labels: false
+              - type: horizontal-stack
+                cards:
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        font-family: var(--primary-font-family);
+                        border-bottom: 2px solid var(--background-color);
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - sensor.glances_core_0_temperature
+                    name: Core 0 Temp
+                    align_state: center
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 12
+                    line_color: var(--color-red-1)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 4
+                    lower_bound: 0
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+                      icon: true
+                      name: true
+                      labels: false
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        font-family: var(--primary-font-family);
+                        border-bottom: 2px solid var(--background-color);
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - sensor.glances_core_1_temperature
+                    name: Core 1 Temp
+                    align_state: center
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 12
+                    line_color: var(--color-ocher-1)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 4
+                    lower_bound: 0
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+                      icon: true
+                      name: true
+                      labels: false
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        font-family: var(--primary-font-family);
+                        border-bottom: 2px solid var(--background-color);
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - sensor.glances_core_2_temperature
+                    name: Core 2 Temp
+                    align_state: center
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 12
+                    line_color: var(--color-green-bright-1)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 4
+                    lower_bound: 0
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+                      icon: true
+                      name: true
+                      labels: false
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        font-family: var(--primary-font-family);
+                        border-bottom: 2px solid var(--background-color);
+                      }
+                      .graph {
+                        padding-top: 15px;
+                        padding-bottom: 0px;
+                      }
+                      .info {
+                        padding-bottom: 0px;
+                      }
+                      .flex {
+                        padding-bottom: 10px;
+                      }
+                    entities:
+                      - sensor.glances_core_3_temperature
+                    name: Core 3 Temp
+                    align_state: center
+                    font_size: 60
+                    font_size_header: 11
+                    hours_to_show: 12
+                    line_color: var(--color-green-bright-1)
+                    line_width: 4
+                    animate: true
+                    points_per_hour: 4
+                    lower_bound: 0
+                    lower_bound_secondary: 0
+                    show:
+                      fill: fade
+                      graph: line
+                      extrema: false
+                      icon: true
+                      name: true
+                      labels: false
+              - type: custom:swipe-card
+                cards:
+                  - type: entities
+                    style: |
+                      ha-card {
+                        font-family: var(--primary-font-family);
+                      }
+                      .card-content {
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                      }
+                    entities:
+                      - sensor.glances_cpu_load
+                      - sensor.glances_cpu_used
+                      - sensor.glances_ram_free
+                      - sensor.glances_ram_used
+                      - sensor.glances_ram_used_percent
+                      - sensor.glances_running
+                      - sensor.glances_sleeping
+                      - sensor.glances_swap_free
+                      - sensor.glances_swap_used
+                      - sensor.glances_swap_used_percent
+                      - sensor.glances_thread
+                      - sensor.glances_total
+                      - sensor.glances_free
+                      - sensor.glances_used
+                      - sensor.glances_used_percent
+                  - type: vertical-stack
+                    cards:
+                      - type: custom:dwains-flexbox-card
+                        items_classes: col-xs-12 col-sm-6 col-sm-6 col-md
+                        cards:
+                          - cards:
+                              - name: Komponenten
+                                template:
+                                  - header
+                                type: custom:button-card
+                            type: vertical-stack
+                      - type: glance
+                        columns: 5
+                        entities:
+                          - entity: sensor.count_automations
+                            name: Automations
+                            tap_action:
+                              action: navigate
+                              navigation_path: /config/automation
+                            hold_action:
+                              action: call-service
+                              service: automation.reload
+                          - entity: sensor.count_binary_sensors
+                            name: Binary Sensors
+                          - entity: sensor.total_input_booleans
+                            name: Booleans
+                            hold_action:
+                              action: call-service
+                              service: input_boolean.reload
+                          - entity: sensor.total_cameras
+                            name: Cameras
+                            tap_action:
+                              action: navigate
+                              navigation_path: /lovelace/cameras
+                          - entity: sensor.count_sensors
+                            name: Counters
+                            tap_action:
+                              action: navigate
+                              navigation_path: /lovelace/system
+                          - entity: sensor.total_input_datetimes
+                            name: DateTimes
+                          - entity: sensor.count_device_trackers
+                            name: Devices
+                            tap_action:
+                              action: navigate
+                              navigation_path: /config/devices/dashboard
+                          - entity: sensor.domains_in_use
+                            name: Domains
+                          - entity: sensor.total_entities
+                            name: Entities
+                            tap_action:
+                              action: navigate
+                              navigation_path: /developer-tools/state
+                            hold_action:
+                              action: navigate
+                              navigation_path: /config/entities
+                          - entity: sensor.total_groups
+                            name: Groups
+                          - entity: sensor.total_lights
+                            name: Lights
+                          - entity: sensor.total_input_numbers
+                            name: Numbers
+                            hold_action:
+                              action: call-service
+                              service: input_number.reload
+                          - entity: sensor.total_persons
+                            name: People
+                            tap_action:
+                              action: navigate
+                              navigation_path: /config/person
+                            hold_action:
+                              action: call-service
+                              service: person.reload
+                          - entity: sensor.total_media_players
+                            name: Players
+                          - entity: sensor.total_remotes
+                            name: Remotes
+                          - entity: sensor.total_scenes
+                            name: Scenes
+                            tap_action:
+                              action: navigate
+                              navigation_path: /config/scene/dashboard
+                            hold_action:
+                              action: call-service
+                              service: scene.reload
+                          - entity: sensor.total_scripts
+                            name: Scripts
+                            tap_action:
+                              action: navigate
+                              navigation_path: /config/script
+                            hold_action:
+                              action: call-service
+                              service: script.reload
+                          - entity: sensor.total_input_selects
+                            name: Selects
+                            hold_action:
+                              action: call-service
+                              service: input_select.reload
+                          - entity: sensor.total_sensors
+                            name: Sensors
+                          - entity: sensor.total_shelly_devices
+                            name: Shelly
+                          - entity: sensor.total_switches
+                            name: Switches
+                          - entity: sensor.total_tasmota_devices
+                            name: Tasmota
+                            tap_action:
+                              action: navigate
+                              navigation_path: /tasmoadmin
+                          - entity: sensor.total_input_texts
+                            name: Texts
+                            hold_action:
+                              action: call-service
+                              service: input_text.reload
+                          - entity: sensor.total_timers
+                            name: Timers
+                            hold_action:
+                              action: call-service
+                              service: timer.reload
+                          - entity: sensor.total_zones
+                            name: Zones
+                            tap_action:
+                              action: navigate
+                              navigation_path: /config/zone
+                            hold_action:
+                              action: call-service
+                              service: zone.reload
