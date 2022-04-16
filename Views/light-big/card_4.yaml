@@ -11,7 +11,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: light.lampe_mika
+                entity: light.Entität_Licht
                 icon: hue:bulb-group-spot
                 name: Spot 1
                 show_icon: true
@@ -93,7 +93,7 @@ cards:
                         icon:
                           - width: 15px
               - type: custom:button-card
-                entity: light.lampe_mika_2
+                entity: light.Entität_Licht
                 icon: hue:bulb-group-spot
                 name: Spot 2
                 show_icon: true
@@ -199,7 +199,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: light.tybf30886f2fff0d4799zxvf
+                entity: light.Entität_Licht
                 icon: hue:ceiling-infuse
                 name: Decke
                 show_icon: true
@@ -305,7 +305,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: light.deckenlampe_fynn
+                entity: light.Entität_Licht
                 icon: hue:bulb-group-spot
                 name: Spot 1
                 show_icon: true
@@ -387,7 +387,7 @@ cards:
                         icon:
                           - width: 15px
               - type: custom:button-card
-                entity: light.deckenlampe_fynn
+                entity: light.Entität_Licht
                 icon: hue:bulb-group-spot
                 name: Spot 2
                 show_icon: true
@@ -469,7 +469,7 @@ cards:
                         icon:
                           - width: 15px
               - type: custom:button-card
-                entity: light.tybf4da595f9235af6dbrfhn
+                entity: light.Entität_Licht
                 icon: hue:go
                 name: Moodlight
                 show_icon: true
@@ -571,7 +571,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: light.lsc_smart_ceiling_light_lio
+                entity: light.Entität_Licht
                 icon: hue:ceiling-infuse
                 name: Decke
                 show_icon: true
