@@ -41,7 +41,7 @@ cards:
                 type: custom:mini-graph-card
               - aspect_ratio: 1/1
                 color: rgb(41, 158, 194)
-                entity: climate.fritz_dect_301_2_wohnzimmer
+                entity: climate.Entität_Climate
                 icon: fas:couch
                 name: Wohnzimmer
                 show_state: true
@@ -78,7 +78,7 @@ cards:
                       type: vertical-stack
                       cards:
                         - type: custom:thermostat-popup-card
-                          entity: climate.fritz_dect_301_2_wohnzimmer
+                          entity: climate.Entität_Climate
                           brightnessWidth: 150px
                           brightnessHeight: 400px
                           switchWidth: 150px
@@ -169,7 +169,7 @@ cards:
             type: entities
         type: vertical-stack
   - type: custom:simple-thermostat
-    entity: climate.fritz_dect_301_2_wohnzimmer
+    entity: climate.Entität_Climate
     header:
       name: Wohnzimmer
       icon: mdi:radiator
