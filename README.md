@@ -2,6 +2,10 @@
 Hello and welcome to the Github Repo from MrThiemann. Now here are my configuration and files from my new Dashboard.  
 Please understand that it may not be entirely error-free. You should know that I am a carpenter / woodworker and I do all this voluntarily in my free time =)
 
+I am happy to be part of the SmartHome YourSelf community
+- [SmartHomeYourSelf Homepage](https://smarthomeyourself.de/)
+- [SmartHomeYourSelf Discord](https://discord.gg/zhdmdhU)
+
 If you like it, I would be happy if you buy me a coffee: https://www.buymeacoffee.com/thiemannk
 
 ## 16-04-2022 - First Preview from dashboard-files and Screenshots
@@ -21,7 +25,7 @@ If you like it, I would be happy if you buy me a coffee: https://www.buymeacoffe
 - 30GB HDD
 
 ### Outsourced
-- NodeRed LXC
+- NodeRed LXC (ALL my automations are controlled from here)
 - MariaDB LXC
 - InfluxDB + Grafana LXC
 
@@ -144,6 +148,41 @@ If you like it, I would be happy if you buy me a coffee: https://www.buymeacoffe
 - Switch popup card
 - Thermostat popup card
 
+### Custom Components
+- browser_mod
 
+# Devices/Sensors
+## ZigBee - deCONZ ConBee II
+- IKEA TRADFRI Dimmer Switch [1]
+- Silvercrest Motion Sensor [6]
+- Xiaomi Motion Sensor [1]
+- Philips Dimmer Switch [2]
+- Ikea STYRBAR [3]
+- Müller TINT RGB Color Switch [1]
 
+- Silvercrest Plug [4]
+- Silvercrest Color Bulb [4]
 
+## Wifi Sensors
+- Smart PIR sensor [2]
+- Smart Door/window sensor [1]
+
+## Wifi Steckdose
+- LCS Steckdose [3]
+
+## WLAN Lights
+- LSC GU10-Glass-RGBCW [6]
+- Gardenposts (set of 3) [2]
+- Hombli Smart Bulb [2]
+- Candle RGB-CCT [2]
+- LSC A60 RGB-CCT [6]
+- Light Strip-RGBCW [2]
+- Smart Digital LED Strip [2]
+- Up/Down Light RGB+CCT [3]
+- Wifi Christmas light (RGB) [1]
+- RGB Ceiling Lamp [2]
+
+## Media Players
+- Sony Playstation 4 [3]
+- Bose SoundTouch 10 [1]
+- Amazon Alexa Echo Dot 3. Generation [5]
