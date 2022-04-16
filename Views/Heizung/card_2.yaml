@@ -1,0 +1,1373 @@
+type: vertical-stack
+cards:
+  - type: vertical-stack
+    cards:
+      - name: Obergeschoss
+        template:
+          - header
+        type: custom:button-card
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            aspect_ratio: 1/1
+            icon: phu:wiser-thermostat-on
+            entity: sensor.wz_temp
+            name: Flur
+            show_state: false
+            hold_action:
+              action: fire-dom-event
+              browser_mod:
+                command: popup
+                title: Heizung
+                style:
+                  hui-vertical-stack-card:
+                    $hui-entities-card$: |
+                      #states {
+                        padding-top: 0.5em;
+                        padding-bottom: 0em;
+                      }
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: custom:thermostat-popup-card
+                      entity: climate.Entität_Climate
+                      name: Flur OG
+                      brightnessWidth: 150px
+                      brightnessHeight: 400px
+                      switchWidth: 150px
+                      switchHeight: 400px
+                      fullscreen: false
+                    - type: entities
+                      card_mod:
+                        class: content
+                      entities:
+                        - entity: sensor.wz_temp
+                          name: Raumtemperatur
+                        - entity: sensor.humiditiy_sensor
+                          name: Luftfeuchtigkeit
+                    - type: custom:apexcharts-card
+                      layout: minimal
+                      locale: de
+                      graph_span: 8h
+                      show:
+                        loading: false
+                      apex_config:
+                        plotOptions:
+                          area:
+                            fillTo: end
+                        grid:
+                          padding:
+                            top: -15
+                        fill:
+                          type: gradient
+                          gradient:
+                            type: vertical
+                            opacityFrom: 0.8
+                            opacityTo: 0
+                            stops:
+                              - 0
+                              - 99
+                              - 100
+                        stroke:
+                          width: 4
+                        tooltip:
+                          style:
+                            fontSize: 14px
+                          x:
+                            format: dddd HH:mm
+                        chart:
+                          height: 140px
+                          offsetY: '-20px'
+                        xaxis:
+                          crosshairs:
+                            show: false
+                      series:
+                        - entity: sensor.wz_temp
+                          name: Temp
+                          color: '#385581'
+                          type: area
+                          fill_raw: last
+                          group_by:
+                            func: avg
+                            duration: 1h
+            variables:
+              circle_input: |
+                [[[
+                  if (entity) {
+                    return entity.state === 'cool' ?
+                      entity.attributes.temperature :
+                      entity.attributes.current_temperature;
+                  }
+                ]]]
+            custom_fields:
+              graph:
+                card:
+                  type: custom:mini-graph-card
+                  entities:
+                    - sensor.wz_temp
+                  show:
+                    icon: false
+                    name: false
+                    state: false
+                    animate: true
+                    fill: false
+                  line_width: 5
+                  color_thresholds:
+                    - value: 20
+                      color: '#f39c12'
+                    - value: 21
+                      color: '#d35400'
+                    - value: 21.5
+                      color: '#c0392b'
+                  style: |
+                    ha-card {
+                      background: rgb(36, 46, 66);
+                      border-radius: 10px;
+                      padding: 12%;
+                      color: ivory;
+                      opacity: 0.7;
+                      font-size: 10px;
+                      text-shadow: 0px 0px 5px black;
+                      text-transform: capitalize;
+                      font-weight: bold;
+                      box-shadow: none;
+                      overflow: hidden;
+                      position: relative;
+                      overflow: hidden;
+                    }
+                    [style*="--aspect-ratio"] > :first-child {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                    }
+                    :element {
+                      --aspect-ratio: 1/1;
+                    }
+              temp: |
+                [[[
+                  return `<ha-icon
+                  icon="mdi:thermometer:"
+                  style="width:20px;color:var(--accent-color);">
+                  </ha-icon><span>${Math.round(entity.state)}°C</span>`
+                ]]]
+            styles:
+              custom_fields:
+                graph:
+                  - overflow: unset
+              card:
+                - overflow: unset
+                - background-color: '#242e42'
+                - border-radius: 10%
+                - color: ivory
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: '"n i" "temp hu" "graph graph"'
+                - grid-template-columns: 50% 50%
+                - grid-template-rows: 1fr 1fr 1fr
+                - overflow: unset
+              name:
+                - font-size: 16px
+                - color: white
+                - font-weight: 300
+              state:
+                - font-size: 2.4em
+                - color: white
+                - font-weight: bold
+                - color: white
+                - align-self: middle
+                - justify-self: start
+          - type: custom:button-card
+            aspect_ratio: 1/1
+            icon: phu:wiser-thermostat-on
+            entity: sensor.wz_temp
+            name: Lio
+            show_state: false
+            hold_action:
+              action: fire-dom-event
+              browser_mod:
+                command: popup
+                title: Heizung
+                style:
+                  hui-vertical-stack-card:
+                    $hui-entities-card$: |
+                      #states {
+                        padding-top: 0.5em;
+                        padding-bottom: 0em;
+                      }
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: custom:thermostat-popup-card
+                      entity: climate.Entität_Climate
+                      name: Lio
+                      brightnessWidth: 150px
+                      brightnessHeight: 400px
+                      switchWidth: 150px
+                      switchHeight: 400px
+                      fullscreen: false
+                    - type: entities
+                      card_mod:
+                        class: content
+                      entities:
+                        - entity: sensor.wz_temp
+                          name: Raumtemperatur
+                        - entity: sensor.humiditiy_sensor
+                          name: Luftfeuchtigkeit
+                    - type: custom:apexcharts-card
+                      layout: minimal
+                      locale: de
+                      graph_span: 8h
+                      show:
+                        loading: false
+                      apex_config:
+                        plotOptions:
+                          area:
+                            fillTo: end
+                        grid:
+                          padding:
+                            top: -15
+                        fill:
+                          type: gradient
+                          gradient:
+                            type: vertical
+                            opacityFrom: 0.8
+                            opacityTo: 0
+                            stops:
+                              - 0
+                              - 99
+                              - 100
+                        stroke:
+                          width: 4
+                        tooltip:
+                          style:
+                            fontSize: 14px
+                          x:
+                            format: dddd HH:mm
+                        chart:
+                          height: 140px
+                          offsetY: '-20px'
+                        xaxis:
+                          crosshairs:
+                            show: false
+                      series:
+                        - entity: sensor.wz_temp
+                          name: Temp
+                          color: '#385581'
+                          type: area
+                          fill_raw: last
+                          group_by:
+                            func: avg
+                            duration: 1h
+            variables:
+              circle_input: |
+                [[[
+                  if (entity) {
+                    return entity.state === 'cool' ?
+                      entity.attributes.temperature :
+                      entity.attributes.current_temperature;
+                  }
+                ]]]
+            custom_fields:
+              graph:
+                card:
+                  type: custom:mini-graph-card
+                  entities:
+                    - sensor.wz_temp
+                  show:
+                    icon: false
+                    name: false
+                    state: false
+                    animate: true
+                  line_width: 5
+                  color_thresholds:
+                    - value: 20
+                      color: '#f39c12'
+                    - value: 21
+                      color: '#d35400'
+                    - value: 21.5
+                      color: '#c0392b'
+                  style: |
+                    ha-card {
+                      background: rgb(36, 46, 66);
+                      border-radius: 10px;
+                      padding: 12%;
+                      color: ivory;
+                      opacity: 0.7;
+                      font-size: 10px;
+                      text-shadow: 0px 0px 5px black;
+                      text-transform: capitalize;
+                      font-weight: bold;
+                      box-shadow: none;
+                      overflow: hidden;
+                      position: relative;
+                      overflow: hidden;
+                    }
+                    [style*="--aspect-ratio"] > :first-child {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                    }
+                    :element {
+                      --aspect-ratio: 1/1;
+                    }
+              temp: |
+                [[[
+                  return `<ha-icon
+                  icon="mdi:thermometer:"
+                  style="width:20px;color:var(--accent-color);">
+                  </ha-icon><span>${Math.round(entity.state)}°C</span>`
+                ]]]
+            styles:
+              custom_fields:
+                graph:
+                  - overflow: unset
+              card:
+                - overflow: unset
+                - background-color: '#242e42'
+                - border-radius: 10%
+                - color: ivory
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: '"n i" "temp hu" "graph graph"'
+                - grid-template-columns: 50% 50%
+                - grid-template-rows: 1fr 1fr 1fr
+                - overflow: unset
+              name:
+                - font-size: 16px
+                - color: white
+                - font-weight: 300
+              state:
+                - font-size: 2.4em
+                - color: white
+                - font-weight: bold
+                - color: white
+                - align-self: middle
+                - justify-self: start
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            aspect_ratio: 1/1
+            icon: phu:wiser-thermostat-on
+            entity: sensor.wz_temp
+            name: Justin
+            show_state: false
+            hold_action:
+              action: fire-dom-event
+              browser_mod:
+                command: popup
+                title: Heizung
+                style:
+                  hui-vertical-stack-card:
+                    $hui-entities-card$: |
+                      #states {
+                        padding-top: 0.5em;
+                        padding-bottom: 0em;
+                      }
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: custom:thermostat-popup-card
+                      entity: climate.Entität_Climate
+                      name: Justin
+                      brightnessWidth: 150px
+                      brightnessHeight: 400px
+                      switchWidth: 150px
+                      switchHeight: 400px
+                      fullscreen: false
+                    - type: entities
+                      card_mod:
+                        class: content
+                      entities:
+                        - entity: sensor.wz_temp
+                          name: Raumtemperatur
+                        - entity: sensor.humiditiy_sensor
+                          name: Luftfeuchtigkeit
+                    - type: custom:apexcharts-card
+                      layout: minimal
+                      locale: de
+                      graph_span: 8h
+                      show:
+                        loading: false
+                      apex_config:
+                        plotOptions:
+                          area:
+                            fillTo: end
+                        grid:
+                          padding:
+                            top: -15
+                        fill:
+                          type: gradient
+                          gradient:
+                            type: vertical
+                            opacityFrom: 0.8
+                            opacityTo: 0
+                            stops:
+                              - 0
+                              - 99
+                              - 100
+                        stroke:
+                          width: 4
+                        tooltip:
+                          style:
+                            fontSize: 14px
+                          x:
+                            format: dddd HH:mm
+                        chart:
+                          height: 140px
+                          offsetY: '-20px'
+                        xaxis:
+                          crosshairs:
+                            show: false
+                      series:
+                        - entity: sensor.wz_temp
+                          name: Temp
+                          color: '#385581'
+                          type: area
+                          fill_raw: last
+                          group_by:
+                            func: avg
+                            duration: 1h
+            variables:
+              circle_input: |
+                [[[
+                  if (entity) {
+                    return entity.state === 'cool' ?
+                      entity.attributes.temperature :
+                      entity.attributes.current_temperature;
+                  }
+                ]]]
+            custom_fields:
+              graph:
+                card:
+                  type: custom:mini-graph-card
+                  entities:
+                    - sensor.wz_temp
+                  show:
+                    icon: false
+                    name: false
+                    state: false
+                    animate: true
+                  line_width: 5
+                  color_thresholds:
+                    - value: 20
+                      color: '#f39c12'
+                    - value: 21
+                      color: '#d35400'
+                    - value: 21.5
+                      color: '#c0392b'
+                  style: |
+                    ha-card {
+                      background: rgb(36, 46, 66);
+                      border-radius: 10px;
+                      padding: 12%;
+                      color: ivory;
+                      opacity: 0.7;
+                      font-size: 10px;
+                      text-shadow: 0px 0px 5px black;
+                      text-transform: capitalize;
+                      font-weight: bold;
+                      box-shadow: none;
+                      overflow: hidden;
+                      position: relative;
+                      overflow: hidden;
+                    }
+                    [style*="--aspect-ratio"] > :first-child {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                    }
+                    :element {
+                      --aspect-ratio: 1/1;
+                    }
+              temp: |
+                [[[
+                  return `<ha-icon
+                  icon="mdi:thermometer:"
+                  style="width:20px;color:var(--accent-color);">
+                  </ha-icon><span>${Math.round(entity.state)}°C</span>`
+                ]]]
+            styles:
+              custom_fields:
+                graph:
+                  - overflow: unset
+              card:
+                - overflow: unset
+                - background-color: '#242e42'
+                - border-radius: 10%
+                - color: ivory
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: '"n i" "temp hu" "graph graph"'
+                - grid-template-columns: 50% 50%
+                - grid-template-rows: 1fr 1fr 1fr
+                - overflow: unset
+              name:
+                - font-size: 16px
+                - color: white
+                - font-weight: 300
+              state:
+                - font-size: 2.4em
+                - color: white
+                - font-weight: bold
+                - color: white
+                - align-self: middle
+                - justify-self: start
+          - type: custom:button-card
+            aspect_ratio: 1/1
+            icon: phu:wiser-thermostat-on
+            entity: sensor.wz_temp
+            name: Fynn
+            show_state: false
+            hold_action:
+              action: fire-dom-event
+              browser_mod:
+                command: popup
+                title: Heizung
+                style:
+                  hui-vertical-stack-card:
+                    $hui-entities-card$: |
+                      #states {
+                        padding-top: 0.5em;
+                        padding-bottom: 0em;
+                      }
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: custom:thermostat-popup-card
+                      entity: climate.Entität_Climate
+                      name: Fynn
+                      brightnessWidth: 150px
+                      brightnessHeight: 400px
+                      switchWidth: 150px
+                      switchHeight: 400px
+                      fullscreen: false
+                    - type: entities
+                      card_mod:
+                        class: content
+                      entities:
+                        - entity: sensor.wz_temp
+                          name: Raumtemperatur
+                        - entity: sensor.humiditiy_sensor
+                          name: Luftfeuchtigkeit
+                    - type: custom:apexcharts-card
+                      layout: minimal
+                      locale: de
+                      graph_span: 8h
+                      show:
+                        loading: false
+                      apex_config:
+                        plotOptions:
+                          area:
+                            fillTo: end
+                        grid:
+                          padding:
+                            top: -15
+                        fill:
+                          type: gradient
+                          gradient:
+                            type: vertical
+                            opacityFrom: 0.8
+                            opacityTo: 0
+                            stops:
+                              - 0
+                              - 99
+                              - 100
+                        stroke:
+                          width: 4
+                        tooltip:
+                          style:
+                            fontSize: 14px
+                          x:
+                            format: dddd HH:mm
+                        chart:
+                          height: 140px
+                          offsetY: '-20px'
+                        xaxis:
+                          crosshairs:
+                            show: false
+                      series:
+                        - entity: sensor.wz_temp
+                          name: Temp
+                          color: '#385581'
+                          type: area
+                          fill_raw: last
+                          group_by:
+                            func: avg
+                            duration: 1h
+            variables:
+              circle_input: |
+                [[[
+                  if (entity) {
+                    return entity.state === 'cool' ?
+                      entity.attributes.temperature :
+                      entity.attributes.current_temperature;
+                  }
+                ]]]
+            custom_fields:
+              graph:
+                card:
+                  type: custom:mini-graph-card
+                  entities:
+                    - sensor.wz_temp
+                  show:
+                    icon: false
+                    name: false
+                    state: false
+                    animate: true
+                  line_width: 5
+                  color_thresholds:
+                    - value: 20
+                      color: '#f39c12'
+                    - value: 21
+                      color: '#d35400'
+                    - value: 21.5
+                      color: '#c0392b'
+                  style: |
+                    ha-card {
+                      background: rgb(36, 46, 66);
+                      border-radius: 10px;
+                      padding: 12%;
+                      color: ivory;
+                      opacity: 0.7;
+                      font-size: 10px;
+                      text-shadow: 0px 0px 5px black;
+                      text-transform: capitalize;
+                      font-weight: bold;
+                      box-shadow: none;
+                      overflow: hidden;
+                      position: relative;
+                      overflow: hidden;
+                    }
+                    [style*="--aspect-ratio"] > :first-child {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                    }
+                    :element {
+                      --aspect-ratio: 1/1;
+                    }
+              temp: |
+                [[[
+                  return `<ha-icon
+                  icon="mdi:thermometer:"
+                  style="width:20px;color:var(--accent-color);">
+                  </ha-icon><span>${Math.round(entity.state)}°C</span>`
+                ]]]
+            styles:
+              custom_fields:
+                graph:
+                  - overflow: unset
+              card:
+                - overflow: unset
+                - background-color: '#242e42'
+                - border-radius: 10%
+                - color: ivory
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: '"n i" "temp hu" "graph graph"'
+                - grid-template-columns: 50% 50%
+                - grid-template-rows: 1fr 1fr 1fr
+                - overflow: unset
+              name:
+                - font-size: 16px
+                - color: white
+                - font-weight: 300
+              state:
+                - font-size: 2.4em
+                - color: white
+                - font-weight: bold
+                - color: white
+                - align-self: middle
+                - justify-self: start
+      - type: vertical-stack
+        cards: []
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        aspect_ratio: 1/1
+        icon: phu:wiser-thermostat-on
+        entity: sensor.wz_temp
+        name: Mika
+        show_state: false
+        hold_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            title: Heizung
+            style:
+              hui-vertical-stack-card:
+                $hui-entities-card$: |
+                  #states {
+                    padding-top: 0.5em;
+                    padding-bottom: 0em;
+                  }
+            card:
+              type: vertical-stack
+              cards:
+                - type: custom:thermostat-popup-card
+                  entity: climate.Entität_Climate
+                  name: Mika
+                  brightnessWidth: 150px
+                  brightnessHeight: 400px
+                  switchWidth: 150px
+                  switchHeight: 400px
+                  fullscreen: false
+                - type: entities
+                  card_mod:
+                    class: content
+                  entities:
+                    - entity: sensor.wz_temp
+                      name: Raumtemperatur
+                    - entity: sensor.humiditiy_sensor
+                      name: Luftfeuchtigkeit
+                - type: custom:apexcharts-card
+                  layout: minimal
+                  locale: de
+                  graph_span: 8h
+                  show:
+                    loading: false
+                  apex_config:
+                    plotOptions:
+                      area:
+                        fillTo: end
+                    grid:
+                      padding:
+                        top: -15
+                    fill:
+                      type: gradient
+                      gradient:
+                        type: vertical
+                        opacityFrom: 0.8
+                        opacityTo: 0
+                        stops:
+                          - 0
+                          - 99
+                          - 100
+                    stroke:
+                      width: 4
+                    tooltip:
+                      style:
+                        fontSize: 14px
+                      x:
+                        format: dddd HH:mm
+                    chart:
+                      height: 140px
+                      offsetY: '-20px'
+                    xaxis:
+                      crosshairs:
+                        show: false
+                  series:
+                    - entity: sensor.wz_temp
+                      name: Temp
+                      color: '#385581'
+                      type: area
+                      fill_raw: last
+                      group_by:
+                        func: avg
+                        duration: 1h
+        variables:
+          circle_input: |
+            [[[
+              if (entity) {
+                return entity.state === 'cool' ?
+                  entity.attributes.temperature :
+                  entity.attributes.current_temperature;
+              }
+            ]]]
+        custom_fields:
+          graph:
+            card:
+              type: custom:mini-graph-card
+              entities:
+                - sensor.wz_temp
+              show:
+                icon: false
+                name: false
+                state: false
+                animate: true
+              line_width: 5
+              color_thresholds:
+                - value: 20
+                  color: '#f39c12'
+                - value: 21
+                  color: '#d35400'
+                - value: 21.5
+                  color: '#c0392b'
+              style: |
+                ha-card {
+                  background: rgb(36, 46, 66);
+                  border-radius: 10px;
+                  padding: 12%;
+                  color: ivory;
+                  opacity: 0.7;
+                  font-size: 10px;
+                  text-shadow: 0px 0px 5px black;
+                  text-transform: capitalize;
+                  font-weight: bold;
+                  box-shadow: none;
+                  overflow: hidden;
+                  position: relative;
+                  overflow: hidden;
+                }
+                [style*="--aspect-ratio"] > :first-child {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                }
+                :element {
+                  --aspect-ratio: 1/1;
+                }
+          temp: |
+            [[[
+              return `<ha-icon
+              icon="mdi:thermometer:"
+              style="width:20px;color:var(--accent-color);">
+              </ha-icon><span>${Math.round(entity.state)}°C</span>`
+            ]]]
+        styles:
+          custom_fields:
+            graph:
+              - overflow: unset
+          card:
+            - overflow: unset
+            - background-color: '#242e42'
+            - border-radius: 10%
+            - color: ivory
+            - text-transform: capitalize
+          grid:
+            - grid-template-areas: '"n i" "temp hu" "graph graph"'
+            - grid-template-columns: 50% 50%
+            - grid-template-rows: 1fr 1fr 1fr
+            - overflow: unset
+          name:
+            - font-size: 16px
+            - color: white
+            - font-weight: 300
+          state:
+            - font-size: 2.4em
+            - color: white
+            - font-weight: bold
+            - color: white
+            - align-self: middle
+            - justify-self: start
+      - type: custom:button-card
+        aspect_ratio: 1/1
+        icon: phu:wiser-thermostat-on
+        entity: sensor.wz_temp
+        name: Eltern
+        show_state: false
+        hold_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            title: Heizung
+            style:
+              hui-vertical-stack-card:
+                $hui-entities-card$: |
+                  #states {
+                    padding-top: 0.5em;
+                    padding-bottom: 0em;
+                  }
+            card:
+              type: vertical-stack
+              cards:
+                - type: custom:thermostat-popup-card
+                  entity: climate.Entität_Climate
+                  name: Eltern
+                  brightnessWidth: 150px
+                  brightnessHeight: 400px
+                  switchWidth: 150px
+                  switchHeight: 400px
+                  fullscreen: false
+                - type: entities
+                  card_mod:
+                    class: content
+                  entities:
+                    - entity: sensor.wz_temp
+                      name: Raumtemperatur
+                    - entity: sensor.humiditiy_sensor
+                      name: Luftfeuchtigkeit
+                - type: custom:apexcharts-card
+                  layout: minimal
+                  locale: de
+                  graph_span: 8h
+                  show:
+                    loading: false
+                  apex_config:
+                    plotOptions:
+                      area:
+                        fillTo: end
+                    grid:
+                      padding:
+                        top: -15
+                    fill:
+                      type: gradient
+                      gradient:
+                        type: vertical
+                        opacityFrom: 0.8
+                        opacityTo: 0
+                        stops:
+                          - 0
+                          - 99
+                          - 100
+                    stroke:
+                      width: 4
+                    tooltip:
+                      style:
+                        fontSize: 14px
+                      x:
+                        format: dddd HH:mm
+                    chart:
+                      height: 140px
+                      offsetY: '-20px'
+                    xaxis:
+                      crosshairs:
+                        show: false
+                  series:
+                    - entity: sensor.wz_temp
+                      name: Temp
+                      color: '#385581'
+                      type: area
+                      fill_raw: last
+                      group_by:
+                        func: avg
+                        duration: 1h
+        variables:
+          circle_input: |
+            [[[
+              if (entity) {
+                return entity.state === 'cool' ?
+                  entity.attributes.temperature :
+                  entity.attributes.current_temperature;
+              }
+            ]]]
+        custom_fields:
+          graph:
+            card:
+              type: custom:mini-graph-card
+              entities:
+                - sensor.wz_temp
+              show:
+                icon: false
+                name: false
+                state: false
+                animate: true
+              line_width: 5
+              color_thresholds:
+                - value: 20
+                  color: '#f39c12'
+                - value: 21
+                  color: '#d35400'
+                - value: 21.5
+                  color: '#c0392b'
+              style: |
+                ha-card {
+                  background: rgb(36, 46, 66);
+                  border-radius: 10px;
+                  padding: 12%;
+                  color: ivory;
+                  opacity: 0.7;
+                  font-size: 10px;
+                  text-shadow: 0px 0px 5px black;
+                  text-transform: capitalize;
+                  font-weight: bold;
+                  box-shadow: none;
+                  overflow: hidden;
+                  position: relative;
+                  overflow: hidden;
+                }
+                [style*="--aspect-ratio"] > :first-child {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                }
+                :element {
+                  --aspect-ratio: 1/1;
+                }
+          temp: |
+            [[[
+              return `<ha-icon
+              icon="mdi:thermometer:"
+              style="width:20px;color:var(--accent-color);">
+              </ha-icon><span>${Math.round(entity.state)}°C</span>`
+            ]]]
+        styles:
+          custom_fields:
+            graph:
+              - overflow: unset
+          card:
+            - overflow: unset
+            - background-color: '#242e42'
+            - border-radius: 10%
+            - color: ivory
+            - text-transform: capitalize
+          grid:
+            - grid-template-areas: '"n i" "temp hu" "graph graph"'
+            - grid-template-columns: 50% 50%
+            - grid-template-rows: 1fr 1fr 1fr
+            - overflow: unset
+          name:
+            - font-size: 16px
+            - color: white
+            - font-weight: 300
+          state:
+            - font-size: 2.4em
+            - color: white
+            - font-weight: bold
+            - color: white
+            - align-self: middle
+            - justify-self: start
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        aspect_ratio: 1/1
+        icon: phu:wiser-thermostat-on
+        entity: sensor.wz_temp
+        name: WC
+        show_state: false
+        hold_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            title: Heizung
+            style:
+              hui-vertical-stack-card:
+                $hui-entities-card$: |
+                  #states {
+                    padding-top: 0.5em;
+                    padding-bottom: 0em;
+                  }
+            card:
+              type: vertical-stack
+              cards:
+                - type: custom:thermostat-popup-card
+                  entity: climate.Entität_Climate
+                  name: WC OG
+                  brightnessWidth: 150px
+                  brightnessHeight: 400px
+                  switchWidth: 150px
+                  switchHeight: 400px
+                  fullscreen: false
+                - type: entities
+                  card_mod:
+                    class: content
+                  entities:
+                    - entity: sensor.wz_temp
+                      name: Raumtemperatur
+                    - entity: sensor.humiditiy_sensor
+                      name: Luftfeuchtigkeit
+                - type: custom:apexcharts-card
+                  layout: minimal
+                  locale: de
+                  graph_span: 8h
+                  show:
+                    loading: false
+                  apex_config:
+                    plotOptions:
+                      area:
+                        fillTo: end
+                    grid:
+                      padding:
+                        top: -15
+                    fill:
+                      type: gradient
+                      gradient:
+                        type: vertical
+                        opacityFrom: 0.8
+                        opacityTo: 0
+                        stops:
+                          - 0
+                          - 99
+                          - 100
+                    stroke:
+                      width: 4
+                    tooltip:
+                      style:
+                        fontSize: 14px
+                      x:
+                        format: dddd HH:mm
+                    chart:
+                      height: 140px
+                      offsetY: '-20px'
+                    xaxis:
+                      crosshairs:
+                        show: false
+                  series:
+                    - entity: sensor.wz_temp
+                      name: Temp
+                      color: '#385581'
+                      type: area
+                      fill_raw: last
+                      group_by:
+                        func: avg
+                        duration: 1h
+        variables:
+          circle_input: |
+            [[[
+              if (entity) {
+                return entity.state === 'cool' ?
+                  entity.attributes.temperature :
+                  entity.attributes.current_temperature;
+              }
+            ]]]
+        custom_fields:
+          graph:
+            card:
+              type: custom:mini-graph-card
+              entities:
+                - sensor.wz_temp
+              show:
+                icon: false
+                name: false
+                state: false
+                animate: true
+              line_width: 5
+              color_thresholds:
+                - value: 20
+                  color: '#f39c12'
+                - value: 21
+                  color: '#d35400'
+                - value: 21.5
+                  color: '#c0392b'
+              style: |
+                ha-card {
+                  background: rgb(36, 46, 66);
+                  border-radius: 10px;
+                  padding: 12%;
+                  color: ivory;
+                  opacity: 0.7;
+                  font-size: 10px;
+                  text-shadow: 0px 0px 5px black;
+                  text-transform: capitalize;
+                  font-weight: bold;
+                  box-shadow: none;
+                  overflow: hidden;
+                  position: relative;
+                  overflow: hidden;
+                }
+                [style*="--aspect-ratio"] > :first-child {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                }
+                :element {
+                  --aspect-ratio: 1/1;
+                }
+          temp: |
+            [[[
+              return `<ha-icon
+              icon="mdi:thermometer:"
+              style="width:20px;color:var(--accent-color);">
+              </ha-icon><span>${Math.round(entity.state)}°C</span>`
+            ]]]
+        styles:
+          custom_fields:
+            graph:
+              - overflow: unset
+          card:
+            - overflow: unset
+            - background-color: '#242e42'
+            - border-radius: 10%
+            - color: ivory
+            - text-transform: capitalize
+          grid:
+            - grid-template-areas: '"n i" "temp hu" "graph graph"'
+            - grid-template-columns: 50% 50%
+            - grid-template-rows: 1fr 1fr 1fr
+            - overflow: unset
+          name:
+            - font-size: 16px
+            - color: white
+            - font-weight: 300
+          state:
+            - font-size: 2.4em
+            - color: white
+            - font-weight: bold
+            - color: white
+            - align-self: middle
+            - justify-self: start
+      - type: custom:button-card
+        aspect_ratio: 1/1
+        icon: phu:wiser-thermostat-on
+        entity: sensor.wz_temp
+        name: Bad
+        show_state: false
+        hold_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            title: Heizung
+            style:
+              hui-vertical-stack-card:
+                $hui-entities-card$: |
+                  #states {
+                    padding-top: 0.5em;
+                    padding-bottom: 0em;
+                  }
+            card:
+              type: vertical-stack
+              cards:
+                - type: custom:thermostat-popup-card
+                  entity: climate.Entität_Climate
+                  name: Bad OG
+                  brightnessWidth: 150px
+                  brightnessHeight: 400px
+                  switchWidth: 150px
+                  switchHeight: 400px
+                  fullscreen: false
+                - type: entities
+                  card_mod:
+                    class: content
+                  entities:
+                    - entity: sensor.wz_temp
+                      name: Raumtemperatur
+                    - entity: sensor.humiditiy_sensor
+                      name: Luftfeuchtigkeit
+                - type: custom:apexcharts-card
+                  layout: minimal
+                  locale: de
+                  graph_span: 8h
+                  show:
+                    loading: false
+                  apex_config:
+                    plotOptions:
+                      area:
+                        fillTo: end
+                    grid:
+                      padding:
+                        top: -15
+                    fill:
+                      type: gradient
+                      gradient:
+                        type: vertical
+                        opacityFrom: 0.8
+                        opacityTo: 0
+                        stops:
+                          - 0
+                          - 99
+                          - 100
+                    stroke:
+                      width: 4
+                    tooltip:
+                      style:
+                        fontSize: 14px
+                      x:
+                        format: dddd HH:mm
+                    chart:
+                      height: 140px
+                      offsetY: '-20px'
+                    xaxis:
+                      crosshairs:
+                        show: false
+                  series:
+                    - entity: sensor.wz_temp
+                      name: Temp
+                      color: '#385581'
+                      type: area
+                      fill_raw: last
+                      group_by:
+                        func: avg
+                        duration: 1h
+        variables:
+          circle_input: |
+            [[[
+              if (entity) {
+                return entity.state === 'cool' ?
+                  entity.attributes.temperature :
+                  entity.attributes.current_temperature;
+              }
+            ]]]
+        custom_fields:
+          graph:
+            card:
+              type: custom:mini-graph-card
+              entities:
+                - sensor.wz_temp
+              show:
+                icon: false
+                name: false
+                state: false
+                animate: true
+              line_width: 5
+              color_thresholds:
+                - value: 20
+                  color: '#f39c12'
+                - value: 21
+                  color: '#d35400'
+                - value: 21.5
+                  color: '#c0392b'
+              style: |
+                ha-card {
+                  background: rgb(36, 46, 66);
+                  border-radius: 10px;
+                  padding: 12%;
+                  color: ivory;
+                  opacity: 0.7;
+                  font-size: 10px;
+                  text-shadow: 0px 0px 5px black;
+                  text-transform: capitalize;
+                  font-weight: bold;
+                  box-shadow: none;
+                  overflow: hidden;
+                  position: relative;
+                  overflow: hidden;
+                }
+                [style*="--aspect-ratio"] > :first-child {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                }
+                :element {
+                  --aspect-ratio: 1/1;
+                }
+          temp: |
+            [[[
+              return `<ha-icon
+              icon="mdi:thermometer:"
+              style="width:20px;color:var(--accent-color);">
+              </ha-icon><span>${Math.round(entity.state)}°C</span>`
+            ]]]
+        styles:
+          custom_fields:
+            graph:
+              - overflow: unset
+          card:
+            - overflow: unset
+            - background-color: '#242e42'
+            - border-radius: 10%
+            - color: ivory
+            - text-transform: capitalize
+          grid:
+            - grid-template-areas: '"n i" "temp hu" "graph graph"'
+            - grid-template-columns: 50% 50%
+            - grid-template-rows: 1fr 1fr 1fr
+            - overflow: unset
+          name:
+            - font-size: 16px
+            - color: white
+            - font-weight: 300
+          state:
+            - font-size: 2.4em
+            - color: white
+            - font-weight: bold
+            - color: white
+            - align-self: middle
+            - justify-self: start
