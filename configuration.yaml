@@ -1,0 +1,228 @@
+#-
+#                   __ _                       _   _
+#   ___ ___  _ __  / _(_) __ _ _   _ _ __ __ _| |_(_) ___  _ __
+#  / __/ _ \| '_ \| |_| |/ _` | | | | '__/ _` | __| |/ _ \| '_ \
+# | (_| (_) | | | |  _| | (_| | |_| | | | (_| | |_| | (_) | | | |
+#  \___\___/|_| |_|_| |_|\__, |\__,_|_|  \__,_|\__|_|\___/|_| |_|
+#                        |___/ 
+#
+#- 
+# Core Configuration
+# Configure a default setup of Home Assistant (frontend, api, etc)
+homeassistant: !include includes/homeassistant.yaml
+default_config:
+frontend:
+  themes: !include_dir_merge_named themes
+  extra_html_url:
+    # ...
+    - /local/custom_ui/state-card-tanken.html
+  extra_html_url_es5:
+    # ...
+    - /local/custom_ui/state-card-tanken.html  
+http: !include includes/http.yaml
+
+system_log:
+  fire_event: true
+
+# Logging and history
+recorder:
+  purge_keep_days: 30
+  auto_purge: true
+  db_url: !secret db_url
+#  exclude:
+#    entities:
+#      - person.myname
+
+history:
+logbook:
+
+
+# Managed via UI
+scene: !include scenes.yaml
+automation: !include automations.yaml #not in use - all in NodeRed
+script: !include scripts.yaml
+
+# Text to speech
+tts:
+  - platform: google_translate
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+    base_url: !secret base_url
+    service_name: google_say
+
+  - platform: google_cloud
+    key_file: googlecloud.json
+    language: de-DE
+    gender: female
+    voice:  de-DE-Wavenet-A
+    encoding: linear16
+    # speed: 0.9
+    # pitch: -2.5
+    # gain: -5.0
+    # profiles:
+    #   - telephony-class-application
+    #   - wearable-class-device
+
+group: !include groups.yaml
+light: !include includes/lights.yaml
+
+media_player: !include includes/media_players.yaml
+
+spotify:
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret
+
+alexa:
+  smart_home:
+
+# alexa_media:  
+#   accounts:
+#     - email: !secret alexa_media_email
+#       password: !secret alexa_media_password
+#       url: amazon.de
+#       scan_interval: 30
+      
+notify:
+  - platform: alexa_media
+    name: alexa_media
+
+api: !include includes/apis.yaml
+
+# --------------------
+#                   _  _  _  
+#  __ _  ___  _ __ (_)(_)| |_  ___ 
+# / _` |/ _ \| '__// _` || __|/ _ \
+#| (_| |  __/| |  | (_| || |_|  __/
+# \__, |\___||_|   \__,_| \__|\___|
+# |___/ 
+#
+#
+# --------------------
+
+device_tracker: !include includes/device_trackers.yaml
+
+python_script:
+
+media_extractor:
+
+# Others
+timer: !include includes/timers.yaml
+sensor: !include_dir_merge_list includes/sensors/template_entities/
+switch: !include includes/switches.yaml
+camera: !include includes/camera.yaml
+multiscrape: !include includes/multiscrape.yaml
+
+# Inputs
+input_boolean: !include includes/input_booleans.yaml
+input_datetime: !include includes/input_datetimes.yaml
+input_select: !include includes/input_selects.yaml
+input_number: !include includes/input_numbers.yaml
+input_text: !include includes/input_text.yaml
+input_select: !include includes/input_selects.yaml
+
+intent_script: !include includes/intent_script.yaml
+
+#DuckDNS // NOT IN USE
+#duckdns:
+#    domain: !secret duckdns_domain
+#    access_token: !secret duckdns_access_token
+
+#two-dns
+#two-dns:
+#    domain: !secret twodns_domain
+#    access_token: !secret twodns_access_token
+  
+#Müllkalender
+waste_collection_schedule: !include includes/waste_collection.yaml
+
+ps4_custom:
+   
+weather:
+  - platform: openweathermap
+    api_key: !secret weather_api_key
+    
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+  
+
+google_assistant:
+  project_id: !secret google_projectID 
+  service_account: !include SERVICE_ACCOUNT.json
+  report_state: true
+  
+tankerkoenig: !include includes/tankerkoenig.yaml
+
+
+spotcast:
+  sp_dc: !secret sp_dc
+  sp_key: !secret sp_key
+
+template: !include includes/templates.yaml
+
+binary_sensor: !include includes/binary_sensor.yaml
+
+climate: !include includes/climate.yaml
+
+browser_mod:
+  prefix: 'browser_mod_'
+
+# saving data to influxdb
+influxdb:
+  host: !secret influxdb_host
+  port: 8086  
+  database: !secret influxdb_database
+  username: !secret influxdb_user
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
+  include:
+    domains:
+      - alarm_control_panel
+      - automation 
+      - input_boolean -
+      - remote 
+      - script
+      - binary_sensor
+      - climate
+      - cover
+      - device_tracker
+      - fan
+      - light
+      - lock
+      - media_player
+      - sensor
+      - switch
+    entity_globs:
+      - binary_sensor.*_occupancy
+  #measurement_attr: entity_id
+  # include:
+  #   domains:
+  #     - sensor
+
+# Proxmox VE
+proxmoxve:
+  - host: !secret proxmoxve_host
+    username: !secret  proxmoxve_user
+    password: !secret proxmoxve_password
+    verify_ssl: false
+#    port: 8006
+    realm: pve
+    nodes:
+      - node: server
+        vms: 
+          - 999
+        # containers:
+        #   - 104
+        #   - 105
+        #   - 107
+        #   - 115
+        #   - 119
+        #   - 127
+        
+        
+alarm_control_panel:
+  - platform: manual
+    name: Home Alarm
+    code: !secret alarm_control_panel_code
