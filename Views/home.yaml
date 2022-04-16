@@ -166,14 +166,10 @@
                     tap_action:
                       action: toggle
               exclude:
-                - entity_id: light.alle_lampen
-                - entity_id: light.innenbeleuchtung
-                - entity_id: light.urlaubslichter
-                - entity_id: switch.viz_1
-                - entity_id: switch.bojler_socket
-                - entity_id: light.deerma_jsq5_d52a_indicator_light
-                - entity_id: switch.viz_switch_1
-                - entity_id: light.nappalitablet
+                - entity_id: light.Entität_Licht
+                - entity_id: light.Entität_
+                - entity_id: light.Entität_Licht
+                - entity_id: switch.Entität_Switch
                 - entity_id: light.browser_cd5c8c62_98c23c4a
                 - entity_id: switch.0x588e81fffee4b266_firmware_lock
                 - entity_id: light.deerma_jsq5_94af_indicator_light
@@ -1770,7 +1766,7 @@
               - type: horizontal-stack
                 cards:
                   - type: custom:button-card
-                    entity: script.wakeup_karsten
+                    entity: script.wakeup
                     icon: hass:weather-sunset-up
                     show_icon: true
                     aspect_ratio: 1/1
@@ -1783,7 +1779,7 @@
                     template:
                       - button
                   - type: custom:button-card
-                    entity: script.good_night_karsten
+                    entity: script.good_night
                     icon: hass:weather-night
                     show_icon: true
                     aspect_ratio: 1/1
@@ -1887,14 +1883,14 @@
                           card:
                             - background-color: rgb(30, 42, 64
                       - type: custom:button-card
-                        entity: input_boolean.karsten_montage
+                        entity: input_boolean.person_montage
                         show_icon: true
                         aspect_ratio: 1/1
                         hold_action:
                           action: more-info
                         tap_action:
                           action: toggle
-                        name: Karsten Montage
+                        name: Person Montage
                         show_state: false
                         template:
                           - kt_card_1
@@ -2217,11 +2213,11 @@
                         large: true
                         card:
                           type: iframe
-                          url: http://192.168.178.105:81/
+                          url: http://192.168.178.000:1/
                           aspect_ratio: 200%
                     tap_action:
                       action: url
-                      url_path: http://192.168.178.105:81/
+                      url_path: http://192.168.178.000:1/
                     show_state: false
                     size: 100%
                     styles:
@@ -2259,12 +2255,12 @@
                         card:
                           type: iframe
                           url: >-
-                            http://192.168.178.115:3000/d/kxQQuHRZk/proxmox?orgId=1&refresh=5m
+                            http://192.168.178.000:1/d/kxQQuHRZk/proxmox?orgId=1&refresh=5m
                           aspect_ratio: 200%
                     tap_action:
                       action: url
                       url_path: >-
-                        http://192.168.178.115:3000/d/kxQQuHRZk/proxmox?orgId=1&refresh=5m
+                        http://192.168.178.000:1/d/kxQQuHRZk/proxmox?orgId=1&refresh=5m
                     show_state: false
                     size: 100%
                     styles:
@@ -2301,11 +2297,11 @@
                         large: true
                         card:
                           type: iframe
-                          url: http://192.168.178.105:7880/
+                          url: http://192.168.178.000:1/
                           aspect_ratio: 200%
                     tap_action:
                       action: url
-                      url_path: http://192.168.178.105:7880/
+                      url_path: http://192.168.178.000:1/
                     show_state: false
                     size: 100%
                     styles:
@@ -2342,11 +2338,11 @@
                         large: true
                         card:
                           type: iframe
-                          url: http://192.168.178.99:61208/
+                          url: http://192.168.178.000:1/
                           aspect_ratio: 200%
                     tap_action:
                       action: url
-                      url_path: http://192.168.178.99:61208/
+                      url_path: http://192.168.178.000:1/
                     show_state: false
                     size: 100%
                     styles:
@@ -2379,7 +2375,7 @@
                         name: NodeRed
                         tap_action:
                           action: url
-                          url_path: http://192.168.178.104:1880/
+                          url_path: http://192.168.178.000:1/
                         show_state: false
                         size: 100%
                         styles:
@@ -2408,7 +2404,7 @@
                         name: Plex
                         tap_action:
                           action: url
-                          url_path: http://192.168.178.131:32400/web/index.html#!/
+                          url_path: http://192.168.178.000:1/web/index.html#!/
                         show_state: false
                         size: 100%
                         styles:
@@ -2445,11 +2441,11 @@
                             large: true
                             card:
                               type: iframe
-                              url: https://192.168.178.99:8006/
+                              url: https://192.168.178.000:1/
                               aspect_ratio: 200%
                         tap_action:
                           action: url
-                          url_path: https://192.168.178.99:8006/
+                          url_path: https://192.168.178.000:1/
                         show_state: false
                         size: 100%
                         styles:
