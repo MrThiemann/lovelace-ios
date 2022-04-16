@@ -1,0 +1,2782 @@
+  - theme: KT Dark
+    title: Home
+    icon: mdi:home
+    path: home
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: custom:search-card
+            layout:
+              key: a94200a5-6630-4cad-b325-1898111cbfc5
+            card_mod:
+              style: |
+                ha-card {
+                  --ha-card-background: transparant;
+                  background: transparant;
+                  box-shadow: none;
+                margin-top: -15px;
+                }
+          - type: custom:weather-card
+            entity: weather.home
+            current: true
+            details: false
+            forecast: true
+            style: |
+              ha-card {
+                border: solid 1px var(--border-color);
+                font-family: var(--primary-font-family);
+                margin-top: 5px !important;
+                margin-bottom: 5px !important;
+                background: rgb(30, 42, 64);
+                #opacity: 0.7;
+              }
+              .spacer {
+                padding-top: 0em !important;
+              }
+              .current {
+                padding-top: 0em !important;
+                padding-left: 1em !important;
+                margin-top: 0.5em !important;
+                margin-bottom: 0em !important;
+              }
+              .temp {
+                font-size: 3.2em !important;
+                position: sticky !important;
+              }
+              .tempc {
+                font-size: 1.5em !important;
+                position: sticky !important;
+              }
+              .forecast {
+                margin-top: -4.5em !important;
+                margin-bottom: -0.7em !important;
+              }
+              .forecast .day:first-child {
+                margin-left: 7.5em !important;
+              }
+              .day {
+                border-right: none !important;
+                line-height: 2 !important;
+              }
+              .precipitation {
+                display: none !important;
+              }
+              .icon {
+                width: 40px !important;
+                height: 40px !important;
+              }
+              .icon.bigger {
+                width: 4.5em !important;
+                height: 4.5em !important;
+                left: 2.5em !important;
+                top: 8em !important;
+              }
+            number_of_forecasts: '5'
+          - type: vertical-stack
+            cards: []
+          - name: Was ist an
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-ios/lichter
+            template:
+              - header
+            type: custom:button-card
+          - type: custom:auto-entities
+            card:
+              type: custom:layout-card
+              layout_type: horizontal
+              layout_options:
+                width: 100
+            filter:
+              include:
+                - domain: light
+                  options:
+                    type: custom:button-card
+                    entity_id: this.entity_id
+                    layout: vertical
+                    lock:
+                      enabled: true
+                    hold_action:
+                      action: more-info
+                    show_last_changed: true
+                    aspect_ratio: 1/1
+                    custom_fields:
+                      type_icon: |
+                        [[[  return `<ha-icon
+                            icon="mdi:toggle-switch"
+                            style="width: 25px; height: 25px; color: red;">
+                            `
+                        ]]]
+                      timer:
+                        card:
+                          type: custom:button-card
+                          name: Timer
+                          show_name: false
+                          show_icon: false
+                          show_state: true
+                          styles:
+                            card:
+                              - font-size: 12px
+                          style: |
+                            .t { padding: 0px; }
+                            .flex { padding: 0px; }
+                    styles:
+                      custom_fields:
+                        timer:
+                          - color: gray
+                          - font-size: 15px
+                          - position: absolute
+                          - left: 25%
+                          - top: 8%
+                        type_icon:
+                          - color: gray
+                          - font-size: 15px
+                          - position: absolute
+                          - left: 5%
+                          - top: 5%
+                      card:
+                        - box-shadow: 0px 0px 10px 1px var(--button-card-light-color)
+                        - background-color: '#242e42'
+                        - border-radius: 10%
+                        - padding: 12%
+                        - color: ivory
+                        - opacity: 1
+                        - font-size: 10px
+                        - text-shadow: 0px 0px 5px black
+                        - text-transform: capitalize
+                      icon:
+                        - width: 40%
+                        - padding-top: 20px
+                      label:
+                        - color: gray
+                        - font-size: 10px
+                        - justify-self: start
+                        - padding-left: 10px
+                        - padding-top: 0px
+                      name:
+                        - padding-left: 0px
+                        - white-space: normal
+                        - font-weight: 300
+                        - font-size: 10px
+                        - color: white
+                        - opacity: 0.7
+                        - align-self: middle
+                        - justify-self: start
+                    tap_action:
+                      action: toggle
+              exclude:
+                - entity_id: light.alle_lampen
+                - entity_id: light.innenbeleuchtung
+                - entity_id: light.urlaubslichter
+                - entity_id: switch.viz_1
+                - entity_id: switch.bojler_socket
+                - entity_id: light.deerma_jsq5_d52a_indicator_light
+                - entity_id: switch.viz_switch_1
+                - entity_id: light.nappalitablet
+                - entity_id: light.browser_cd5c8c62_98c23c4a
+                - entity_id: switch.0x588e81fffee4b266_firmware_lock
+                - entity_id: light.deerma_jsq5_94af_indicator_light
+                - entity_id: '*browser*'
+                - entity_id: '*switch.kejszijo*'
+                - entity_id: '*mikrotik*'
+                - entity_id: '*coil*'
+                - entity_id: light.tybff8c29c3c5ef356cffthh
+                - state: 'off'
+                - state: '0'
+                - state: unavailable
+                - state: docked
+            sort:
+              method: none
+              reverse: false
+              numeric: false
+            show_empty: false
+            view_layout:
+              column: 1
+          - type: custom:auto-entities
+            card:
+              type: custom:layout-card
+              layout_type: horizontal
+              layout_options:
+                width: 100
+            filter:
+              include:
+                - domain: switch
+                  options:
+                    type: custom:button-card
+                    entity_id: this.entity_id
+                    layout: vertical
+                    lock:
+                      enabled: true
+                    hold_action:
+                      action: more-info
+                    show_last_changed: true
+                    aspect_ratio: 1/1
+                    custom_fields:
+                      type_icon: |
+                        [[[  return `<ha-icon
+                            icon="mdi:toggle-switch"
+                            style="width: 25px; height: 25px; color: red;">
+                            `
+                        ]]]
+                      timer:
+                        card:
+                          type: custom:button-card
+                          name: Timer
+                          show_name: false
+                          show_icon: false
+                          show_state: true
+                          styles:
+                            card:
+                              - font-size: 12px
+                          style: |
+                            .t { padding: 0px; }
+                            .flex { padding: 0px; }
+                    styles:
+                      custom_fields:
+                        timer:
+                          - color: gray
+                          - font-size: 15px
+                          - position: absolute
+                          - left: 25%
+                          - top: 8%
+                        type_icon:
+                          - color: gray
+                          - font-size: 15px
+                          - position: absolute
+                          - left: 5%
+                          - top: 5%
+                      card:
+                        - box-shadow: 0px 0px 10px 1px var(--button-card-light-color)
+                        - background-color: '#242e42'
+                        - border-radius: 10%
+                        - padding: 12%
+                        - color: ivory
+                        - opacity: 1
+                        - font-size: 10px
+                        - text-shadow: 0px 0px 5px black
+                        - text-transform: capitalize
+                      icon:
+                        - width: 40%
+                        - padding-top: 20px
+                      label:
+                        - color: gray
+                        - font-size: 10px
+                        - justify-self: start
+                        - padding-left: 10px
+                        - padding-top: 0px
+                      name:
+                        - padding-left: 0px
+                        - white-space: normal
+                        - font-weight: 300
+                        - font-size: 10px
+                        - color: white
+                        - opacity: 0.7
+                        - align-self: middle
+                        - justify-self: start
+                    tap_action:
+                      action: toggle
+              exclude:
+                - entity_id: switch.tp_link_02_led
+                - entity_id: switch.tp_link_01_led
+                - entity_id: switch.fritz_box_7530_ui_wi_fi_fritz_box_7530_ox_2_4ghz
+                - entity_id: switch.fritz_box_7530_ui_wi_fi_fritz_box_7530_ox_5ghz
+                - entity_id: switch.fritz_box_7530_ui_wi_fi_fritz_box_gastzugang
+                - entity_id: switch.galaxy_s9_internet_access_2
+                - entity_id: switch.pc_192_168_178_104_internet_access_2
+                - entity_id: switch.pc_192_168_178_128_internet_access
+                - entity_id: switch.mariadb_internet_access
+                - entity_id: switch.pc_192_168_179*
+                - entity_id: switch.wlan*
+                - entity_id: switch.linux_3_internet_access
+                - entity_id: '*browser*'
+                - entity_id: '*switch.kejszijo*'
+                - entity_id: '*pc*'
+                - entity_id: '*iphone*'
+                - state: 'off'
+                - state: '0'
+                - state: unavailable
+                - state: docked
+            sort:
+              method: none
+              reverse: false
+              numeric: false
+            show_empty: false
+            view_layout:
+              column: 1
+          - type: vertical-stack
+            cards:
+              - name: Bewegungssensoren
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace-ios/tab8
+                template:
+                  - header
+                type: custom:button-card
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity: binary_sensor.ty20401777d8bfc0da0b91_2
+                    icon: >-
+                      [[[ if (entity.state == "off") return
+                      "mdi:motion-sensor-off"; else return "mdi:motion-sensor"
+                      ]]]
+                    show_icon: true
+                    show_last_changed: false
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    name: Motion Küche
+                    show_state: true
+                    state:
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - opacity: 0.7
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'off'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'on'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - opacity: 0.7
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: unavailable
+                  - type: custom:button-card
+                    entity: binary_sensor.ty20401777d8bfc0da6c43_4
+                    icon: >-
+                      [[[ if (entity.state == "off") return
+                      "mdi:motion-sensor-off"; else return "mdi:motion-sensor"
+                      ]]]
+                    show_icon: true
+                    show_last_changed: false
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    name: Motion Flur EG
+                    show_state: true
+                    state:
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - opacity: 0.7
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'off'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'on'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - opacity: 0.7
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: unavailable
+                  - type: custom:button-card
+                    entity: binary_sensor.presence_12
+                    icon: >-
+                      [[[ if (entity.state == "off") return
+                      "mdi:motion-sensor-off"; else return "mdi:motion-sensor"
+                      ]]]
+                    show_icon: true
+                    show_last_changed: false
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    name: Motion Küche
+                    show_state: true
+                    state:
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - opacity: 0.7
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'off'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'on'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - opacity: 0.7
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: unavailable
+                  - type: custom:button-card
+                    entity: binary_sensor.presence_12
+                    icon: >-
+                      [[[ if (entity.state == "off") return
+                      "mdi:motion-sensor-off"; else return "mdi:motion-sensor"
+                      ]]]
+                    show_icon: true
+                    show_last_changed: false
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    name: Motion WC EG
+                    show_state: true
+                    state:
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - opacity: 0.7
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'off'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'on'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - opacity: 0.7
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: unavailable
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity: binary_sensor.ty20401777d8bfc0da6c43_4
+                    icon: >-
+                      [[[ if (entity.state == "off") return
+                      "mdi:motion-sensor-off"; else return "mdi:motion-sensor"
+                      ]]]
+                    show_icon: true
+                    show_last_changed: false
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    name: Motion HWR!
+                    show_state: true
+                    state:
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - opacity: 0.7
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'off'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'on'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - opacity: 0.7
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: unavailable
+                  - type: custom:button-card
+                    entity: binary_sensor.presence_3
+                    icon: >-
+                      [[[ if (entity.state == "off") return
+                      "mdi:motion-sensor-off"; else return "mdi:motion-sensor"
+                      ]]]
+                    show_icon: true
+                    show_last_changed: false
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    name: Motion Flur OG
+                    show_state: true
+                    state:
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - opacity: 0.7
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'off'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'on'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - opacity: 0.7
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: unavailable
+                  - type: custom:button-card
+                    entity: binary_sensor.presence_14
+                    icon: >-
+                      [[[ if (entity.state == "off") return
+                      "mdi:motion-sensor-off"; else return "mdi:motion-sensor"
+                      ]]]
+                    show_icon: true
+                    show_last_changed: false
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    name: Motion Lio
+                    show_state: true
+                    state:
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - opacity: 0.7
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'off'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'on'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - opacity: 0.7
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: unavailable
+                  - type: custom:button-card
+                    entity: binary_sensor.presence_14
+                    icon: >-
+                      [[[ if (entity.state == "off") return
+                      "mdi:motion-sensor-off"; else return "mdi:motion-sensor"
+                      ]]]
+                    show_icon: true
+                    show_last_changed: false
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    name: Motion Bad OG
+                    show_state: true
+                    state:
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - opacity: 0.7
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'off'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'on'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - opacity: 0.7
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: unavailable
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity: binary_sensor.presence_15
+                    icon: >-
+                      [[[ if (entity.state == "off") return
+                      "mdi:motion-sensor-off"; else return "mdi:motion-sensor"
+                      ]]]
+                    show_icon: true
+                    show_last_changed: false
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    name: Motion HWR!
+                    show_state: true
+                    state:
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - opacity: 0.7
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'off'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: 'on'
+                      - styles:
+                          card:
+                            - background-color: '#242e42'
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - opacity: 0.7
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                            - box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          name:
+                            - font-weight: 300
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          state:
+                            - font-weight: bold
+                            - opacity: 0.7
+                            - font-size: 9px
+                            - color: white
+                            - align-self: middle
+                            - justify-self: start
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                          icon:
+                            - width: 100%
+                            - opacity: 0.2
+                            - color: white
+                          custom_fields:
+                            bright:
+                              - align-self: start
+                              - justify-self: end
+                              - border-radius: 20px
+                              - border-style: solid
+                              - border-width: 1px
+                              - font-size: 10px
+                              - font-weight: 300
+                              - box-shadow: 2px 2px rgba(0,0,0,0.7)
+                              - border-color: '#67727e'
+                              - padding: 15%
+                        value: unavailable
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+      - type: vertical-stack
+        cards:
+          - name: Einstellungen
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-ios/lichter
+            template:
+              - header
+            type: custom:button-card
+          - type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity: script.wakeup_karsten
+                    icon: hass:weather-sunset-up
+                    show_icon: true
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    tap_action:
+                      action: toggle
+                    name: Guten Morgen
+                    show_state: false
+                    template:
+                      - button
+                  - type: custom:button-card
+                    entity: script.good_night_karsten
+                    icon: hass:weather-night
+                    show_icon: true
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    tap_action:
+                      action: toggle
+                    name: Gute Nacht
+                    show_state: false
+                    template:
+                      - button
+                  - type: custom:button-card
+                    entity: sensor.heineken
+                    icon: >-
+                      [[[ if (entity.state == "") return
+                      "mdi:bottle-wine-outline"; else return "fas:beer" ]]]
+                    name: Heineken
+                    show_icon: true
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    tap_action:
+                      action: more-info
+                    show_state: true
+                    template:
+                      - kt_card_1
+                    card_mod: null
+                    styles:
+                      card:
+                        - background-color: rgb(30, 42, 64
+                        - opacity: 1
+                        - box-shadow: |
+                            [[[
+                              if (states['input_boolean.heineken_angebot'].state == "on")
+                                return '-5px -5px 15px #2c2c2c, 5px 5px 15px #00ff00';
+                              else if (states['input_boolean.heineken_angebot'].state == "off")
+                                return '-5px -5px 15px #ffffff, 5px 5px 15px #ebebeb';
+                            ]]]
+                      icon:
+                        - width: 60%
+                        - opacity: 0.2
+                        - color: |
+                            [[[
+                              if (states['input_boolean.heineken_angebot'].state == "on")
+                                return '#00ff00';
+                              else if (states['input_boolean.heineken_angebot'].state == "off")
+                                return '#ebebeb';
+                            ]]]
+                  - type: custom:button-card
+                    entity: input_boolean.tagsuber
+                    icon: >-
+                      [[[ if (entity.state == "on") return
+                      "mdi:white-balance-sunny"; else return "mdi:weather-night"
+                      ]]]
+                    show_icon: true
+                    aspect_ratio: 1/1
+                    hold_action:
+                      action: more-info
+                    tap_action:
+                      action: toggle
+                    name: >-
+                      [[[ if (entity.state == "on") return "Tagsüber"; else
+                      return "Nachts" ]]]
+                    show_state: false
+                    template:
+                      - button
+              - type: vertical-stack
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:button-card
+                        entity: input_boolean.home
+                        icon: hass:home-map-marker
+                        show_icon: true
+                        aspect_ratio: 1/1
+                        hold_action:
+                          action: more-info
+                        tap_action:
+                          action: toggle
+                        name: Zuhause
+                        show_state: false
+                        template:
+                          - kt_card_1
+                        styles:
+                          card:
+                            - background-color: rgb(30, 42, 64
+                      - type: custom:button-card
+                        entity: input_boolean.arrive_home
+                        icon: hass:home-export-outline
+                        show_icon: true
+                        aspect_ratio: 1/1
+                        hold_action:
+                          action: more-info
+                        tap_action:
+                          action: toggle
+                        name: Leave Home
+                        show_state: false
+                        template:
+                          - kt_card_1
+                        styles:
+                          card:
+                            - background-color: rgb(30, 42, 64
+                      - type: custom:button-card
+                        entity: input_boolean.karsten_montage
+                        show_icon: true
+                        aspect_ratio: 1/1
+                        hold_action:
+                          action: more-info
+                        tap_action:
+                          action: toggle
+                        name: Karsten Montage
+                        show_state: false
+                        template:
+                          - kt_card_1
+                        styles:
+                          card:
+                            - background-color: rgb(30, 42, 64
+                      - type: custom:button-card
+                        entity: input_select.mondphase
+                        icon: >-
+                          [[[ if (entity.state == "Zunehmende Sichel") return
+                          "fapro:wi-moon-waxing-crescent-1"; else if
+                          (entity.state == "Erstes Viertel") return
+                          "fapro:wi-moon-waxing-crescent-3"; else if
+                          (entity.state == "Zunehmender Mond") return
+                          "fapro:zunehmender_mond"; else if (entity.state ==
+                          "Vollmond") return "fapro:wi-moon-full"; else if
+                          (entity.state == "Abnehmender Mond") return
+                          "fapro:wi-moon-waning-crescent-1"; else if
+                          (entity.state == "Letztes Viertel") return
+                          "fapro:wi-moon-waning-crescent-4"; else if
+                          (entity.state == "Abnehmende Sichel") return
+                          "fapro:wi-moon-waning-crescent-6"; else return
+                          "mdi:sun" ]]]
+                        show_icon: true
+                        show_name: false
+                        aspect_ratio: 1/1
+                        hold_action:
+                          action: more-info
+                        tap_action:
+                          action: toggle
+                        name: >-
+                          [[[ if (entity.state == "on") return "Tagsüber"; else
+                          return "Nachts" ]]]
+                        show_state: true
+                        template:
+                          - button
+          - type: vertical-stack
+            cards: []
+          - type: vertical-stack
+            cards:
+              - type: vertical-stack
+                cards:
+                  - type: entities
+                    show_header_toggle: false
+                    entities:
+                      - entity: sensor.config_result
+                        name: Konfiguration
+                    state_color: true
+                    card_mod:
+                      style: |
+                        ha-card {
+                          max-height: 56px;      
+                          background-color: rgb(30, 42, 64);
+                          #color: var(--text-color);
+                          padding-top: 0px;
+                          padding-bottom: 0px;
+                          margin: 0px 0px 16px 0px;
+                          border-radius: 0%;
+                          text-transform: uppercase;
+                          #color: var(--dwains-theme-accent);
+                          font-size: 125%;
+                          font-weight: 300;
+                          letter-spacing: 10px;
+                          color: white;
+                          #opacity: 0.7;
+                          text-shadow: 0px 0px 5px black;
+                          text-transform: capitalize;
+                          height: 56;
+                        }
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:button-card
+                        entity_picture: /local/images/icons8-administrative-tools-80.png
+                        show_entity_picture: true
+                        show_icon: false
+                        show_last_changed: false
+                        aspect_ratio: 1/1
+                        name: Check Config
+                        tap_action:
+                          action: call-service
+                          service: script.check_config
+                        show_state: false
+                        size: 100%
+                        styles:
+                          entity_picture_style:
+                            - width: 100%;
+                          card:
+                            - background-color: rgb(30, 42, 64
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                      - type: custom:button-card
+                        entity_picture: /local/images/icons8-restart-80.png
+                        show_entity_picture: true
+                        show_icon: false
+                        show_last_changed: false
+                        aspect_ratio: 1/1
+                        name: HA Restart
+                        tap_action:
+                          action: call-service
+                          service: homeassistant.restart
+                        show_state: false
+                        size: 100%
+                        styles:
+                          entity_picture_style:
+                            - width: 100%;
+                          card:
+                            - background-color: rgb(30, 42, 64
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                      - type: custom:button-card
+                        entity_picture: /local/images/icons8-code-80.png
+                        show_entity_picture: true
+                        show_icon: false
+                        show_last_changed: false
+                        aspect_ratio: 1/1
+                        name: Reload Config
+                        tap_action:
+                          action: call-service
+                          service: homeassistant.reload_core_config
+                        show_state: false
+                        size: 100%
+                        styles:
+                          entity_picture_style:
+                            - width: 100%;
+                          card:
+                            - background-color: rgb(30, 42, 64
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                      - type: custom:button-card
+                        color_type: blank-card
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:button-card
+                        entity_picture: /local/images/icons8-variation-80.png
+                        show_entity_picture: true
+                        show_icon: false
+                        show_last_changed: false
+                        aspect_ratio: 1/1
+                        name: Reload Group
+                        tap_action:
+                          action: call-service
+                          service: group.reload
+                        show_state: false
+                        size: 100%
+                        styles:
+                          entity_picture_style:
+                            - width: 100%;
+                          card:
+                            - background-color: rgb(30, 42, 64
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                      - type: custom:button-card
+                        entity_picture: /local/images/icons8-home-automation-80.png
+                        show_entity_picture: true
+                        show_icon: false
+                        show_last_changed: false
+                        aspect_ratio: 1/1
+                        name: Reload Automation
+                        tap_action:
+                          action: call-service
+                          service: automation.reload
+                        show_state: false
+                        size: 100%
+                        styles:
+                          entity_picture_style:
+                            - width: 100%;
+                          card:
+                            - background-color: rgb(30, 42, 64
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                      - type: custom:button-card
+                        entity_picture: /local/images/icons8-note-80.png
+                        show_entity_picture: true
+                        show_icon: false
+                        show_last_changed: false
+                        aspect_ratio: 1/1
+                        name: Reload Scripte
+                        tap_action:
+                          action: call-service
+                          service: script.reload
+                        show_state: false
+                        size: 100%
+                        styles:
+                          entity_picture_style:
+                            - width: 100%;
+                          card:
+                            - background-color: rgb(30, 42, 64
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                      - type: custom:button-card
+                        entity_picture: /local/images/icons8-tuya-80.png
+                        show_entity_picture: true
+                        show_icon: false
+                        show_last_changed: false
+                        aspect_ratio: 1/1
+                        name: Reload Tuya
+                        tap_action:
+                          action: call-service
+                          service: script.1644869334531
+                        show_state: false
+                        size: 100%
+                        styles:
+                          entity_picture_style:
+                            - width: 100%;
+                          card:
+                            - background-color: rgb(30, 42, 64
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+              - type: vertical-stack
+                cards: []
+          - name: Server
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-ios/lichter
+            template:
+              - header
+            type: custom:button-card
+          - type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity_picture: /local/images/nginx-80.png
+                    show_entity_picture: true
+                    show_icon: false
+                    show_last_changed: false
+                    aspect_ratio: 1/1
+                    name: NGINX
+                    hold_action:
+                      haptic: heavy
+                      action: fire-dom-event
+                      browser_mod:
+                        command: popup
+                        title: Media Browser
+                        hide_header: false
+                        large: true
+                        card:
+                          type: iframe
+                          url: http://192.168.178.105:81/
+                          aspect_ratio: 200%
+                    tap_action:
+                      action: url
+                      url_path: http://192.168.178.105:81/
+                    show_state: false
+                    size: 100%
+                    styles:
+                      card:
+                        - background-color: rgb(30, 42, 64
+                        - border-radius: 10%
+                        - padding: 12%
+                        - color: ivory
+                        - font-size: 10px
+                        - text-shadow: 0px 0px 5px black
+                        - text-transform: capitalize
+                      grid:
+                        - grid-template-areas: '"i bright" "n n" "s s"'
+                        - grid-template-columns: 1fr 1fr
+                        - grid-template-rows: 1fr min-content min-content
+                      img_cell:
+                        - justify-content: start
+                        - align-items: start
+                        - margin: none
+                  - type: custom:button-card
+                    entity_picture: /local/images/grafana-80.png
+                    show_entity_picture: true
+                    show_icon: false
+                    show_last_changed: false
+                    aspect_ratio: 1/1
+                    name: Graphana
+                    hold_action:
+                      haptic: heavy
+                      action: fire-dom-event
+                      browser_mod:
+                        command: popup
+                        title: Graphana
+                        hide_header: false
+                        large: true
+                        card:
+                          type: iframe
+                          url: >-
+                            http://192.168.178.115:3000/d/kxQQuHRZk/proxmox?orgId=1&refresh=5m
+                          aspect_ratio: 200%
+                    tap_action:
+                      action: url
+                      url_path: >-
+                        http://192.168.178.115:3000/d/kxQQuHRZk/proxmox?orgId=1&refresh=5m
+                    show_state: false
+                    size: 100%
+                    styles:
+                      card:
+                        - background-color: rgb(30, 42, 64
+                        - border-radius: 10%
+                        - padding: 12%
+                        - color: ivory
+                        - font-size: 10px
+                        - text-shadow: 0px 0px 5px black
+                        - text-transform: capitalize
+                      grid:
+                        - grid-template-areas: '"i bright" "n n" "s s"'
+                        - grid-template-columns: 1fr 1fr
+                        - grid-template-rows: 1fr min-content min-content
+                      img_cell:
+                        - justify-content: start
+                        - align-items: start
+                        - margin: none
+                  - type: custom:button-card
+                    entity_picture: /local/images/goaccess-80.png
+                    show_entity_picture: true
+                    show_icon: false
+                    show_last_changed: false
+                    aspect_ratio: 1/1
+                    name: GoAccess
+                    hold_action:
+                      haptic: heavy
+                      action: fire-dom-event
+                      browser_mod:
+                        command: popup
+                        title: GoAccess
+                        hide_header: false
+                        large: true
+                        card:
+                          type: iframe
+                          url: http://192.168.178.105:7880/
+                          aspect_ratio: 200%
+                    tap_action:
+                      action: url
+                      url_path: http://192.168.178.105:7880/
+                    show_state: false
+                    size: 100%
+                    styles:
+                      card:
+                        - background-color: rgb(30, 42, 64
+                        - border-radius: 10%
+                        - padding: 12%
+                        - color: ivory
+                        - font-size: 10px
+                        - text-shadow: 0px 0px 5px black
+                        - text-transform: capitalize
+                      grid:
+                        - grid-template-areas: '"i bright" "n n" "s s"'
+                        - grid-template-columns: 1fr 1fr
+                        - grid-template-rows: 1fr min-content min-content
+                      img_cell:
+                        - justify-content: start
+                        - align-items: start
+                        - margin: none
+                  - type: custom:button-card
+                    entity_picture: /local/images/glances-80.png
+                    show_entity_picture: true
+                    show_icon: false
+                    show_last_changed: false
+                    aspect_ratio: 1/1
+                    name: Glances
+                    hold_action:
+                      haptic: heavy
+                      action: fire-dom-event
+                      browser_mod:
+                        command: popup
+                        title: Glances
+                        hide_header: false
+                        large: true
+                        card:
+                          type: iframe
+                          url: http://192.168.178.99:61208/
+                          aspect_ratio: 200%
+                    tap_action:
+                      action: url
+                      url_path: http://192.168.178.99:61208/
+                    show_state: false
+                    size: 100%
+                    styles:
+                      card:
+                        - background-color: rgb(30, 42, 64
+                        - border-radius: 10%
+                        - padding: 12%
+                        - color: ivory
+                        - font-size: 10px
+                        - text-shadow: 0px 0px 5px black
+                        - text-transform: capitalize
+                      grid:
+                        - grid-template-areas: '"i bright" "n n" "s s"'
+                        - grid-template-columns: 1fr 1fr
+                        - grid-template-rows: 1fr min-content min-content
+                      img_cell:
+                        - justify-content: start
+                        - align-items: start
+                        - margin: none
+              - type: vertical-stack
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:button-card
+                        entity_picture: /local/images/nodered-80.png
+                        show_entity_picture: true
+                        show_icon: false
+                        show_last_changed: false
+                        aspect_ratio: 1/1
+                        name: NodeRed
+                        tap_action:
+                          action: url
+                          url_path: http://192.168.178.104:1880/
+                        show_state: false
+                        size: 100%
+                        styles:
+                          card:
+                            - background-color: rgb(30, 42, 64
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                      - type: custom:button-card
+                        entity_picture: /local/images/plex-80.png
+                        show_entity_picture: true
+                        show_icon: false
+                        show_last_changed: false
+                        aspect_ratio: 1/1
+                        name: Plex
+                        tap_action:
+                          action: url
+                          url_path: http://192.168.178.131:32400/web/index.html#!/
+                        show_state: false
+                        size: 100%
+                        styles:
+                          card:
+                            - background-color: rgb(30, 42, 64
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                      - type: custom:button-card
+                        entity_picture: /local/images/proxmox-80.png
+                        show_entity_picture: true
+                        show_icon: false
+                        show_last_changed: false
+                        aspect_ratio: 1/1
+                        name: ProxMox
+                        hold_action:
+                          haptic: heavy
+                          action: fire-dom-event
+                          browser_mod:
+                            command: popup
+                            title: ProxMox
+                            hide_header: false
+                            large: true
+                            card:
+                              type: iframe
+                              url: https://192.168.178.99:8006/
+                              aspect_ratio: 200%
+                        tap_action:
+                          action: url
+                          url_path: https://192.168.178.99:8006/
+                        show_state: false
+                        size: 100%
+                        styles:
+                          card:
+                            - background-color: rgb(30, 42, 64
+                            - border-radius: 10%
+                            - padding: 12%
+                            - color: ivory
+                            - font-size: 10px
+                            - text-shadow: 0px 0px 5px black
+                            - text-transform: capitalize
+                          grid:
+                            - grid-template-areas: '"i bright" "n n" "s s"'
+                            - grid-template-columns: 1fr 1fr
+                            - grid-template-rows: 1fr min-content min-content
+                          img_cell:
+                            - justify-content: start
+                            - align-items: start
+                            - margin: none
+                      - type: custom:button-card
+                        color_type: blank-card
+      - type: vertical-stack
+        cards:
+          - name: null
+            template:
+              - header
+            styles:
+              card:
+                - border: 1px solid rgb(255, 255, 255)
+            type: custom:button-card
+            entity: sensor.time
+            show_icon: false
+            show_label: false
+            show_name: false
+            show_state: true
+          - type: custom:stack-in-card
+            card_mod:
+              style: |
+                ha-card {
+                  --ha-card-background: rgb(30, 42, 64);
+                  #color: white;
+                  #text-transform: uppercase;
+                  #font-size: 125%;
+                  #font-weight: 100;
+                  #letter-spacing: 10px;
+                  background-color: '#242e42';
+                  border-radius: 2%;
+                  #opacity: 0.7;
+                  #text-shadow: 0px 0px 5px black;
+                  #text-transform: capitalize
+                }
+            style:
+              .: |
+                ha-card {
+                  padding-left: 10px;
+                  padding-bottom: 10px;
+                  padding-top: 10px;
+                  background-color: #242e42;
+                }
+            cards:
+              - type: vertical-stack
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: markdown
+                        content: ' '
+                        style:
+                          .: |
+                            ha-card {
+                              background-color: transparent !important;
+                              box-shadow: none !important;
+                            }
+                      - type: horizontal-stack
+                        cards:
+                          - type: picture
+                            image: /local/tankstation_logos/sprinter.png
+                            style:
+                              .: |
+                                ha-card {
+                                  background-color: transparent !important;
+                                  box-shadow: none !important;
+                                  margin-bottom: 5px;
+                                  margin-left: 0px;
+                                  margin-right: 0px;
+                                }
+                                ha-card img{
+                                  height: 43px;
+                                  width: 70px;
+                                  margin: auto;
+                                }
+                          - type: picture
+                            image: /local/tankstation_logos/sharan.png
+                            style:
+                              .: |
+                                ha-card {
+                                  padding: auto;
+                                  background-color: transparent !important;
+                                  box-shadow: none !important;
+                                  margin-bottom: 5px;
+                                  margin-left: 0px;
+                                  margin-right: 0px;
+                                }
+                                ha-card img{
+                                  height: 43px;
+                                  width: 70px;
+                                  margin: auto;
+                                }
+                  - type: horizontal-stack
+                    cards:
+                      - type: markdown
+                        content: |
+                          <table>
+                            <tr>
+                              <td width="50px;">     
+                                <img src = '/local/tankstation_logos/buettner.png' align='top' height='40'></img>
+                              </td>
+                              <td>
+                                Büttner | Rosenstrasse
+                              </td>
+                            </tr>
+                          </table>
+                        style:
+                          .: |
+                            ha-card {
+                              max-height:51px;
+                              
+                              padding-top: 0px;
+                              background-color: transparent !important;
+                              box-shadow: none !important;
+                              }
+                            ha-markdown {
+                              font-size: 90%;
+                              font-weight: 100;
+                              color: white;
+                            }
+                            .no-header {
+                              padding: 0px !important;
+                            }
+                      - type: horizontal-stack
+                        cards:
+                          - type: custom:badge-card
+                            badges:
+                              - entity: sensor.none_rosenstrasse_49_diesel
+                                name: ' '
+                                style: |
+                                  :host {
+                                    --label-badge-text-color: white;
+                                    --label-badge-red: #069B;
+                                    #--label-badge-background-color: gray;
+                                    --ha-label-badge-label-color: white;
+                                  }
+                          - type: custom:badge-card
+                            badges:
+                              - entity: sensor.none_rosenstrasse_49_super
+                                name: ' '
+                                style: |
+                                  :host {
+                                    --label-badge-text-color: white;
+                                    --label-badge-red: gray;
+                                    #--label-badge-background-color: red;
+                                    --ha-label-badge-label-color: white;
+                                  }
+                  - type: horizontal-stack
+                    cards:
+                      - type: markdown
+                        content: |
+                          <table>
+                            <tr>
+                              <td width="50px;">     
+                                <img src = '/local/tankstation_logos/score.png' align='top' height='40'></img>
+                              </td>
+                              <td>
+                                Score | Burgstrasse
+                              </td>
+                            </tr>
+                          </table>
+                        style:
+                          .: |
+                            ha-card {
+                              max-height:51px;
+                              
+                              padding-top: 0px;
+                              background-color: transparent !important;
+                              box-shadow: none !important;
+                              }
+                            ha-markdown {
+                              font-size: 90%;
+                              font-weight: 100;
+                              color: white;
+                            }
+                            .no-header {
+                              padding: 0px !important;
+                            }
+                      - type: horizontal-stack
+                        cards:
+                          - type: custom:badge-card
+                            badges:
+                              - entity: sensor.score_burgstr_50_b_diesel
+                                name: ' '
+                                style: |
+                                  :host {
+                                    --label-badge-text-color: white;
+                                    --label-badge-red: #069B;
+                                    #--label-badge-background-color: gray;
+                                    --ha-label-badge-label-color: white;
+                                  }
+                          - type: custom:badge-card
+                            badges:
+                              - entity: sensor.score_burgstr_50_b_super
+                                name: ' '
+                                style: |
+                                  :host {
+                                    --label-badge-text-color: white;
+                                    #--label-badge-text-weight: bold;
+                                    --label-badge-red: gray;
+                                    #--label-badge-background-color: red;
+                                    --ha-label-badge-label-color: white;
+                                  }
+                  - type: horizontal-stack
+                    cards:
+                      - type: markdown
+                        content: |
+                          <table>
+                            <tr>
+                              <td width="50px;">     
+                                <img src = '/local/tankstation_logos/aral.png' align='top' height='40'></img>
+                              </td>
+                              <td>
+                                Aral | Norddeicher Strasse
+                              </td>
+                            </tr>
+                          </table>
+                        style:
+                          .: |
+                            ha-card {
+                              max-height:51px;
+                              
+                              padding-top: 0px;
+                              background-color: transparent !important;
+                              box-shadow: none !important;
+                              }
+                            ha-markdown {
+                              font-size: 85%;
+                              font-weight: 100;
+                              color: white;
+                            }
+                            .no-header {
+                              padding: 0px !important;
+                            }
+                      - type: horizontal-stack
+                        cards:
+                          - type: custom:badge-card
+                            badges:
+                              - entity: sensor.tankerkoenig_aral_tankstelle_diesel
+                                name: ' '
+                                style: |
+                                  :host {
+                                    --label-badge-text-color: white;
+                                    --label-badge-red: #069B;
+                                    #--label-badge-background-color: gray;
+                                    --ha-label-badge-label-color: white;
+                                  }
+                          - type: custom:badge-card
+                            badges:
+                              - entity: sensor.tankerkoenig_aral_tankstelle_e5
+                                name: ' '
+                                style: |
+                                  :host {
+                                    --label-badge-text-color: white;
+                                    --label-badge-red: gray;
+                                    #--label-badge-background-color: red;
+                                    --ha-label-badge-label-color: white;
+                                  }
+          - type: entities
+            card_mod:
+              style: |
+                ha-card {
+                  --ha-card-background: rgb(30, 42, 64);
+                  #color: white;
+                  #text-transform: uppercase;
+                  #font-size: 125%;
+                  font-weight: 300;
+                  #letter-spacing: 10px;
+                  background-color: '#242e42';
+                  border-radius: 2%;
+                  #opacity: 1.7;
+                  #text-shadow: 0px 0px 5px black;
+                  #text-transform: capitalize
+                }
+            entities:
+              - entity: sensor.abfallnaechster
+              - entity: sensor.abfallgelbersack
+                name: Gelbe Tonne
+              - entity: sensor.abfallpapier
+              - entity: sensor.abfallrestmuell
+              - entity: sensor.abfallbio
+          - type: custom:swipe-card
+            parameters:
+              scrollbar: null
+              hide: false
+              draggable: true
+              snapOnRelease: true
+              autoplay:
+                delay: 7000
+                disableOnInteraction: false
+              speed: 1000
+            cards:
+              - type: custom:atomic-calendar-revive
+                name: Termine
+                enableModeChange: true
+                entities:
+                  - entity: calendar.familie
+                firstDayOfWeek: 1
+                maxDaysToShow: 60
+                showDate: true
+                showLocation: false
+                showCurrentEventLine: false
+                showMonth: true
+                showDescription: false
+                showProgressBar: false
+                showWeekDay: true
+                cardHeight: 400px
+                style: |
+                  ha-card {
+                    overflow: scroll;                            
+                   }
+
+                  ha-card::-webkit-scrollbar {
+                    display: none;
+                   }type: ''
