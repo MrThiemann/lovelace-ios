@@ -160,22 +160,11 @@ cards:
             tap_action:
               action: toggle
       exclude:
-        - entity_id: light.alle_lampen
-        - entity_id: light.innenbeleuchtung
-        - entity_id: light.urlaubslichter
-        - entity_id: switch.viz_1
-        - entity_id: switch.bojler_socket
-        - entity_id: light.deerma_jsq5_d52a_indicator_light
-        - entity_id: switch.viz_switch_1
-        - entity_id: light.nappalitablet
-        - entity_id: light.browser_cd5c8c62_98c23c4a
-        - entity_id: switch.0x588e81fffee4b266_firmware_lock
-        - entity_id: light.deerma_jsq5_94af_indicator_light
+        - entity_id: light.Entität_Licht
         - entity_id: '*browser*'
         - entity_id: '*switch.kejszijo*'
         - entity_id: '*mikrotik*'
         - entity_id: '*coil*'
-        - entity_id: light.tybff8c29c3c5ef356cffthh
         - state: 'off'
         - state: '0'
         - state: unavailable
@@ -271,20 +260,11 @@ cards:
             tap_action:
               action: toggle
       exclude:
-        - entity_id: switch.tp_link_02_led
-        - entity_id: switch.tp_link_01_led
-        - entity_id: switch.fritz_box_7530_ui_wi_fi_fritz_box_7530_ox_2_4ghz
-        - entity_id: switch.fritz_box_7530_ui_wi_fi_fritz_box_7530_ox_5ghz
-        - entity_id: switch.fritz_box_7530_ui_wi_fi_fritz_box_gastzugang
-        - entity_id: switch.galaxy_s9_internet_access_2
-        - entity_id: switch.pc_192_168_178_104_internet_access_2
-        - entity_id: switch.pc_192_168_178_128_internet_access
         - entity_id: switch.mariadb_internet_access
         - entity_id: switch.pc_192_168_179*
         - entity_id: switch.wlan*
         - entity_id: switch.linux_3_internet_access
         - entity_id: '*browser*'
-        - entity_id: '*switch.kejszijo*'
         - entity_id: '*pc*'
         - entity_id: '*iphone*'
         - state: 'off'
