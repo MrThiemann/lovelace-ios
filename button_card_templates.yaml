@@ -740,7 +740,7 @@ button_card_templates:
     custom_fields:
       bm:
         card:
-          entity: binary_sensor.presence_12
+          entity: binary_sensor.Entität_Presence
           styles:
             card:
               - background-color: '#242e42'
