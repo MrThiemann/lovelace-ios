@@ -1,0 +1,202 @@
+popup_cards:
+  light.sockel_kueche:
+    title: ''
+    style:
+      $: |
+        .mdc-dialog .mdc-dialog__container {
+          width: 100%;
+        }
+        .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+          width:100%;
+          box-shadow:none;
+        }
+      .: |
+        :host {
+          --mdc-theme-surface: rgba(0,0,0,0);
+          --secondary-background-color: rgba(0,0,0,0);
+          --ha-card-background: rgba(0,0,0,0);
+          --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+          --mdc-dialog-min-height: 100%;
+          --mdc-dialog-min-width: 100%;
+          --mdc-dialog-max-width: 100%;
+        }
+        mwc-icon-button {
+          color: #FFF;
+        }
+    card:
+      type: custom:light-popup-card
+      entity: light.sockel_kueche
+      icon: mdi:led-strip
+      actionsInARow: 2
+      brightnessWidth: 150px
+      brightnessHeight: 400px
+      switchWidth: 150px
+      switchHeight: 400px
+      actions:
+        - action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.ontspannen
+          color: '#FDCA64'
+          name: ontspannen
+        - action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.helder
+          color: '#FFE7C0'
+          name: helder
+        - action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.concentreren
+          color: '#BBEEF3'
+          name: concentreren
+        - action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.energie
+          color: '#8BCBDD'
+          name: energie
+  light.rgb:
+    title: ''
+    style:
+      $: |
+        .mdc-dialog .mdc-dialog__container {
+          width: 100%;
+        }
+        .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+          width:100%;
+          box-shadow:none;
+        }
+      .: |
+        :host {
+          --mdc-theme-surface: rgba(0,0,0,0);
+          --secondary-background-color: rgba(0,0,0,0);
+          --ha-card-background: rgba(0,0,0,0);
+          --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+          --mdc-dialog-min-height: 100%;
+          --mdc-dialog-min-width: 100%;
+          --mdc-dialog-max-width: 100%;
+        }
+        mwc-icon-button {
+          color: #FFF;
+        }
+    card:
+      type: custom:light-popup-card
+      entity: '[[[ return entity.entity_id ]]]'
+      icon: mdi:led-strip
+      actionSize: 60px
+      settings:
+        openButton: RGB
+        closeButton: CLOSE
+      settingsCard:
+        type: custom:light-entity-card
+        cardOptions:
+          entity: '[[[ return entity.entity_id ]]]'
+          brightness: true
+          full_width_sliders: true
+          hide_header: true
+          show_slider_percent: true
+          smooth_color_wheel: true
+          consolidate_entities: true
+      actions:
+        - service: light.turn_on
+          service_data:
+            entity_id: '[[[ return entity.entity_id ]]]'
+            color_temp: 153
+          color: '#d8d9e1'
+        - service: light.turn_on
+          service_data:
+            entity_id: '[[[ return entity.entity_id ]]]'
+            color_temp: 326
+          color: '#d5b08d'
+        - service: light.turn_on
+          service_data:
+            entity_id: '[[[ return entity.entity_id ]]]'
+            color_temp: 500
+          color: '#ce944b'
+  climate.button:
+    hold_action:
+      action: fire-dom-event
+      browser_mod:
+        command: popup
+        title: Heizung
+        style:
+          hui-vertical-stack-card:
+            $hui-entities-card$: |
+              #states {
+                padding-top: 0.5em;
+                padding-bottom: 0em;
+              }
+        card:
+          type: vertical-stack
+          cards:
+            - type: custom:thermostat-popup-card
+              entity: '[[[ return entity.entity_id ]]]'
+              brightnessWidth: 150px
+              brightnessHeight: 400px
+              switchWidth: 150px
+              switchHeight: 400px
+              fullscreen: false
+            - type: entities
+              card_mod:
+                class: content
+              entities:
+                - entity: sensor.wz_temp
+                  name: Raumtemperatur
+                - entity: sensor.humiditiy_sensor
+                  name: Luftfeuchtigkeit
+            - type: custom:apexcharts-card
+              layout: minimal
+              locale: se
+              graph_span: 8h
+              show:
+                loading: false
+              apex_config:
+                plotOptions:
+                  area:
+                    fillTo: end
+                grid:
+                  padding:
+                    top: -15
+                fill:
+                  type: gradient
+                  gradient:
+                    type: vertical
+                    opacityFrom: 0.8
+                    opacityTo: 0
+                    stops:
+                      - 0
+                      - 99
+                      - 100
+                stroke:
+                  width: 4
+                tooltip:
+                  style:
+                    fontSize: 14px
+                  x:
+                    format: dddd HH:mm
+                chart:
+                  height: 140px
+                  offsetY: '-20px'
+                xaxis:
+                  crosshairs:
+                    show: false
+              series:
+                - entity: sensor.wz_temp
+                  name: Temp
+                  color: '#385581'
+                  type: area
+                  fill_raw: last
+                  group_by:
+                    func: avg
+                    duration: 1h
+    variables:
+      circle_input: |
+        [[[
+          if (entity) {
+            return entity.state === 'cool' ?
+              entity.attributes.temperature :
+              entity.attributes.current_temperature;
+          }
+        ]]]
