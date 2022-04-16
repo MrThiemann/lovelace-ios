@@ -1,0 +1,189 @@
+type: vertical-stack
+cards:
+  - type: vertical-stack
+    cards:
+      - name: Heizung
+        template:
+          - header
+        type: custom:button-card
+  - type: custom:dwains-flexbox-card
+    items_classes: col-xs-12 col-sm-6 col-sm-6 col-md
+    cards:
+      - cards:
+          - cards:
+              - entities:
+                  - entity: sensor.ku_temp
+                    name: Temperatur (24h)
+                    color: var(--dwains-theme-accent)
+                    show_fill: true
+                  - entity: sensor.ausee_temperature_test
+                    color: green
+                    show_fill: false
+                font_size: 80
+                hours_to_show: 24
+                line_width: 2
+                hour24: true
+                points_per_hour: 2
+                decimals: 0
+                show:
+                  animate: true
+                  icon: false
+                  labels: false
+                  legend: false
+                  name: false
+                  graph: line
+                  extrema: true
+                  average: true
+                theme: ios-dark-mode-blue-red
+                type: custom:mini-graph-card
+              - aspect_ratio: 1/1
+                color: rgb(41, 158, 194)
+                entity: climate.demo_thermostat_kuche
+                icon: mdi:countertop-outline
+                name: Küche
+                show_state: true
+                size: 30%
+                state:
+                  - color: var(-- state-icon-active-color)
+                    value: 'off'
+                  - color: var(--state-icon-color)
+                    value: 'on'
+                  - color: var(--state-icon-unavailable-color)
+                    value: unavailable
+                styles:
+                  name:
+                    - text-transform: uppercase
+                    - font-size: 10px
+                  state:
+                    - text-transform: uppercase
+                    - font-size: 15px
+                    - font: bold
+                type: custom:button-card
+                hold_action:
+                  action: fire-dom-event
+                  browser_mod:
+                    command: popup
+                    title: Heizung
+                    style:
+                      hui-vertical-stack-card:
+                        $hui-entities-card$: |
+                          #states {
+                            padding-top: 0.5em;
+                            padding-bottom: 0em;
+                          }
+                    card:
+                      type: vertical-stack
+                      cards:
+                        - type: custom:thermostat-popup-card
+                          entity: climate.fritz_dect_301_2_wohnzimmer
+                          brightnessWidth: 150px
+                          brightnessHeight: 400px
+                          switchWidth: 150px
+                          switchHeight: 400px
+                          fullscreen: false
+                        - type: entities
+                          card_mod:
+                            class: content
+                          entities:
+                            - entity: sensor.wz_temp
+                              name: Raumtemperatur
+                            - entity: sensor.humiditiy_sensor
+                              name: Luftfeuchtigkeit
+                        - type: custom:apexcharts-card
+                          layout: minimal
+                          locale: se
+                          graph_span: 8h
+                          show:
+                            loading: false
+                          apex_config:
+                            plotOptions:
+                              area:
+                                fillTo: end
+                            grid:
+                              padding:
+                                top: -15
+                            fill:
+                              type: gradient
+                              gradient:
+                                type: vertical
+                                opacityFrom: 0.8
+                                opacityTo: 0
+                                stops:
+                                  - 0
+                                  - 99
+                                  - 100
+                            stroke:
+                              width: 4
+                            tooltip:
+                              style:
+                                fontSize: 14px
+                              x:
+                                format: dddd HH:mm
+                            chart:
+                              height: 140px
+                              offsetY: '-20px'
+                            xaxis:
+                              crosshairs:
+                                show: false
+                          series:
+                            - entity: sensor.wz_temp
+                              name: Temp
+                              color: '#385581'
+                              type: area
+                              fill_raw: last
+                              group_by:
+                                func: avg
+                                duration: 1h
+                variables:
+                  circle_input: |
+                    [[[
+                      if (entity) {
+                        return entity.state === 'cool' ?
+                          entity.attributes.temperature :
+                          entity.attributes.current_temperature;
+                      }
+                    ]]]
+            type: horizontal-stack
+          - entities:
+              - entity: sensor.co2_sensor
+                name: co2
+                icon: null
+                secondary_info: last-updated
+              - entity: sensor.humiditiy_sensor
+                name: Humidity
+                secondary_info: last-updated
+              - entity: sensor.pressure_sensor
+                name: Pressure
+                secondary_info: last-updated
+              - type: custom:fold-entity-row
+                head:
+                  type: section
+                  label: Mehr Informationen
+                entities:
+                  - entity: sensor.netatmo_netatmo_huis_netatmo_woonkamer_noise
+                    name: Noise
+                    secondary_info: last-updated
+            type: entities
+        type: vertical-stack
+  - type: vertical-stack
+    cards:
+      - type: custom:simple-thermostat
+        entity: climate.demo_thermostat_kuche
+        header:
+          name: Küche
+          icon: mdi:radiator
+        decimal: 0
+        step_size: 1
+        step_layout: column
+        label:
+          temperature: Innen
+        sensors:
+          - entity: sensor.humiditiy_sensor
+            name: Luftfeuchtigkeit
+        style: |
+          ha-card .header__title {
+            font-size: var(--font-size-subtitle);
+          }
+          ha-card .mode-item {
+            background: var(--color-blue-bright-2)
+          }
