@@ -1,0 +1,711 @@
+type: vertical-stack
+cards:
+  - name: Einstellungen
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace-ios/lichter
+    template:
+      - header
+    type: custom:button-card
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: script.wakeup_karsten
+            icon: hass:weather-sunset-up
+            show_icon: true
+            aspect_ratio: 1/1
+            hold_action:
+              action: more-info
+            tap_action:
+              action: toggle
+            name: Guten Morgen
+            show_state: false
+            template:
+              - button
+          - type: custom:button-card
+            entity: script.good_night_karsten
+            icon: hass:weather-night
+            show_icon: true
+            aspect_ratio: 1/1
+            hold_action:
+              action: more-info
+            tap_action:
+              action: toggle
+            name: Gute Nacht
+            show_state: false
+            template:
+              - button
+          - type: custom:button-card
+            entity: sensor.heineken
+            icon: >-
+              [[[ if (entity.state == "") return "mdi:bottle-wine-outline"; else
+              return "fas:beer" ]]]
+            name: Heineken
+            show_icon: true
+            aspect_ratio: 1/1
+            hold_action:
+              action: more-info
+            tap_action:
+              action: more-info
+            show_state: true
+            template:
+              - kt_card_1
+            card_mod: null
+            styles:
+              card:
+                - background-color: rgb(30, 42, 64
+                - opacity: 1
+                - box-shadow: |
+                    [[[
+                      if (states['input_boolean.heineken_angebot'].state == "on")
+                        return '-5px -5px 15px #2c2c2c, 5px 5px 15px #00ff00';
+                      else if (states['input_boolean.heineken_angebot'].state == "off")
+                        return '-5px -5px 15px #ffffff, 5px 5px 15px #ebebeb';
+                    ]]]
+              icon:
+                - width: 60%
+                - opacity: 0.2
+                - color: |
+                    [[[
+                      if (states['input_boolean.heineken_angebot'].state == "on")
+                        return '#00ff00';
+                      else if (states['input_boolean.heineken_angebot'].state == "off")
+                        return '#ebebeb';
+                    ]]]
+          - type: custom:button-card
+            entity: input_boolean.tagsuber
+            icon: >-
+              [[[ if (entity.state == "on") return "mdi:white-balance-sunny";
+              else return "mdi:weather-night" ]]]
+            show_icon: true
+            aspect_ratio: 1/1
+            hold_action:
+              action: more-info
+            tap_action:
+              action: toggle
+            name: >-
+              [[[ if (entity.state == "on") return "Tagsüber"; else return
+              "Nachts" ]]]
+            show_state: false
+            template:
+              - button
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: input_boolean.home
+                icon: hass:home-map-marker
+                show_icon: true
+                aspect_ratio: 1/1
+                hold_action:
+                  action: more-info
+                tap_action:
+                  action: toggle
+                name: Zuhause
+                show_state: false
+                template:
+                  - kt_card_1
+                styles:
+                  card:
+                    - background-color: rgb(30, 42, 64
+              - type: custom:button-card
+                entity: input_boolean.arrive_home
+                icon: hass:home-export-outline
+                show_icon: true
+                aspect_ratio: 1/1
+                hold_action:
+                  action: more-info
+                tap_action:
+                  action: toggle
+                name: Leave Home
+                show_state: false
+                template:
+                  - kt_card_1
+                styles:
+                  card:
+                    - background-color: rgb(30, 42, 64
+              - type: custom:button-card
+                entity: input_boolean.karsten_montage
+                show_icon: true
+                aspect_ratio: 1/1
+                hold_action:
+                  action: more-info
+                tap_action:
+                  action: toggle
+                name: Karsten Montage
+                show_state: false
+                template:
+                  - kt_card_1
+                styles:
+                  card:
+                    - background-color: rgb(30, 42, 64
+              - type: custom:button-card
+                entity: input_select.mondphase
+                icon: >-
+                  [[[ if (entity.state == "Zunehmende Sichel") return
+                  "fapro:wi-moon-waxing-crescent-1"; else if (entity.state ==
+                  "Erstes Viertel") return "fapro:wi-moon-waxing-crescent-3";
+                  else if (entity.state == "Zunehmender Mond") return
+                  "fapro:zunehmender_mond"; else if (entity.state == "Vollmond")
+                  return "fapro:wi-moon-full"; else if (entity.state ==
+                  "Abnehmender Mond") return "fapro:wi-moon-waning-crescent-1";
+                  else if (entity.state == "Letztes Viertel") return
+                  "fapro:wi-moon-waning-crescent-4"; else if (entity.state ==
+                  "Abnehmende Sichel") return "fapro:wi-moon-waning-crescent-6";
+                  else return "mdi:sun" ]]]
+                show_icon: true
+                show_name: false
+                aspect_ratio: 1/1
+                hold_action:
+                  action: more-info
+                tap_action:
+                  action: toggle
+                name: >-
+                  [[[ if (entity.state == "on") return "Tagsüber"; else return
+                  "Nachts" ]]]
+                show_state: true
+                template:
+                  - button
+  - type: vertical-stack
+    cards: []
+  - type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: sensor.config_result
+                name: Konfiguration
+            state_color: true
+            card_mod:
+              style: |
+                ha-card {
+                  max-height: 56px;      
+                  background-color: rgb(30, 42, 64);
+                  #color: var(--text-color);
+                  padding-top: 0px;
+                  padding-bottom: 0px;
+                  margin: 0px 0px 16px 0px;
+                  border-radius: 0%;
+                  text-transform: uppercase;
+                  #color: var(--dwains-theme-accent);
+                  font-size: 125%;
+                  font-weight: 300;
+                  letter-spacing: 10px;
+                  color: white;
+                  #opacity: 0.7;
+                  text-shadow: 0px 0px 5px black;
+                  text-transform: capitalize;
+                  height: 56;
+                }
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity_picture: /local/images/icons8-administrative-tools-80.png
+                show_entity_picture: true
+                show_icon: false
+                show_last_changed: false
+                aspect_ratio: 1/1
+                name: Check Config
+                tap_action:
+                  action: call-service
+                  service: script.check_config
+                show_state: false
+                size: 100%
+                styles:
+                  entity_picture_style:
+                    - width: 100%;
+                  card:
+                    - background-color: rgb(30, 42, 64
+                    - border-radius: 10%
+                    - padding: 12%
+                    - color: ivory
+                    - font-size: 10px
+                    - text-shadow: 0px 0px 5px black
+                    - text-transform: capitalize
+                  grid:
+                    - grid-template-areas: '"i bright" "n n" "s s"'
+                    - grid-template-columns: 1fr 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  img_cell:
+                    - justify-content: start
+                    - align-items: start
+                    - margin: none
+              - type: custom:button-card
+                entity_picture: /local/images/icons8-restart-80.png
+                show_entity_picture: true
+                show_icon: false
+                show_last_changed: false
+                aspect_ratio: 1/1
+                name: HA Restart
+                tap_action:
+                  action: call-service
+                  service: homeassistant.restart
+                show_state: false
+                size: 100%
+                styles:
+                  entity_picture_style:
+                    - width: 100%;
+                  card:
+                    - background-color: rgb(30, 42, 64
+                    - border-radius: 10%
+                    - padding: 12%
+                    - color: ivory
+                    - font-size: 10px
+                    - text-shadow: 0px 0px 5px black
+                    - text-transform: capitalize
+                  grid:
+                    - grid-template-areas: '"i bright" "n n" "s s"'
+                    - grid-template-columns: 1fr 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  img_cell:
+                    - justify-content: start
+                    - align-items: start
+                    - margin: none
+              - type: custom:button-card
+                entity_picture: /local/images/icons8-code-80.png
+                show_entity_picture: true
+                show_icon: false
+                show_last_changed: false
+                aspect_ratio: 1/1
+                name: Reload Config
+                tap_action:
+                  action: call-service
+                  service: homeassistant.reload_core_config
+                show_state: false
+                size: 100%
+                styles:
+                  entity_picture_style:
+                    - width: 100%;
+                  card:
+                    - background-color: rgb(30, 42, 64
+                    - border-radius: 10%
+                    - padding: 12%
+                    - color: ivory
+                    - font-size: 10px
+                    - text-shadow: 0px 0px 5px black
+                    - text-transform: capitalize
+                  grid:
+                    - grid-template-areas: '"i bright" "n n" "s s"'
+                    - grid-template-columns: 1fr 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  img_cell:
+                    - justify-content: start
+                    - align-items: start
+                    - margin: none
+              - type: custom:button-card
+                color_type: blank-card
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity_picture: /local/images/icons8-variation-80.png
+                show_entity_picture: true
+                show_icon: false
+                show_last_changed: false
+                aspect_ratio: 1/1
+                name: Reload Group
+                tap_action:
+                  action: call-service
+                  service: group.reload
+                show_state: false
+                size: 100%
+                styles:
+                  entity_picture_style:
+                    - width: 100%;
+                  card:
+                    - background-color: rgb(30, 42, 64
+                    - border-radius: 10%
+                    - padding: 12%
+                    - color: ivory
+                    - font-size: 10px
+                    - text-shadow: 0px 0px 5px black
+                    - text-transform: capitalize
+                  grid:
+                    - grid-template-areas: '"i bright" "n n" "s s"'
+                    - grid-template-columns: 1fr 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  img_cell:
+                    - justify-content: start
+                    - align-items: start
+                    - margin: none
+              - type: custom:button-card
+                entity_picture: /local/images/icons8-home-automation-80.png
+                show_entity_picture: true
+                show_icon: false
+                show_last_changed: false
+                aspect_ratio: 1/1
+                name: Reload Automation
+                tap_action:
+                  action: call-service
+                  service: automation.reload
+                show_state: false
+                size: 100%
+                styles:
+                  entity_picture_style:
+                    - width: 100%;
+                  card:
+                    - background-color: rgb(30, 42, 64
+                    - border-radius: 10%
+                    - padding: 12%
+                    - color: ivory
+                    - font-size: 10px
+                    - text-shadow: 0px 0px 5px black
+                    - text-transform: capitalize
+                  grid:
+                    - grid-template-areas: '"i bright" "n n" "s s"'
+                    - grid-template-columns: 1fr 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  img_cell:
+                    - justify-content: start
+                    - align-items: start
+                    - margin: none
+              - type: custom:button-card
+                entity_picture: /local/images/icons8-note-80.png
+                show_entity_picture: true
+                show_icon: false
+                show_last_changed: false
+                aspect_ratio: 1/1
+                name: Reload Scripte
+                tap_action:
+                  action: call-service
+                  service: script.reload
+                show_state: false
+                size: 100%
+                styles:
+                  entity_picture_style:
+                    - width: 100%;
+                  card:
+                    - background-color: rgb(30, 42, 64
+                    - border-radius: 10%
+                    - padding: 12%
+                    - color: ivory
+                    - font-size: 10px
+                    - text-shadow: 0px 0px 5px black
+                    - text-transform: capitalize
+                  grid:
+                    - grid-template-areas: '"i bright" "n n" "s s"'
+                    - grid-template-columns: 1fr 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  img_cell:
+                    - justify-content: start
+                    - align-items: start
+                    - margin: none
+              - type: custom:button-card
+                entity_picture: /local/images/icons8-tuya-80.png
+                show_entity_picture: true
+                show_icon: false
+                show_last_changed: false
+                aspect_ratio: 1/1
+                name: Reload Tuya
+                tap_action:
+                  action: call-service
+                  service: script.1644869334531
+                show_state: false
+                size: 100%
+                styles:
+                  entity_picture_style:
+                    - width: 100%;
+                  card:
+                    - background-color: rgb(30, 42, 64
+                    - border-radius: 10%
+                    - padding: 12%
+                    - color: ivory
+                    - font-size: 10px
+                    - text-shadow: 0px 0px 5px black
+                    - text-transform: capitalize
+                  grid:
+                    - grid-template-areas: '"i bright" "n n" "s s"'
+                    - grid-template-columns: 1fr 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  img_cell:
+                    - justify-content: start
+                    - align-items: start
+                    - margin: none
+      - type: vertical-stack
+        cards: []
+  - name: Server
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace-ios/lichter
+    template:
+      - header
+    type: custom:button-card
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity_picture: /local/images/nginx-80.png
+            show_entity_picture: true
+            show_icon: false
+            show_last_changed: false
+            aspect_ratio: 1/1
+            name: NGINX
+            hold_action:
+              haptic: heavy
+              action: fire-dom-event
+              browser_mod:
+                command: popup
+                title: Media Browser
+                hide_header: false
+                large: true
+                card:
+                  type: iframe
+                  url: http://192.168.178.105:81/
+                  aspect_ratio: 200%
+            tap_action:
+              action: url
+              url_path: http://192.168.178.105:81/
+            show_state: false
+            size: 100%
+            styles:
+              card:
+                - background-color: rgb(30, 42, 64
+                - border-radius: 10%
+                - padding: 12%
+                - color: ivory
+                - font-size: 10px
+                - text-shadow: 0px 0px 5px black
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: '"i bright" "n n" "s s"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 1fr min-content min-content
+              img_cell:
+                - justify-content: start
+                - align-items: start
+                - margin: none
+          - type: custom:button-card
+            entity_picture: /local/images/grafana-80.png
+            show_entity_picture: true
+            show_icon: false
+            show_last_changed: false
+            aspect_ratio: 1/1
+            name: Graphana
+            hold_action:
+              haptic: heavy
+              action: fire-dom-event
+              browser_mod:
+                command: popup
+                title: Graphana
+                hide_header: false
+                large: true
+                card:
+                  type: iframe
+                  url: >-
+                    http://192.168.178.115:3000/d/kxQQuHRZk/proxmox?orgId=1&refresh=5m
+                  aspect_ratio: 200%
+            tap_action:
+              action: url
+              url_path: >-
+                http://192.168.178.115:3000/d/kxQQuHRZk/proxmox?orgId=1&refresh=5m
+            show_state: false
+            size: 100%
+            styles:
+              card:
+                - background-color: rgb(30, 42, 64
+                - border-radius: 10%
+                - padding: 12%
+                - color: ivory
+                - font-size: 10px
+                - text-shadow: 0px 0px 5px black
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: '"i bright" "n n" "s s"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 1fr min-content min-content
+              img_cell:
+                - justify-content: start
+                - align-items: start
+                - margin: none
+          - type: custom:button-card
+            entity_picture: /local/images/goaccess-80.png
+            show_entity_picture: true
+            show_icon: false
+            show_last_changed: false
+            aspect_ratio: 1/1
+            name: GoAccess
+            hold_action:
+              haptic: heavy
+              action: fire-dom-event
+              browser_mod:
+                command: popup
+                title: GoAccess
+                hide_header: false
+                large: true
+                card:
+                  type: iframe
+                  url: http://192.168.178.105:7880/
+                  aspect_ratio: 200%
+            tap_action:
+              action: url
+              url_path: http://192.168.178.105:7880/
+            show_state: false
+            size: 100%
+            styles:
+              card:
+                - background-color: rgb(30, 42, 64
+                - border-radius: 10%
+                - padding: 12%
+                - color: ivory
+                - font-size: 10px
+                - text-shadow: 0px 0px 5px black
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: '"i bright" "n n" "s s"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 1fr min-content min-content
+              img_cell:
+                - justify-content: start
+                - align-items: start
+                - margin: none
+          - type: custom:button-card
+            entity_picture: /local/images/glances-80.png
+            show_entity_picture: true
+            show_icon: false
+            show_last_changed: false
+            aspect_ratio: 1/1
+            name: Glances
+            hold_action:
+              haptic: heavy
+              action: fire-dom-event
+              browser_mod:
+                command: popup
+                title: Glances
+                hide_header: false
+                large: true
+                card:
+                  type: iframe
+                  url: http://192.168.178.99:61208/
+                  aspect_ratio: 200%
+            tap_action:
+              action: url
+              url_path: http://192.168.178.99:61208/
+            show_state: false
+            size: 100%
+            styles:
+              card:
+                - background-color: rgb(30, 42, 64
+                - border-radius: 10%
+                - padding: 12%
+                - color: ivory
+                - font-size: 10px
+                - text-shadow: 0px 0px 5px black
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: '"i bright" "n n" "s s"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 1fr min-content min-content
+              img_cell:
+                - justify-content: start
+                - align-items: start
+                - margin: none
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity_picture: /local/images/nodered-80.png
+                show_entity_picture: true
+                show_icon: false
+                show_last_changed: false
+                aspect_ratio: 1/1
+                name: NodeRed
+                tap_action:
+                  action: url
+                  url_path: http://192.168.178.104:1880/
+                show_state: false
+                size: 100%
+                styles:
+                  card:
+                    - background-color: rgb(30, 42, 64
+                    - border-radius: 10%
+                    - padding: 12%
+                    - color: ivory
+                    - font-size: 10px
+                    - text-shadow: 0px 0px 5px black
+                    - text-transform: capitalize
+                  grid:
+                    - grid-template-areas: '"i bright" "n n" "s s"'
+                    - grid-template-columns: 1fr 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  img_cell:
+                    - justify-content: start
+                    - align-items: start
+                    - margin: none
+              - type: custom:button-card
+                entity_picture: /local/images/plex-80.png
+                show_entity_picture: true
+                show_icon: false
+                show_last_changed: false
+                aspect_ratio: 1/1
+                name: Plex
+                tap_action:
+                  action: url
+                  url_path: http://192.168.178.131:32400/web/index.html#!/
+                show_state: false
+                size: 100%
+                styles:
+                  card:
+                    - background-color: rgb(30, 42, 64
+                    - border-radius: 10%
+                    - padding: 12%
+                    - color: ivory
+                    - font-size: 10px
+                    - text-shadow: 0px 0px 5px black
+                    - text-transform: capitalize
+                  grid:
+                    - grid-template-areas: '"i bright" "n n" "s s"'
+                    - grid-template-columns: 1fr 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  img_cell:
+                    - justify-content: start
+                    - align-items: start
+                    - margin: none
+              - type: custom:button-card
+                entity_picture: /local/images/proxmox-80.png
+                show_entity_picture: true
+                show_icon: false
+                show_last_changed: false
+                aspect_ratio: 1/1
+                name: ProxMox
+                hold_action:
+                  haptic: heavy
+                  action: fire-dom-event
+                  browser_mod:
+                    command: popup
+                    title: ProxMox
+                    hide_header: false
+                    large: true
+                    card:
+                      type: iframe
+                      url: https://192.168.178.99:8006/
+                      aspect_ratio: 200%
+                tap_action:
+                  action: url
+                  url_path: https://192.168.178.99:8006/
+                show_state: false
+                size: 100%
+                styles:
+                  card:
+                    - background-color: rgb(30, 42, 64
+                    - border-radius: 10%
+                    - padding: 12%
+                    - color: ivory
+                    - font-size: 10px
+                    - text-shadow: 0px 0px 5px black
+                    - text-transform: capitalize
+                  grid:
+                    - grid-template-areas: '"i bright" "n n" "s s"'
+                    - grid-template-columns: 1fr 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  img_cell:
+                    - justify-content: start
+                    - align-items: start
+                    - margin: none
+              - type: custom:button-card
+                color_type: blank-card
