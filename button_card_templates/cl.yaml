@@ -1,0 +1,18 @@
+button_card_templates:
+  cl:
+    custom_fields:
+      cl:
+        card:
+          type: custom:button-card
+          icon: mdi:palette
+          name: false
+          entity_picture: /local/multic.png
+          show_entity_picture: true
+          show_name: false
+          styles:
+            card:
+              - background-color: '#242e42'
+              - height: 25px
+              - width: 25px
+            icon:
+              - width: 15px
