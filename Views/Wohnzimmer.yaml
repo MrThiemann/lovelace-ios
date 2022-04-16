@@ -29,7 +29,7 @@
                 template:
                   - kt_card_2
               - type: custom:button-card
-                entity: light.wandlampe_wohnzimmer
+                entity: light.Entität_Licht
                 icon: hue:wall-fuzo-h
                 show_icon: true
                 aspect_ratio: 1/1
@@ -42,7 +42,7 @@
                 template:
                   - kt_card_2
               - type: custom:button-card
-                entity: switch.tp_link_01
+                entity: switch.Entität_Switch
                 icon: phu:pendant-round
                 show_icon: true
                 aspect_ratio: 1/1
@@ -57,7 +57,7 @@
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: light.tybf4da595f9235af6dbrfhn
+                entity: light.Entität_Licht
                 icon: hue:go
                 name: Vitrine
                 show_icon: true
@@ -139,7 +139,7 @@
                         icon:
                           - width: 15px
               - type: custom:button-card
-                entity: light.lsc_light_strip_rgbcw_wifi_2
+                entity: light.Entität_Licht
                 icon: hue:lightstrip-tv
                 name: RGB Wohnwand
                 show_icon: true
@@ -221,7 +221,7 @@
                         icon:
                           - width: 15px
               - type: custom:button-card
-                entity: light.tybfbfbb83505dd21d54yzwe
+                entity: light.Entität_Licht
                 icon: hue:go
                 name: Vitrine
                 show_icon: true
@@ -561,37 +561,37 @@
                     - icon: mdi:coffee-outline
                       type: playlist
                       id: >-
-                        https://open.spotify.com/playlist/4ddslfKP5u4dpiZ0X2LT64?si=988ed6d2434a4ed6
+                        https://open.spotify.com/playlist/URL
                     - icon: mdi:shower
                       type: playlist
                       id: >-
-                        https://open.spotify.com/album/4FdNA8fZZzqSnvKXoX9XzC?si=fqFafACQTK-QUYPY6Jfw-w
+                        https://open.spotify.com/album/URL
                     - icon: mdi:palm-tree
                       type: playlist
                       id: >-
-                        https://open.spotify.com/playlist/37i9dQZF1DX32oVqaQE8BM?si=CkcWDcFMQuy6v33WsKUzUw
+                        https://open.spotify.com/playlist/URL
                     - icon: mdi:white-balance-sunny
                       type: playlist
                       id: >-
-                        https://open.spotify.com/playlist/37i9dQZF1DWWLToO3EeTtX?si=3iirw6pRTb6xVlmAE2sEGQ
+                        https://open.spotify.com/playlist/URL
                     - icon: mdi:weather-rainy
                       type: playlist
                       id: >-
-                        https://open.spotify.com/playlist/37i9dQZF1DX3lnqcg5MsPa?si=JXi2iedtQ_-zAuoR7IjW1g
+                        https://open.spotify.com/playlist/URL
                     - name: Party
                       type: playlist
                       id: >-
-                        https://open.spotify.com/playlist/37i9dQZF1DWZ7eJRBxKzdO?si=879375d9a21343aa
+                        https://open.spotify.com/playlist/URL
                     - icon: mdi:heart-multiple-outline
                       type: playlist
                       id: >-
-                        https://open.spotify.com/playlist/37i9dQZF1DX163rJoVPJH7?si=j1AEQ1yGRHySwn9XloCH2A
+                        https://open.spotify.com/playlist/URL
                   columns: 5
                 type: custom:mini-media-player
-                entity: media_player.spotify_karsten_thiemann
+                entity: media_player.spotify_Account
               - type: media-control
                 entity: media_player.playstation_4kt
               - type: media-control
-                entity: media_player.nathalies_echo_dot
+                entity: media_player.Entität_Echo
           - type: vertical-stack
             cards: []
