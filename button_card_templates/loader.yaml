@@ -1,0 +1,31 @@
+button_card_templates:
+  loader:
+    custom_fields:
+      loader: |
+        <img src="/local/loader.svg" width="100%">
+    tap_action:
+      loader: |
+        [[[
+          if (entity) {
+            let elt = this.shadowRoot,
+              loader = (id, style, timeout) => {
+                elt.getElementById(id) && (elt.getElementById(id).style.display = style,
+                  window.setTimeout(() => {
+                    elt.getElementById(id).style.display = timeout
+                  }, 20000))
+              };
+            loader('circle', 'none', 'initial'),
+            loader('loader', 'initial', 'none');
+          }
+        ]]]
+    styles:
+      custom_fields:
+        loader:
+          - display: none
+          - top: 3%
+          - left: 60%
+          - width: 37%
+          - position: absolute
+          - opacity: 0.5
+          - filter: |
+              [[[ return variables.state === 'off' ? 'invert(1)' : 'none'; ]]]
