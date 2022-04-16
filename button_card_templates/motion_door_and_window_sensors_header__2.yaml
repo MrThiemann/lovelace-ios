@@ -1,0 +1,70 @@
+button_card_templates:
+  motion_sensors:
+    template: generic_motion_door_and_window_sensors
+  door_sensors:
+    template: generic_motion_door_and_window_sensors
+    dbltap_action:
+      action: more-info
+    state:
+      - id: sensor_on
+        icon: mdi:door-open
+      - value: 'off'
+        icon: mdi:door-closed
+  window_sensors:
+    template: generic_motion_door_and_window_sensors
+    dbltap_action:
+      action: more-info
+    state:
+      - id: sensor_on
+        icon: mdi:window-open
+      - value: 'off'
+        icon: mdi:window-closed
+  generic_motion_door_and_window_sensors:
+    name_template: >
+      var sensor_name = entity.attributes.friendly_name; if
+      (sensor_name.search('PIR') === 0) {
+        return sensor_name.split('PIR ')[1];
+      } else if (sensor_name.split(' ')[sensor_name.split(' ').length - 1] ===
+      'Door') {
+        var sensor_name = sensor_name.replace(' Door', '');
+        return sensor_name;
+      } else {
+        var sensor_name = sensor_name.replace(' Window', '');
+        var sensor_name = sensor_name.replace('Left', '(L)');
+        var sensor_name = sensor_name.replace('Centre', '(C)');
+        var sensor_name = sensor_name.replace('Right', '(R)');
+        return sensor_name;
+      }
+    show_label: true
+    label_template: >
+      var sensor_name = entity.attributes.friendly_name; if
+      (sensor_name.search('PIR') === 0) {
+        return entity.state === 'on' ? '-MOTION-' : '';
+      } else {
+        return entity.state === 'on' ? '-OPEN-' : '';
+      }
+    layout: icon_label
+    aspect_ratio: 2.5/1
+    size: 50%
+    state:
+      - value: 'on'
+        id: sensor_on
+        styles:
+          card:
+            - box-shadow: 0px 0px 8px 2px var(--secondary-text-color)
+          icon:
+            - color: var(--secondary-text-color)
+    styles:
+      name:
+        - font-size: 12px
+      label:
+        - font-size: 12px
+        - font-weight: bold
+        - color: var(--secondary-text-color)
+        - justify-self: start
+    tap_action:
+      action: none
+    hold_action:
+      action: none
+    dbltap_action:
+      action: more-info
