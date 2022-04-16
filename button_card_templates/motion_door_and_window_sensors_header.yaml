@@ -1,0 +1,35 @@
+button_card_templates:
+  motion_door_and_window_sensors_header:
+    show_name: false
+    show_label: true
+    show_icon: false
+    layout: icon_label
+    label_template: >
+      var i; var entities = entity.attributes.entity_id; var count = 0; var
+      entity_type = entity.attributes.friendly_name.split(' ')[1]; for (i = 0; i
+      < entities.length; i++) {
+        var state = states[entities[i]].state;
+        if (state === 'on') {
+          count += 1;
+        }
+      } if (entity_type === 'PIR') {
+        var label_prefix = '-- Motion';
+        var label_sufix = ' Detected --';
+      } else if (entity_type === 'Door') {
+        var label_prefix = '-- Doors';
+        var label_sufix = ' are Open --';
+      } else {
+        var label_prefix = '-- Windows';
+        var label_sufix = ' are Open --';
+      } return label_prefix + (count.toString() > 0 ? label_sufix : ' --');
+    styles:
+      card:
+        - background-color: var(--paper-card-background-color)
+      label:
+        - justify-self: start
+        - padding-left: 24px
+        - font-size: 24px
+        - color: var(--primary-text-color)
+      grid:
+        - grid-template-areas: '"l"'
+        - grid-template-columns: 1fr
