@@ -1,0 +1,46 @@
+button_card_templates:
+  popup_climate:
+    hold_action:
+      action: fire-dom-event
+      browser_mod:
+        command: popup
+        title: '[[[ return entity.attributes.friendly_name ]]]'
+        hide_header: true
+        auto_close: false
+        style:
+          $: |
+            .mdc-dialog .mdc-dialog__container {
+              width: 100%;
+            }
+            .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+              width:100%;
+              box-shadow:none;
+            }
+          .: |
+            :host {
+              --mdc-theme-surface: rgba(0,0,0,0);
+              --secondary-background-color: rgba(0,0,0,0);
+              --ha-card-background: rgba(0,0,0,0);
+              --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+              --mdc-dialog-min-height: 100%;
+              --mdc-dialog-min-width: 100%;
+              --mdc-dialog-max-width: 100%;
+            }
+            mwc-icon-button {
+              color: #FFF;
+            }        
+        card:
+          type: custom:thermostat-popup-card
+          entity: '[[[ return entity.entity_id ]]]'
+          actionSize: 60px
+          brightnessWidth: 150px
+          brightnessHeight: 400px
+          switchWidth: 150px
+          switchHeight: 400px
+          fullscreen: false
+          style: |
+            .ha-slider-full-width ha-slider {
+              border-radius: 4px;
+              margin-left: 10px;
+              margin-right: 10px;
+            }
