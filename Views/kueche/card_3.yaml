@@ -24,33 +24,33 @@ cards:
             - icon: mdi:coffee-outline
               type: playlist
               id: >-
-                https://open.spotify.com/playlist/4ddslfKP5u4dpiZ0X2LT64?si=988ed6d2434a4ed6
+                https://open.spotify.com/playlist/URL
             - icon: mdi:shower
               type: playlist
               id: >-
-                https://open.spotify.com/album/4FdNA8fZZzqSnvKXoX9XzC?si=fqFafACQTK-QUYPY6Jfw-w
+                https://open.spotify.com/album/URL
             - icon: mdi:palm-tree
               type: playlist
               id: >-
-                https://open.spotify.com/playlist/37i9dQZF1DX32oVqaQE8BM?si=CkcWDcFMQuy6v33WsKUzUw
+                https://open.spotify.com/playlist/URL
             - icon: mdi:white-balance-sunny
               type: playlist
               id: >-
-                https://open.spotify.com/playlist/37i9dQZF1DWWLToO3EeTtX?si=3iirw6pRTb6xVlmAE2sEGQ
+                https://open.spotify.com/playlist/URL
             - icon: mdi:weather-rainy
               type: playlist
               id: >-
-                https://open.spotify.com/playlist/37i9dQZF1DX3lnqcg5MsPa?si=JXi2iedtQ_-zAuoR7IjW1g
+                https://open.spotify.com/playlist/URL
             - name: Party
               type: playlist
               id: >-
-                https://open.spotify.com/playlist/37i9dQZF1DWZ7eJRBxKzdO?si=879375d9a21343aa
+                https://open.spotify.com/playlist/URL
             - icon: mdi:heart-multiple-outline
               type: playlist
               id: >-
-                https://open.spotify.com/playlist/37i9dQZF1DX163rJoVPJH7?si=j1AEQ1yGRHySwn9XloCH2A
+                https://open.spotify.com/playlist/URL
           columns: 5
         type: custom:mini-media-player
-        entity: media_player.spotify_karsten_thiemann
+        entity: media_player.spotify_Person
   - type: vertical-stack
     cards: []
