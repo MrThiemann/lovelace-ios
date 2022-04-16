@@ -37,7 +37,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: custom:button-card
-            entity: light.haustur_rgb
+            entity: light.Entität_Licht
             icon: hue:wall-fuzo-h
             name: Haustür
             show_icon: true
@@ -119,7 +119,7 @@ cards:
                     icon:
                       - width: 15px
           - type: custom:button-card
-            entity: light.ty84621220c82b9655253b
+            entity: light.Entität_Licht
             icon: phu:bulbs-spot
             name: Decke Flur EG
             show_icon: true
@@ -215,7 +215,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: custom:button-card
-            entity: light.candle_rgb_cct_2
+            entity: light.Entität_Licht
             icon: hue:wall-shade
             name: Wandlampe Flur
             show_icon: true
@@ -297,7 +297,7 @@ cards:
                     icon:
                       - width: 15px
           - type: custom:button-card
-            entity: light.tybfa23d68fa30fff8f60geg
+            entity: light.Entität_Licht
             icon: hue:wall-appear
             name: Wandlampe Treppe
             template:
@@ -355,7 +355,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: light.wc_eg
+                entity: light.Entität_Licht
                 icon: hue:room-toilet
                 name: WC
                 template:
@@ -411,7 +411,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: light.candle_rgb_cct_2
+                entity: light.Entität_Licht
                 icon: fas:shower
                 name: Deckenlampe
                 show_icon: true
@@ -493,7 +493,7 @@ cards:
                         icon:
                           - width: 15px
               - type: custom:button-card
-                entity: light.tybfa23d68fa30fff8f60geg
+                entity: light.Entität_Licht
                 icon: hue:wall-fuzo
                 name: Spiegel
                 show_icon: true
@@ -592,7 +592,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: light.extended_color_light_9
+                entity: light.Entität_Licht
                 icon: hue:flourish-alt
                 name: Kartenkugel
                 show_icon: true
@@ -674,7 +674,7 @@ cards:
                         icon:
                           - width: 15px
               - type: custom:button-card
-                entity: light.extended_color_light_10
+                entity: light.Entität_Licht
                 icon: hue:flourish-alt
                 name: Kartenkugel
                 show_icon: true
@@ -760,7 +760,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                entity: light.gardenposts_set_of_3_pool_1
+                entity: light.Entität_Licht
                 icon: hue:bulb-group-bollard-3
                 name: Pool
                 show_icon: true
@@ -842,7 +842,7 @@ cards:
                         icon:
                           - width: 15px
               - type: custom:button-card
-                entity: light.gardenposts_set_of_3_pool_2
+                entity: light.Entität_Licht
                 icon: hue:bulb-group-bollard-3
                 name: Pool
                 show_icon: true
