@@ -1,0 +1,117 @@
+button_card_templates:
+  popup_light_rgb:
+    hold_action:
+      action: fire-dom-event
+      browser_mod:
+        command: popup
+        title: '[[[ return entity.attributes.friendly_name ]]]'
+        hide_header: true
+        auto_close: false
+        style:
+          $: |
+            .mdc-dialog .mdc-dialog__container {
+              width: 100%;
+            }
+            .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+              width:100%;
+              box-shadow:none;
+            }
+          .: |
+            :host {
+              --mdc-theme-surface: rgba(0,0,0,0);
+              --secondary-background-color: rgba(0,0,0,0);
+              --ha-card-background: rgba(0,0,0,0);
+              --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+              --mdc-dialog-min-height: 100%;
+              --mdc-dialog-min-width: 100%;
+              --mdc-dialog-max-width: 100%;
+            }
+            mwc-icon-button {
+              color: #FFF;
+            }        
+        card:
+          type: custom:light-popup-card
+          entity: '[[[ return entity.entity_id ]]]'
+          icon: mdi:led-strip
+          actionSize: 60px
+          settings:
+            openButton: RGB
+            closeButton: CLOSE
+          settingsCard:
+            type: custom:light-entity-card
+            cardOptions:
+              entity: '[[[ return entity.entity_id ]]]'
+              brightness: true
+              full_width_sliders: true
+              hide_header: true
+              show_slider_percent: true
+              smooth_color_wheel: true
+              consolidate_entities: true
+              effects_list:
+                - 1
+                - 2
+                - 3
+                - 4
+          style: |
+            .ha-slider-full-width ha-slider {
+              border-radius: 4px;
+              margin-left: 10px;
+              margin-right: 10px;
+            }
+          actions:
+            - service: light.turn_on
+              service_data:
+                entity_id: '[[[ return entity.entity_id ]]]'
+                color_temp: 153
+              color: '#d8d9e1'
+            - service: light.turn_on
+              service_data:
+                entity_id: '[[[ return entity.entity_id ]]]'
+                color_temp: 326
+              color: '#d5b08d'
+            - service: light.turn_on
+              service_data:
+                entity_id: '[[[ return entity.entity_id ]]]'
+                color_temp: 500
+              color: '#ce944b'
+            - action: fire-dom-event
+              image: >-
+                data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0  50
+                50"%3E%3Cstyle%3Esvg%7Bbackground:radial-gradient(circle,rgba(255,255,
+                255,1) 0%25,rgba(255,255,255,0)
+                80%25),conic-gradient(%237827e6,%23e622e7,
+                %23e40588,%23e41919,%23e5691e,%23e8e22e,%237de629,%2334e828,%2333e75c,
+                %2334e8e0,%23207de5,%231227e5,%237827e6)%7D%3C/style%3E%3C/svg%3E
+              browser_mod:
+                command: popup
+                title: '[[[ return entity.attributes.friendly_name ]]]'
+                card:
+                  type: custom:light-entity-card
+                  entity: '[[[ return entity.entity_id ]]]'
+                  brightness: true
+                  color_temp: true
+                  white_value: true
+                  full_width_sliders: false
+                  hide_header: true
+                  show_slider_percent: true
+                  smooth_color_wheel: true
+                  persist_features: true
+                  consolidate_entities: true
+                  effects_List: true
+                style:
+                  $: |
+                    .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+                      border-radius: 25px;
+                      padding: 65px;
+                    }
+                  .: |
+                    :host {
+                      --mdc-theme-surface: rgba(0,0,0,0);
+                      --secondary-background-color: rgba(0,0,0,0.5);
+                      --ha-card-background: rgba(0,0,0,0.5);
+                    }
+                    :host .content {
+                      width: 35vw;
+                      height: 100vh;
+                     }
