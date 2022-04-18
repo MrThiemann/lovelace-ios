@@ -41,7 +41,7 @@ If you like it, I would be happy if you [buy me a coffee](https://www.buymeacoff
 ### Integrations
 `very many installed, but not all in use. I'll try to clean up here soon and mark those that are needed for my dashboard`
 - deCONZ
-- HACS
+- [HACS](https://github.com/hacs/integration)
 - Mobile App
 - OpenWeatherMap
 - Plex Media Server
@@ -51,7 +51,7 @@ If you like it, I would be happy if you [buy me a coffee](https://www.buymeacoff
 - AVM FRITZ!Box Tools
 - AVM FRITZ!SmartHome
 - Uptime
-- Browser Mod
+- [Browser Mod](https://github.com/thomasloven/hass-browser_mod)
 - DLNA Digital Media Server
 - myip
 - DWD Pollenflug
@@ -73,11 +73,11 @@ If you like it, I would be happy if you [buy me a coffee](https://www.buymeacoff
 
 ### 
 - Fully Kiosk Browser
-- Multiscrape
+- [Multiscrape](https://github.com/danieldotnl/ha-multiscrape)
 - Climate Group
 - Deutscher Wetterdienst
-- Spotcast
-- browser_mod
+- [Spotcast](https://github.com/fondberg/spotcast)
+- [browser_mod](https://github.com/thomasloven/hass-browser_mod)
 - fontawesome
 - OpenWeatherMap All
 - Power calculation
