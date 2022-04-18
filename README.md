@@ -69,7 +69,7 @@ If you like it, I would be happy if you [buy me a coffee](https://www.buymeacoff
 - SpeedTest
 - Spotify
 - Tankerkoenig
-- Tuya v2
+- [Tuya v2](https://github.com/tuya/tuya-home-assistant)
 
 ### 
 - Fully Kiosk Browser
