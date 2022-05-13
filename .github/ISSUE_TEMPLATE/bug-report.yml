@@ -14,7 +14,7 @@ body:
         - [The installation instructions](https://google.de).
         - [Existing issues and discussions](https://github.com/MrThiemann/lovelace-ios/search?q=&type=issues).
 
-        If you encounter any issues installing or configuring my dashboard, please post in the ["Support" section of discussions](https://github.com/MrThiemann/lovelace-ios/discussions/new?category= support) .
+        If you encounter any issues installing or configuring my dashboard, please post in the ["Support" section of discussions](https://github.com/MrThiemann/lovelace-ios/discussions/new?category=support) .
   - type: textarea
     id: description
     attributes:
