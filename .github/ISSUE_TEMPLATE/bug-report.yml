@@ -1,0 +1,86 @@
+name: Bug report
+description: if something doesn't work
+title: "[BUG] Description of your problem"
+labels: ["bug", "unconfirmed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        You have a question? 👉 [Start a new discussion](https://github.com/MrThiemann/lovelace-ios/discussions/discussions/new) or [ask in Discord-Chat](https://discord.gg/zhdmdhU).
+
+        Before opening an issue, please double check:
+
+        - [The troubleshooting documentation](https://google.de)
+        - [The installation instructions](https://google.de).
+        - [Existing issues and discussions](https://github.com/MrThiemann/lovelace-ios/search?q=&type=issues).
+
+        If you encounter any issues installing or configuring my dashboard, please post in the ["Support" section of discussions](https://github.com/MrThiemann/lovelace-ios/discussions/new?category= support) .
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of what the bug is. If applicable, add screenshots to help explain your problem.
+      placeholder: |
+        Currently Paperless does not work when...
+
+        [Screenshot if applicable]
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Webserver logs
+      description: If available, post any logs from the web server related to your issue.
+      render: bash
+  - type: input
+    id: version
+    attributes:
+      label: Paperless-ngx version
+      placeholder: e.g. 1.6.0
+    validations:
+      required: true
+  - type: input
+    id: host-os
+    attributes:
+      label: Host OS
+      description: Host OS of the machine running paperless-ngx. Please add the architecture (uname -m) if applicable.
+      placeholder: e.g. Archlinux / Ubuntu 20.04 / Raspberry Pi `arm64`
+    validations:
+      required: true
+  - type: dropdown
+    id: install-method
+    attributes:
+      label: Installation method
+      options:
+        - Docker
+        - Bare metal
+        - Other (please describe above)
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      description: Which browser you are using, if relevant.
+      placeholder: e.g. Chrome, Safari
+  - type: input
+    id: config-changes
+    attributes:
+      label: Configuration changes
+      description: Any configuration changes you made in `docker-compose.yml`, `docker-compose.env` or `paperless.conf`.
+  - type: input
+    id: other
+    attributes:
+      label: Other
+      description: Any other relevant details.
